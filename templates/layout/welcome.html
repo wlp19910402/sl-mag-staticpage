@@ -1,0 +1,180 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+  <link href="../../static/css/merchant.css" th:href="@{/css/merchant.css}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="lpfixed-content">
+    <div class="lpscrolly-content notices-bg">
+      <div class="lpcontent-box">
+        <div class="lpsearch-box lpcontent-shadow">
+          <div style="padding: 46px 46px 80px;">
+            <div class="lpwelcome-proclamate-title">欢迎使用首旅管理端</div>
+          </div>
+        </div>
+      </div>
+      <!--菜单-->
+      <div class="lpmenu-box lpbox-sizing">
+        <div class="lpmenu-boxbg"></div>
+        <table class="lpmenu-contraction">
+          <tr>
+            <td>
+              <div class="contraction" onclick="menuBoxToggle()"></div>
+            </td>
+          </tr>
+        </table>
+        <div class="lpmenu-content-box">
+          <div id="accordion" role="tablist" aria-multiselectable="true">
+            <!--用户信息管理-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="heading1ne">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapse1ne" aria-expanded="true" aria-controls="collapse1ne">
+                  <span class="lpmenu-icon lpmenu-icon-one"></span>
+                  <span class="lpmenu-title">用户信息管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapse1ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="heading1ne">
+                <a href="../user/edit_password.html" th:href="@{/user/editPassword}" class="lpbox-sizing"
+                  lp-menu="EditPassword">修改登录密码
+                </a>
+                <a href="../user/list.html" th:href="@{/user/list}" class="lpbox-sizing" lp-menu="UserQuery">用户管理
+                </a>
+                <a href="../permission/list.html" th:href="@{/per/list}" class="lpbox-sizing"
+                  lp-menu="permissionQuery">权限管理
+                </a>
+                <a href="../role/list.html" th:href="@{/role/list}" class="lpbox-sizing" lp-menu="roleQuery">角色管理
+                </a>
+              </div>
+            </div>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="卡bin信息查询">
+              <div class="lppanel panel">
+                <div class="lppanel-heading" role="tab" id="heading2ne">
+                  <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                    href="#collapse2ne" aria-expanded="true" aria-controls="collapse2ne">
+                    <span class="lpmenu-icon lpmenu-icon-xinxiguanli"></span>
+                    <span class="lpmenu-title">卡bin信息管理</span>
+                    <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                  </a>
+                </div>
+                <div id="collapse2ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                  aria-labelledby="heading2ne">
+                  <a href="../cardBinType/list.html" th:href="@{/cardBin/list}" class="lpbox-sizing"
+                    lp-menu="CardBinQuery">卡bin信息查询
+                  </a>
+                </div>
+              </div>
+            </shiro:hasAnyRoles>
+            <!--数字字典维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingFive">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                  <span class="lpmenu-icon lpmenu-icon-zidianweihu"></span>
+                  <span class="lpmenu-title">数字字典管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseFive" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingFive">
+                <a href="../dict/list.html" th:href="@{/dict/list}" class="lpbox-sizing" lp-menu="DictItemQuery">数字字典查询
+                </a>
+              </div>
+            </div>
+            <!--商户信息维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingSix">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                  <span class="lpmenu-icon lpmenu-icon-xinxiweihu"></span>
+                  <span class="lpmenu-title">商户信息管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseSix" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingSix">
+                <shiro:hasRole name="商户信息查询">
+                  <a href="../mer/list.html" th:href="@{/mer/list}" class="lpbox-sizing" lp-menu="MerQuery">商户信息查询
+                  </a>
+                </shiro:hasRole>
+              </div>
+            </div>
+            <!--URL生成工具-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingSeven">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                  <span class="lpmenu-icon lpmenu-icon-four"></span>
+                  <span class="lpmenu-title">URL生成工具</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingFive">
+                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                  lp-menu="UrlBuilder">URL生成工具
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--mian头header-->
+  <div class="lpheader-box lpshadow-down lpbox-sizing">
+    <a href="../layout/welcome.html" class="lplogo lppull-left">首旅管理端</a>
+    <div class="lppull-right  lpheader-right">
+      <div class="lpexit-box lppull-right">
+        <a href="../login/login.html" title="退出"></a>
+      </div>
+      <div class="lpheader-text-box lppull-right">
+        <div class="lppull-right lpheader-text" title="用户名">
+          <span class="lppull-left">用户名：</span>
+          <span>admin001</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+  <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+  <script src="../../static/js/merchant.js" th:src="@{/js/merchant.js}"></script>
+  <script src="../../static/js/bootstrap-datetimepicker.js" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+  <script src="../../static/js/bootstrap-datetimepicker.fr.js" th:src="@{/js/bootstrap-datetimepicker.fr.js}"></script>
+  <script src="../../static/js/jquery.poshytip.js" th:src="@{/js/jquery.poshytip.js}"></script>
+  <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
+  <script>
+    $("#searchList").click(function () {
+      $('#LoadingBlack').modal('show');
+      $('#Loading').show();
+    });
+    $('#demo-form-name').poshytip({
+      content: '哈哈哈哈哈',
+      className: 'tip-yellow',
+      showOn: 'focus',
+      alignTo: 'target',
+      alignX: 'right',
+      alignY: 'center',
+      offsetX: 5,
+    });
+
+    function downLoadFile(id) {
+      window.location.href = "noticeinfo/queryNoticeShow?id=" + id;
+    }
+  </script>
+</body>
+
+</html>

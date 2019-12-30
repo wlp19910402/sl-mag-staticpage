@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="page" type="com.yada.team2.core.page.Page"*/-->
+<!--/*@thymesVar id="firstQueryString" type="java.lang.String"*/-->
+<!--/*@thymesVar id="preQueryString" type="java.lang.String"*/-->
+<!--/*@thymesVar id="nextQueryString" type="java.lang.String"*/-->
+<!--/*@thymesVar id="lastQueryString" type="java.lang.String"*/-->
+<div class="pagination marginAuto">
+    <div id="page">
+        <div class="pageBtnBox " th:if="${page eq null} ">
+            <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">首页</a>
+            <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">上一页</a>
+        </div>
+        <div class="pageBtnBox " th:if="${page ne null} ">
+            <a th:if="${page.getPageNum() eq 0}" class="pageZhuGaryA" data-toggle="tooltip" th:title="不能操作"
+               style="margin-right: 10px;">首页</a>
+            <a th:if="${page.getPageNum() eq 0}" class="pageGaryA" data-toggle="tooltip" th:title="不能操作">上一页</a>
+
+            <a th:if="${page.getPageNum() > 0}" href="#" th:href="'?'+${firstQueryString}" class="pageActive"
+               style="margin-right: 10px;" data-toggle="tooltip" th:title="首页">首页</a>
+            <a th:if="${page.getPageNum() > 0}" href="#" th:href="'?'+${preQueryString}" class="pageActive"
+               data-toggle="tooltip" th:title="上一页">上一页</a>
+        </div>
+        <div th:if="${page eq null}" class="pageText">
+                    <span class="pageText">第<span class="textZhu">0</span>页/共<span class="textZhu">0</span>
+            页&nbsp;&nbsp;总共<span class="textZhu">0</span>条</span>
+        </div>
+        <div th:if="${page ne null}" class="pageText">
+                    <span class="pageText">
+                        第
+                        <span class="textZhu" th:if="${page.totalPages eq 0}" th:text="${page.getPageNum()}"></span>
+                        <span class="textZhu" th:if="${page.totalPages ne 0}" th:text="${page.getPageNum() + 1}"></span>
+                        页/共
+                        <span class="textZhu" th:text="${page.totalPages}"></span>页&nbsp;&nbsp;总共<span
+                            th:text="${page.totalElements}" class="textZhu"></span>条
+                    </span>
+        </div>
+
+        <div class="pageBtnBox" th:if="${page eq null} ">
+            <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">下一页</a>
+            <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">末页</a>
+        </div>
+        <div class="pageBtnBox" th:if="${page ne null}">
+            <a th:if="${page.getPageNum() eq (page.getTotalPages()-1)} or ${page.getTotalPages() eq 0}"
+               style="margin-right: 10px;" class="pageGaryA" data-toggle="tooltip" th:title="不能操作">下一页</a>
+            <a th:if="${page.getPageNum() eq (page.getTotalPages()-1)} or ${page.getTotalPages() eq 0}"
+               class="pageZhuGaryA" data-toggle="tooltip" th:title="不能操作">末页</a>
+
+            <a th:if="${page.getPageNum() lt (page.getTotalPages()-1)}" href="#" th:href="'?'+${nextQueryString}"
+               class="pageActive" style="margin-right: 10px;" data-toggle="tooltip" th:title="下一页">下一页</a>
+            <a th:if="${page.getPageNum() lt (page.getTotalPages()-1)}" href="#" th:href="'?'+${lastQueryString}"
+               class="pageActive" data-toggle="tooltip" th:title="末页">末页</a>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <div th:fragment="copy">
+    <!--提示保存成功-->
+    <div class="lpoperate-tipbox" id="lpsearchOperateSuccess">
+      <div class="lpoperate-tip-icon lpsearch-operate-success"></div>
+      <div class="lpoperate-tip-text lpcolor-blue">保存成功</div>
+      <!--<div class="lpoperate-tip-jumpBox" id="lpsearchOperateSuccessJump">还有&nbsp;<span class="lpcolor-yellow"-->
+      <!--id="jumpSec">5</span>&nbsp;秒将<a-->
+      <!--class="lpoperate-tip-jump lpcolor-red" href="detail.html">&nbsp;跳转&nbsp;</a>到详情页面-->
+      <!--</div>-->
+    </div>
+    <!--提示保存失败-->
+    <div class="lpoperate-tipbox" id="lpsearchOperateFail">
+      <div class="lpoperate-tip-icon lpsearch-operate-error"></div>
+      <div class="lpoperate-tip-text lpcolor-red">保存失败</div>
+    </div>
+    <!--提示信息我知道了-->
+    <div class="modal fade " id="commonWarn" tabindex="-1" role="dialog" aria-labelledby="commonWarn" backdrop="true"
+      aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header lpmodal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>提示</h4>
+          </div>
+          <div class="modal-body">
+            <div class="commonWarnText" id="commonWarnText"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="lpsearch-btn lpbg-red lpmargin-auto lplogin-btn" data-dismiss="modal"
+              id="commonWarnYes">我知道了
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--确认是否操作-->
+    <div class="modal fade " id="confirmWarn" tabindex="-1" role="dialog" aria-labelledby="commonWarn" backdrop="true"
+      aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header lpmodal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>提示</h4>
+          </div>
+          <div class="modal-body">
+            <div class="commonWarnText" id="confirmWarnText"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="lpsearch-btn lpbg-yellow lppull-left" data-dismiss="modal">取消</button>
+            <button type="button" class="lpsearch-btn lpbg-red lppull-right" data-dismiss="modal" id="confirmWarnYes">确定
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

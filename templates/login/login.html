@@ -1,0 +1,169 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+  <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link href="../../static/css/merser-login.css" rel="stylesheet" th:href="@{/css/merser-login.css}" />
+  <script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+  <script src="../../static/js/jsencrypt.js" th:src="@{/js/jsencrypt.min.js}"></script>
+</head>
+
+<body>
+  <!--banner wlp end-->
+  <!--content wlp start-->
+  <div class="container-manage-box">
+    <!--header wlp start-->
+    <div class="header-box">
+      <div class="screen-width">
+        <!--<img class="logo" src="../../static/images/mananerImg/logo.png" th:src="@{/images/mananerImg/logo.png}">-->
+        <div class="logo-text" style="clear:both;">首旅管理端</div>
+      </div>
+    </div>
+    <!--header wlp end-->
+    <!--banner wlp start-->
+    <div class="banner-box">
+      <div class="banner-width">
+        <div class="banner-img"></div>
+      </div>
+      <div class="login-screen-box">
+        <!--<div class="banner-img-text1">“服务项目更丰富<br/>服务模式更便捷”</div>-->
+        <div class="login-box">
+          <form method="post" action="" action="" id="submitForm">
+            <div class="login-way">用户登录</div>
+            <div class="login-content-box">
+              <div class="login-content">
+                <div class="login-input-box">
+                  <div class="login-input-name">用户名</div>
+                  <input id="username" type="text" name="username" class="login-input" />
+                </div>
+              </div>
+              <div class="login-content">
+                <div class="login-input-box">
+                  <div class="login-input-name">密码</div>
+                  <input id="password" type="password" name="password" class="login-input" title="" />
+                </div>
+              </div>
+              <div class="login-content clearfix">
+                <div class="login-input-box-code">
+                  <div class="login-input-name">验证码</div>
+                  <input id="verifyCode" name="verifyCode" class="login-input" />
+                </div>
+                <div class="login-code">
+                  <img style="width:100%;height: 100%;" id="codePic" src="../../static/images/mananerImg/yanma.png"
+                    onclick="getPic()">
+                </div>
+              </div>
+              <!--/*@thymesVar id="errorMsg" type="java.lang.String"*/-->
+              <div class="login-error" th:text="${errorMsg}" id="errorMsg"></div>
+              <input id="login" type="button" class="login-btn" value="登录"><br>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-width">
+      <div class="web-content-title">网站提供内容</div>
+      <div class="web-content-box clearfix">
+        <div class="web-content">
+          <i class="web-content-icon web-icon1"></i>
+          <div class="web-content-name">用户信息管理</div>
+          <!--<div class="web-content-text">用户信息管,理包含很多用,户信息管理包含很多用户信很多户信息管理包含很多用户信很多</div>-->
+        </div>
+        <div class="web-content">
+          <i class="web-content-icon web-icon2"></i>
+          <div class="web-content-name">卡bin信息管理</div>
+          <!--<div class="web-content-text">用户信息管,理包含多用户信很多</div>-->
+        </div>
+        <div class="web-content">
+          <i class="web-content-icon web-icon3"></i>
+          <div class="web-content-name">数字字典信息管理</div>
+          <!--<div class="web-content-text">用户多</div>-->
+        </div>
+      </div>
+    </div>
+    <!--content wlp end-->
+    <div class="bottom-box">© 首旅网站</div>
+    <div>
+      <!--/*@thymesVar id="pwdPubKey" type="java.lang.String"*/-->
+      <input id="pwdPubKey" type="hidden" th:value="${pwdPubKey}">
+    </div>
+  </div>
+  <!-- loading -->
+  <div>
+    <div id="LoadingBlack" class="modal fade hide" style="border:none;padding:0;" tabindex="-1" role="dialog"
+      backdrop="true" aria-hidden="true"></div>
+    <img id="Loading" class="loading" src="../../static/images/Merchant/loading.gif" />
+  </div>
+  <script src="../../static/js/bootstrap.min.js"></script>
+  <script>
+    //刷新图形验证码
+    function getPic() {
+      $.ajax({
+        url: "ajax_randomCode",
+        data: { time: Math.random() },
+        type: "post",
+        cache: false,
+        dataType: "text",
+        async: false,
+        success: function (data) {
+          var loginStr = new RegExp('doctype html');
+          var toLogin = loginStr.test(data);
+          if (toLogin) {
+            window.location.href = "login";
+          } else {
+            $("#codePic").attr("src", "data:image/jpeg;base64," + data);
+          }
+        },
+        error: function (error) {
+          alert("获取图形验证码出错")
+        }
+      });
+    }
+
+    $('#login').on('click', validate);
+    window.onkeydown = function (ev) {
+      if (ev.which == 13) {
+        $('#login').trigger('click');
+      }
+    }
+
+    function validate() {
+      var loginName = $("#username");
+      var password = $("#password");
+      var randomcode = $("#verifyCode");
+      //清空提示信息
+      $("#errorMsg").text("");
+
+      if (loginName.val() == '') {
+        $("#errorMsg").html("请输入用户名！");
+        return false;
+      }
+      if (password.val() == '') {
+        $("#errorMsg").html("请输入密码！");
+        return false;
+      }
+      if (randomcode.val() == '') {
+        $("#errorMsg").html("请输入验证码！");
+        return false;
+      }
+      //提交表单
+      var form = $("#submitForm");
+      // form[ 0 ].submit();
+      $('#LoadingBlack').modal('show');
+      $('#Loading').show();
+      setTimeout(() => {
+        $('#LoadingBlack').modal('hide');
+        $('#Loading').hide();
+        window.location.href = "../layout/welcome.html";
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>

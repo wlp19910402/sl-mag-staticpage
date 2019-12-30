@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<body>
+  <div th:fragment="copy" class="lpmenu-box lpbox-sizing">
+    <div class="lpmenu-boxbg"></div>
+    <table class="lpmenu-contraction">
+      <tr>
+        <td>
+          <div class="contraction" onclick="menuBoxToggle()"></div>
+        </td>
+      </tr>
+    </table>
+    <div class="lpmenu-content-box">
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <!--用户信息管理-->
+        <shiro:hasAnyRoles name="修改登录密码,用户管理,权限管理,角色管理">
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading1ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1ne"
+                aria-expanded="true" aria-controls="collapse1ne">
+                <span class="lpmenu-icon lpmenu-icon-one"></span>
+                <span class="lpmenu-title">用户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+              </a>
+            </div>
+            <div id="collapse1ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading1ne">
+              <shiro:hasAnyRoles name="修改登录密码">
+                <a href="../../static/user/edit_password.html" th:href="@{/user/editPassword}" class="lpbox-sizing"
+                  lp-menu="EditPassword">修改登录密码
+                </a>
+              </shiro:hasAnyRoles>
+              <shiro:hasAnyRoles name="用户管理">
+                <a href="../../static/user/list.html" th:href="@{/user/list}" class="lpbox-sizing"
+                  lp-menu="UserQuery">用户管理
+                </a>
+              </shiro:hasAnyRoles>
+              <shiro:hasAnyRoles name="权限管理">
+                <a href="../../static/permission/list.html" th:href="@{/per/list}" class="lpbox-sizing"
+                  lp-menu="permissionQuery">权限管理
+                </a>
+              </shiro:hasAnyRoles>
+              <shiro:hasAnyRoles name="角色管理">
+                <a href="../../static/role/list.html" th:href="@{/role/list}" class="lpbox-sizing"
+                  lp-menu="roleQuery">角色管理
+                </a>
+              </shiro:hasAnyRoles>
+            </div>
+          </div>
+        </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="卡bin信息查询">
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading2ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2ne"
+                aria-expanded="true" aria-controls="collapse2ne">
+                <span class="lpmenu-icon lpmenu-icon-xinxiguanli"></span>
+                <span class="lpmenu-title">卡bin信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+              </a>
+            </div>
+            <div id="collapse2ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading2ne">
+              <shiro:hasRole name="卡bin信息查询">
+                <a href="../../static/cardBinType/list.html" th:href="@{/cardBin/list}" class="lpbox-sizing"
+                  lp-menu="CardBinQuery">卡bin信息查询
+                </a>
+              </shiro:hasRole>
+            </div>
+          </div>
+        </shiro:hasAnyRoles>
+        <!--数字字典维护-->
+        <shiro:hasAnyRoles name="数字字典查询">
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFive">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
+                aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-zidianweihu"></span>
+                <span class="lpmenu-title">数字字典管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+              </a>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <shiro:hasRole name="数字字典查询">
+                <a href="../../static/dict/list.html" th:href="@{/dict/list}" class="lpbox-sizing"
+                  lp-menu="DictItemQuery">数字字典查询
+                </a>
+              </shiro:hasRole>
+            </div>
+          </div>
+        </shiro:hasAnyRoles>
+        <!--商户信息维护-->
+        <shiro:hasAnyRoles name="商户信息查询">
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSix">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
+                aria-expanded="true" aria-controls="collapseSix">
+                <span class="lpmenu-icon lpmenu-icon-xinxiweihu"></span>
+                <span class="lpmenu-title">商户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+              </a>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingSix">
+              <shiro:hasRole name="商户信息查询">
+                <a href="../../static/mer/list.html" th:href="@{/mer/list}" class="lpbox-sizing"
+                  lp-menu="MerQuery">商户信息查询
+                </a>
+              </shiro:hasRole>
+            </div>
+          </div>
+        </shiro:hasAnyRoles>
+        <!--URL生成工具-->
+        <shiro:hasAnyRoles name="URL生成工具">
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSeven">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-four"></span>
+                <span class="lpmenu-title">URL生成工具</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+              </a>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <shiro:hasRole name="URL生成工具">
+                <a href="../../static/urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                  lp-menu="UrlBuilder">URL生成工具
+                </a>
+              </shiro:hasRole>
+            </div>
+          </div>
+        </shiro:hasAnyRoles>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

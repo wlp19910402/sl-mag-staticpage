@@ -1,0 +1,576 @@
+@charset "UTF-8";
+/* CSS Document */
+/*
+*@autor：wangliping
+*Desccription:登录页默认清除样式和共用的样式
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container-manage-box {
+    min-width: 1000px;
+    padding-bottom:60px ;
+    min-height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.screen-width {
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1600px) {
+    .screen-width {
+        width: 950px;
+    }
+
+    .login-screen-box {
+        width: 950px;
+        margin-left: -475px;
+    }
+
+    .web-content {
+        margin-right: 25px;
+    }
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+    .screen-width {
+        width: 1250px;
+    }
+
+    .login-screen-box {
+        width: 1250px;
+        margin-left: -675px;
+    }
+
+    .web-content {
+        margin-right: 100px;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .screen-width {
+        width: 1450px;
+    }
+
+    .login-screen-box {
+        width: 1450px;
+        margin-left: -775px;
+    }
+
+    .web-content {
+        margin-right: 150px;
+    }
+}
+
+/*
+*@autor：wangliping
+*Desccription:header
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+.header-box {
+    width: 100%;
+    box-sizing: content-box;
+    height: 34px;
+    box-shadow: 1px 0 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 13px 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 120;
+}
+
+.header-box:hover {
+    background-color: #fff;
+}
+
+.logo {
+    width: 230px;
+    float: left;
+}
+.logo-text{
+    text-align: center;font-weight: bold;
+    font-size: 20px;
+    color: #3084c7;
+    line-height: 34px;
+    letter-spacing:12px;
+}
+.help {
+    float: right;
+    font-size: 12px;
+    line-height: 34px;
+    color: #333;
+    cursor: pointer;
+}
+
+.help:hover {
+    color: #3084c7;
+}
+
+.loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10000;
+    display: none;
+}
+
+/*
+*@autor：wangliping
+*Desccription:banner
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+.banner-box {
+    width: 100%;
+    height: 460px;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 60px;
+}
+
+.banner-width {
+    height: 460px;
+    width: 100%;
+}
+
+.banner-img {
+    height: 460px;
+    background: url("../images/banner.jpg") center no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+/*
+*@autor：wangliping
+*Desccription:登录的输入框
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+.login-screen-box {
+    position: absolute;
+    z-index: 110;
+    left: 50%;
+    top: 60px;
+}
+
+.login-box {
+    width: 300px;
+    background-color: #fff;
+    float: right;
+    border-radius: 4px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.4)
+}
+
+.login-way {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #3084c7;
+    text-align: center;
+    line-height: 32px;
+    padding-top: 10px;
+    color: #666666;
+    font-size: 12px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.login-content {
+    width: 260px;
+    margin: 10px auto 0 auto;
+    display: flex;
+}
+
+.login-input-box {
+    flex: 1;
+    position: relative;
+    background-color: #f3f3f3;
+    height: 40px;
+}
+
+.login-input-box-code {
+    position: relative;
+    background-color: #f3f3f3;
+    height: 40px;
+    float: left;
+    width: 160px;
+}
+
+.login-input-name {
+    position: relative;
+    z-index: 2;
+    color: #999;
+    font-size: 14px;
+    width: 46px;
+    text-align: justify;
+    margin-left: 10px;
+    line-height: 40px;
+    text-align-last: justify;
+}
+
+.login-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 10px 10px 66px;
+    line-height: 20px;
+    line-height: 20px;
+    color: #333;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.login-code {
+    float: right;
+    width: 90px;
+    height: 40px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.login-code img {
+    width: 100%;
+    height: 38px;
+}
+
+.login-btn {
+    width: 260px;
+    margin: 10px auto 0 auto;
+    background-color: #3084c7;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    display: block;
+    cursor: pointer;
+}
+
+.login-error {
+    width: 260px;
+    height: 16px;
+    line-height: 16px;
+    color: #ff3f00;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.forgot-password {
+    line-height: 32px;
+    color: #999;
+    font-size: 12px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    color: #3084c7;
+}
+
+.qr-code-text {
+    line-height: 36px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    width: 260px;
+    margin: 0 auto;
+}
+
+.qr-code {
+    width: 240px;
+    height: 240px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    margin: 10px auto 16px auto;
+}
+
+.qr-code img {
+    width: 100%;
+}
+
+/*
+*@autor：wangliping
+*Desccription:登录页面的公告样式
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+.proclamate-box {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px 0px 20px 74px;
+}
+
+.proclamate-title {
+    background-color: #595b5b;
+    color: #fff;
+    width: 64px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+}
+
+.proclamate-content-box {
+    width: 100%;
+}
+
+.proclamate-content {
+    float: left;
+    padding-left: 64px;
+    box-sizing: border-box;
+    width: 25%;
+    margin-right: 2%;
+    position: relative;
+}
+
+.proclamate-content:last-child {
+    margin-right: 0;
+}
+
+.proclamate-content:hover .proclamate-text {
+    color: #3084c7;
+    text-decoration: underline;
+}
+
+.proclamate-date {
+    color: #999999;
+    font-size: 14px;
+    line-height: 20px;
+    width: 60px;
+    position: absolute;
+    left: 0;
+}
+
+.proclamate-text {
+    padding-left: 14px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222;
+    font-weight: 200;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.proclamate-more {
+    color: #222222;
+    font-size: 14px;
+    line-height: 20px;
+    position: absolute;
+    right: 0;
+    width: 46px;
+}
+
+.icon-more {
+    width: 14px;
+    height: 14px;
+    background-image: url(../images/mananerImg/more.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 28px 14px;
+    float: right;
+    margin-top: 2px;
+}
+
+.proclamate-more:hover {
+    color: #3084c7;
+    text-decoration: underline;
+}
+
+.proclamate-more:hover .icon-more {
+    background-position: right center;
+}
+
+/*
+*@autor：wangliping
+*Desccription:登录页面网页展示的模块内容样式
+*Created on 2018年09月10日
+*Modified date 2018年09月10日
+*/
+.web-content-title {
+    padding-left: 10px;
+    border-left: 6px solid #ff3f00;
+    color: #222;
+    font-size: 20px;
+    box-sizing: border-box;
+    line-height: 22px;
+    margin-top: 30px;
+}
+
+.web-content-box {
+    width: 100%;
+    padding: 16px 0 50px 0;
+    display: flex;
+}
+
+.web-content {
+    float: left;
+    width: 170px;
+    height: 180px;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+.web-content:last-child {
+    margin-right: 0;
+}
+
+.web-content-icon {
+    width: 60px;
+    height: 60px;
+    margin: 40px auto 0px auto;
+    display: block;
+    background-size: 120px 60px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+
+.web-icon1 {
+    background-image: url(../images/mananerImg/web-icon1.png);
+}
+
+.web-icon2 {
+    background-image: url(../images/mananerImg/web-icon2.png);
+}
+
+.web-icon3 {
+    background-image: url(../images/mananerImg/web-icon3.png);
+}
+
+.web-icon4 {
+    background-image: url(../images/mananerImg/web-icon4.png);
+}
+
+.web-icon5 {
+    background-image: url(../images/mananerImg/web-icon5.png);
+}
+
+.web-content-name {
+    color: #333;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.web-content-text {
+    color: #666;
+    font-size: 12px;
+    width: 120px;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 1.4em;
+    border: 1px dotted #95b0ff;
+    padding: 4px 6px;
+    display: none;
+    max-height: 56px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.web-content:hover {
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.web-content:hover .web-content-icon {
+    background-position: left center;
+    margin-top: 10px;
+    -webkit-animation-duration: 0.5s;
+    animation: webicon;
+    animation-duration: 0.5s;
+}
+
+.web-content:hover .web-content-name {
+    color: #333;
+}
+
+.web-content:hover .web-content-text {
+    display: block;
+}
+
+@-webkit-keyframes webicon {
+    from {
+        margin-top: 40px;
+    }
+    to {
+        margin-top: 10px;
+    }
+}
+
+@keyframes webicon {
+    from {
+        margin-top: 40px;
+    }
+    to {
+        margin-top: 10px;
+    }
+}
+
+/*bottom*/
+.bottom-box {
+    width: 100%;
+    height: 60px;
+    border-top: 1px dashed #d1d1d1;
+    text-align: center;
+    font-size: 12px;
+    line-height: 60px;
+    position: absolute;
+    bottom: 0;
+}

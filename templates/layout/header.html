@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+    <body>
+        <div th:fragment="copy" class="lpheader-box lpshadow-down lpbox-sizing">
+            <a href="#" class="lplogo lppull-left">首旅管理端</a>
+            <div class="lppull-right  lpheader-right">
+                <div class="lpexit-box lppull-right">
+                    <a th:href="@{/logout}" title="退出"></a>
+                </div>
+                <div class="lpheader-text-box lppull-right">
+                    <div class="lppull-right lpheader-text" title="用户名">
+                        <span class="lppull-left">用户名：</span>
+                        <span th:text="${#session.getAttribute('userName')}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

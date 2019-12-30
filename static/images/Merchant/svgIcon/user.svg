@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="38"
+     viewBox="0 0 40 38">
+    <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+        <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <rdf:Description rdf:about=""/>
+            </rdf:RDF>
+        </x:xmpmeta>
+
+
+        <?xpacket end="w"?>
+    </metadata>
+    <defs>
+        <style>
+            .cls-1 {
+            stroke: #68d9f9;
+            stroke-linejoin: round;
+            stroke-width: 1px;
+            fill-rule: evenodd;
+            filter: url(#filter);
+            }
+        </style>
+        <filter id="filter" x="2013" y="65" width="41" height="39" filterUnits="userSpaceOnUse">
+            <feFlood result="flood" flood-color="#68d9f9"/>
+            <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+            <feBlend result="blend" in2="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g transform="translate(-2013.5 -65.5)" style="fill: ; filter: url(#filter)">
+        <path id="用户1" class="cls-1"
+              d="M2051,99.935a1.1,1.1,0,0,1-2.19,0,15.316,15.316,0,0,0-30.62,0,1.1,1.1,0,0,1-2.19,0,17.106,17.106,0,0,1,12.61-16.357,8.446,8.446,0,0,1-3.86-7.062,8.753,8.753,0,0,1,17.5,0,8.446,8.446,0,0,1-3.86,7.062A17.106,17.106,0,0,1,2051,99.935Zm-10.94-23.419a6.562,6.562,0,1,0-6.56,6.387A6.477,6.477,0,0,0,2040.06,76.516Z"
+              style="stroke: inherit; filter: none; fill: inherit"/>
+    </g>
+    <use transform="translate(-2013.5 -65.5)" xlink:href="#用户1" style="stroke: #68d9f9; filter: none; fill: none"/>
+</svg>

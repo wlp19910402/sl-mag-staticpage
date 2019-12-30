@@ -1,0 +1,1873 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+    font-family: "微软雅黑", sans-serif;
+    margin: 0;
+    min-width: 1000px;
+    overflow-x: hidden;
+}
+
+* {
+    cursor: default
+}
+
+/**
+*@autor：wangliping
+*Desccription:共用的样式
+*Created on 2017年12月11日
+*Modified date 2017年12月11日
+**/
+label {
+    font-weight: normal;
+    padding: 0 6px;
+}
+
+option[disabled="disabled"] {
+    background-color: #f2f2f2 !important;
+    color: #aaaaaa !important;
+}
+
+.lpsearch-input-hidden {
+    opacity: 0 !important;
+    filter: alpha(opacity=0) !important;
+}
+
+.lpshadow-down {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lpbox-sizing {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.lppull-left {
+    float: left;
+}
+
+.lppull-right {
+    float: right;
+}
+
+a {
+    text-decoration: none !important;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+a:active {
+    text-decoration: none !important;
+}
+
+.lpbg-red {
+    background-color: #ff0000;
+}
+
+.lpbg-yellow {
+    background-color: #ffaf50;
+}
+
+.lpbg-blue {
+    background-color: #68d9f9;
+}
+
+.lpbg-green {
+    background-color: #44cc23;
+}
+
+.lpcolor-blue {
+    color: #3084c7
+}
+
+.lpcolor-red {
+    color: #ff0000;
+}
+
+.lpcolor-yellow {
+    color: #ffaf50;
+}
+
+.lpcolor-green {
+    color: #44cc23;
+}
+
+.lptable-gary {
+    background-color: #f6f8fd;
+}
+
+.lptable-td-textright {
+    text-align: right;
+}
+
+.lpinput-error {
+    border: 1px solid #ff6750 !important;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipsis a {
+    color: #337ab7;
+    cursor: pointer;
+}
+
+.ellipsis span.split-line {
+    padding: 0 8px;
+}
+
+.ellipsis a:hover {
+    text-decoration: underline;
+}
+
+.lpmargin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lpmargin-left10 {
+    margin-left: 10px;
+}
+
+.lprequired {
+    color: #3084c7;
+    font-weight: bold;
+}
+
+.commonWarnText {
+    width: 100%;
+    text-align: center;
+}
+
+.loginErrorText {
+    width: 100%;
+    text-align: center;
+    color: #ff6750;
+    display: block;
+}
+
+.necessary-tips {
+    color: red;
+    padding-left: 10px;
+}
+
+.lpcontent-box table > tbody > tr > td .necessary-tips-l {
+    color: red;
+    padding-right: 4px;
+}
+
+.necessary-tips-l {
+    color: red;
+    padding-right: 4px;
+}
+
+.necessary-fill {
+    color: red;
+    padding-right: 4px;
+}
+
+.remember-num {
+    float: left;
+    padding-left: 10px;
+    height: 36px;
+    line-height: 36px;
+}
+
+/**
+*@autor：wangliping
+*Desccription:主页面头部样式
+*Created on 2017年12月11日
+*Modified date 2017年12月11日
+**/
+.lpheader-box {
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    position: fixed;
+    background-color: #ffffff;
+    left: 0;
+    top: 0;
+    min-width: 1000px;
+}
+
+.lplogo {
+    width: 240px;
+    height: 40px;
+    margin-top: 20px;
+    display: block;
+    /*background: url(../images/Merchant/logo.png) center no-repeat;*/
+    background-size: contain;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 10px;
+    line-height: 40px;
+    color: #3084c7;
+}
+
+.lphelp {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin-top: 5px;
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: 20px 20px;
+}
+
+.lpheader-right {
+    padding-top: 10px;
+    width: 600px;
+    height: 100%;
+    overflow: hidden;
+    padding-right: 22px;
+}
+
+.lpheader-user {
+    background-image: url(../images/Merchant/svgIcon/user.svg);
+}
+
+.lpheader-logout {
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.lpheader-logout:hover {
+    color: #2b2a2d;
+}
+
+.lpheader-logout-icon {
+    background-image: url(../images/Merchant/svgIcon/logout.svg);
+}
+
+.lpexit-box {
+    height: 32px;
+    text-align: right;
+}
+
+.lpexit-box a {
+    width: 50px;
+    margin-left: 10px;
+    border-left: 1px solid #dddddd;
+    height: 60px;
+    display: inline-block;
+    cursor: pointer;
+    background: url("../images/Merchant/svgIcon/exit.svg") center right no-repeat;
+    background-size: 26px;
+}
+
+.lpheader-line {
+    width: 1px;
+    height: 30px;
+    background-color: #dddddd;
+    margin: 5px 12px;
+}
+
+.lpheader-text-box {
+    height: 60px;
+    line-height: 60px;
+}
+
+.lpheader-text {
+    line-height: 60px;
+    color: #6d6b6e;
+    font-size: 14px;
+    margin-left: 16px;
+}
+
+/**
+*@autor：wangliping
+*Desccription:左侧菜单样式
+*Created on 2017年12月11日
+*Modified date 2017年12月13日
+**/
+.lpmenu-box .panel {
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    -ms-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: 0 0 0 #000000;
+}
+
+.lpmenu-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 240px;
+    padding-top: 0;
+    color: #403d3c;
+    height: 100%;
+}
+
+.lpmenu-contraction {
+    width: 14px;
+    background: #f1f4fc;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+    position: fixed;
+    left: 225px;
+    top: 0;
+}
+
+.contraction {
+    width: 10px;
+    height: 25px;
+    margin-left: 2px;
+    background-size: cover;
+    background-image: url(../images/Merchant/svgIcon/contraction.svg);
+    cursor: pointer;
+    margin-top: 80px;
+}
+
+.contraction:active {
+    background-image: url(../images/Merchant/svgIcon/contraction-active.svg);
+    width: 10px;
+    height: 25px;
+    margin-left: 2px;
+    background-size: cover;
+    cursor: pointer;
+    margin-top: 80px;
+}
+
+.lpmenu-content-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 225px;
+    color: #403d3c;
+    float: left;
+}
+
+.lpmenu-boxbg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 240px;
+    background-color: #f1f4fc;
+    height: 100%;
+}
+
+.lpmenu-ui-icon-down {
+    background-image: url(../images/Merchant/svgIcon/down.svg);
+    background-size: 12px 8px;
+}
+
+.lpmenu-ui-icon-left {
+    background-image: url(../images/Merchant/svgIcon/left.svg);
+    background-size: 8px 12px;
+}
+
+.lpmenu-ui-icon {
+    width: 12px;
+    height: 12px;
+    display: block;
+    float: right;
+    margin-top: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lppanel {
+    width: 100%;
+    background-color: #f1f4fc;
+}
+
+.lppanel-heading {
+    background-color: #f1f4fc;
+    height: 48px;
+    width: 100%;
+    line-height: 48px;
+}
+
+.lppanel-heading a {
+    width: 100%;
+    height: 48px;
+    color: #403d3c;
+    line-height: 48px;
+    display: block;
+    padding: 0 10px;
+}
+
+.lpmenu-icon {
+    width: 26px;
+    height: 26px;
+    display: block;
+    float: left;
+    margin-top: 11px;
+    margin-right: 9px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.lpmenu-title {
+    float: left;
+    color: #777372;
+}
+
+.lppanel-collapse {
+    width: 100%;
+    background-color: #fff;
+}
+
+.lppanel-collapse a {
+    width: 100%;
+    background-color: #fff;
+    display: block;
+    color: #777372;
+    font-size: 13px;
+    line-height: 36px;
+    height: 36px;
+    padding-left: 40px;
+    text-decoration: none;
+}
+
+.lppanel-collapse a:hover {
+    color: #403d3c;
+}
+
+.lppanel-collapse a:active {
+    color: #403d3c;
+}
+
+/*菜单被激活*/
+.lppanel-heading-active .lpmenu-title {
+    color: #3084c7;
+    font-weight: bold;
+}
+
+.lppanel-collapse-active {
+    color: #3084c7 !important;
+    font-weight: bold;
+}
+
+/*菜单的图标*/
+.lppanel-heading-active .lpmenu-ui-icon-down {
+    background-image: url(../images/Merchant/svgIcon/down-active.svg);
+}
+
+.lppanel-heading-active .lpmenu-ui-icon-left {
+    background-image: url(../images/Merchant/svgIcon/left-active.svg)
+}
+
+.lpmenu-icon-one {
+    background-image: url(../images/Merchant/menu/menu1.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-one {
+    background-image: url(../images/Merchant/menu/menu1a.png);
+}
+
+.lpmenu-icon-two {
+    background-image: url(../images/Merchant/menu/menu2.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-two {
+    background-image: url(../images/Merchant/menu/menu2a.png);
+}
+
+.lpmenu-icon-three {
+    background-image: url(../images/Merchant/menu/menu3.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-three {
+    background-image: url(../images/Merchant/menu/menu3a.png);
+}
+
+.lpmenu-icon-four {
+    background-image: url(../images/Merchant/menu/menu4.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-four {
+    background-image: url(../images/Merchant/menu/menu4a.png);
+}
+
+.lpmenu-icon-five {
+    background-image: url(../images/Merchant/menu/menu5.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-five {
+    background-image: url(../images/Merchant/menu/menu5a.png);
+}
+
+.lpmenu-icon-six {
+    background-image: url(../images/Merchant/menu/menu6.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-six {
+    background-image: url(../images/Merchant/menu/menu6a.png);
+}
+
+.lpmenu-icon-seven {
+    background-image: url(../images/Merchant/menu/menu7.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-seven {
+    background-image: url(../images/Merchant/menu/menu7a.png);
+}
+
+.lpmenu-icon-eight {
+    background-image: url(../images/Merchant/menu/menu8.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-eight {
+    background-image: url(../images/Merchant/menu/menu8a.png);
+}
+
+.lpmenu-icon-nine {
+    background-image: url(../images/Merchant/menu/menu9.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-nine {
+    background-image: url(../images/Merchant/menu/menu9a.png);
+}
+
+.lpmenu-icon-eleven {
+    background-image: url(../images/Merchant/menu/menu11.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-eleven {
+    background-image: url(../images/Merchant/menu/menu11a.png);
+}
+
+.lpmenu-icon-zhzd {
+    background-image: url(../images/Merchant/menu/zhzd.png);
+}
+
+.lppanel-heading-active .lpmenu-icon-zhzd {
+    background-image: url(../images/Merchant/menu/zhzda.png);
+}
+
+.lpmenu-icon-xinxiguanli{ background-image: url(../images/Merchant/menu/xinxiguanli.svg);}
+.lppanel-heading-active .lpmenu-icon-xinxiguanli{ background-image: url(../images/Merchant/menu/xinxiguanli-active.svg);}
+.lpmenu-icon-xinxiweihu{ background-image: url(../images/Merchant/menu/xinxiweihu.svg);}
+.lppanel-heading-active .lpmenu-icon-xinxiweihu{background-image: url(../images/Merchant/menu/xinxiweihu-active.svg);}
+.lpmenu-icon-zidianweihu{ background-image: url(../images/Merchant/menu/zidianweihu.svg);}
+.lppanel-heading-active .lpmenu-icon-zidianweihu{ background-image: url(../images/Merchant/menu/zidianweihu-active.svg);}
+
+.lpmenu-icon-column{background-image: url(../images/Merchant/menu/column.svg)}
+.lppanel-heading-active .lpmenu-icon-column{background-image: url(../images/Merchant/menu/column-active.svg)}
+.lpmenu-icon-menuMaintenance{background-image: url(../images/Merchant/menu/menuMaintenance.svg)}
+.lppanel-heading-active .lpmenu-icon-menuMaintenance{background-image: url(../images/Merchant/menu/menuMaintenance-active.svg)}
+.lpmenu-icon-url{background-image: url(../images/Merchant/menu/url.svg)}
+.lppanel-heading-active .lpmenu-icon-url{background-image: url(../images/Merchant/menu/url-active.svg)}
+.lpmenu-icon-merLink{background-image: url(../images/Merchant/menu/merLink.svg)}
+.lppanel-heading-active .lpmenu-icon-merLink{background-image: url(../images/Merchant/menu/merLink-active.svg)}
+.lpmenu-icon-staticResource{background-image: url(../images/Merchant/menu/staticResource.svg)}
+.lppanel-heading-active .lpmenu-icon-staticResource{background-image: url(../images/Merchant/menu/staticResource-active.svg)}
+.lpmenu-icon-article{background-image: url(../images/Merchant/menu/article.svg)}
+.lppanel-heading-active .lpmenu-icon-article{background-image: url(../images/Merchant/menu/article-active.svg)}
+.lpmenu-icon-menuPicture{background-image: url(../images/Merchant/menu/menuPicture.svg)}
+.lppanel-heading-active .lpmenu-icon-menuPicture{background-image: url(../images/Merchant/menu/menuPicture-active.svg)}
+.lpmenu-icon-homeBusiness{background-image: url(../images/Merchant/menu/homeBusiness.svg)}
+.lppanel-heading-active .lpmenu-icon-homeBusiness{background-image: url(../images/Merchant/menu/homeBusiness-active.svg)}
+
+/**
+*@autor：like
+*Desccription:居中lpcontent-box-center
+*Modified date 2018年12月12日
+**/
+.lpcontent-box-center {
+    position: absolute;
+    left: -600px;
+    width: 1200px;
+    margin-left: 50%;
+}
+
+.lpcontent-box-center .lpsearch-table {
+    text-align: center;
+}
+
+.lpcontent-box-center .lpsearch-table .input-title {
+    display: inline-block;
+    width: 140px;
+    height: 42px;
+    line-height: 42px;
+    text-align: right;
+}
+
+.lpcontent-box-center .lpsearch-table td {
+    height: 42px;
+}
+
+.lpcontent-box-center .lpsearch-table tr.td_h20 td {
+    height: 18px;
+}
+
+.lpcontent-box-center .lpsearch-table .lpsearch-selectBox {
+    display: inline-block;
+}
+
+.lpcontent-box-center .lpsearch-table .lpsearch-input, .lpcontent-box-center .lpsearch-table .lpsearch-selectBox {
+    float: none;
+}
+
+.lpcontent-box-center .lpsearch-tableBtn .btn-group {
+    padding-left: 100px;
+}
+
+.lpcontent-box-center .lpsearch-tableBtn .lpsearch-btn {
+    width: 80px;
+}
+
+.lpcontent-box-center .lpsearch-tableBtn .btn-back {
+    margin-left: 36px;
+}
+
+.lpcontent-box-center .lpsearch-table .input-tips {
+    padding-left: 96px;
+    height: 16px;
+}
+
+.lpcontent-box-center .input-tips span {
+    color: red;
+    position: relative;
+    top: -6px;
+}
+
+.lpcontent-box-center span.input-tips {
+    color: red;
+}
+
+/*.notices-bg { background: url("../images/Merchant/welcome-bg.png") top center no-repeat;*/
+/*-webkit-background-size: cover;*/
+/*background-size: cover;}*/
+/**
+*@autor：wangliping
+*Desccription:内容页面的查询模块和输入模块的样式
+*Created on 2017年12月14日
+*Modified date 2017年12月15日
+**/
+
+.lpcontent-shadow {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2)
+}
+
+.lpfixed-content {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 80px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.lpscrolly-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.lpcontent-box {
+    background-color: transparent;
+    position: absolute;
+    left: 270px;
+    min-width: 860px;
+    padding-top: 16px;
+    padding-bottom: 20px;
+    top: 0;
+}
+
+.lpsearch-box {
+    border: 1px solid #ddd;
+    width: 100%;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lppage {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #666666;
+    background: #f1f4fc;
+    padding: 0 10px;
+}
+
+.lpsearch-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 6px;
+    background-color: #ffffff;
+    margin-top: 14px;
+}
+
+.lpsearch-table td {
+    height: 36px;
+}
+
+.lpsearch-label {
+    font-size: 14px;
+    color: #858387;
+    text-align: right;
+}
+
+.lpsearch-input {
+    width: 240px;
+    height: 36px;
+    line-height: 20px;
+    padding: 6px 4px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    float: left;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-input.border-none {
+    border-width: 0;
+}
+
+.lpsearch-input-full {
+    width: 100%;
+    height: 36px;
+    line-height: 20px;
+    padding: 6px 4px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    float: left;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #333333;
+}
+
+.lpsearch-selectBox-full {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-select-full {
+    width: 100%;
+    padding: 0 21px 0 0 !important;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 6px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    display: block;
+    box-sizing: border-box;
+}
+
+select.lpsearch-select-full {
+    width: 110% !important;
+    padding: 0 0 0 0 !important;
+}
+
+.lpsearch-select-div-full {
+    width: 100% !important;
+}
+
+.lpsearch-selectBox-treeBox {
+    overflow: visible !important;
+}
+
+.lpsearch-selectBox {
+    width: 240px;
+    height: 36px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-select {
+    width: 240px;
+    padding: 0 21px 0 0 !important;
+    height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 6px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    display: block;
+    box-sizing: border-box;
+}
+
+select.lpsearch-select {
+    width: 242px !important;
+    padding: 0 0 0 0 !important;
+}
+
+.lpsearch-select-div {
+    line-height: 36px;
+    width: 219px !important;
+}
+
+.clear-select {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: 0 0 0 #000000 inset;
+    background-color: transparent;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.clear-select::-ms-expand {
+    display: none;
+}
+
+.lpselect-down {
+    width: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 36px;
+    background: #f1f4fc url(../images/Merchant/svgIcon/selectIcon.svg) center no-repeat;
+    background-size: 8px 5px;
+}
+
+.lpsearch-reminder {
+    padding: 10px;
+    line-height: 24px;
+    color: #ffaf50;
+    font-size: 13px;
+    text-align: center;
+}
+
+#id_div {
+    padding: 0 0 20px 100px;
+}
+
+.lpsearch-td-wranIcon {
+    width: 20px;
+    height: 36px;
+    background: url(../images/Merchant/svgIcon/warnIcon.svg) center no-repeat;
+    background-size: 20px 20px;
+    float: left;
+}
+
+.lpsearch-td-data-down {
+    width: 100%;
+    height: 22px;
+    margin-top: 36px;
+    background: url(../images/Merchant/svgIcon/date-down.svg) center no-repeat;
+    background-size: 50px 20px;
+}
+
+.lpdetail-add-title {
+    padding: 0 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.lpsearch-add-box {
+    border: 1px solid #dddddd;
+    width: 100%;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+.lpdetail-add-table {
+    width: 100%;
+}
+
+.lpdetail-add-table td {
+    padding-right: 10px;
+    border: none;
+    color: #333333;
+}
+
+.lpdetail-add-table .lpdetail-add-id {
+    text-align: right;
+    color: #666666;
+}
+
+.lpsearch-td-wranBtn {
+    width: 27px;
+    height: 32px;
+    position: absolute;
+    top: 7px;
+    left: 0px;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    background-color: #3084c7;
+    color: #fff;
+}
+
+.lpsearch-tableBtn {
+    width: 100%;
+    vertical-align: center;
+    text-align: center;
+    padding-bottom: 20px;
+    border-collapse: separate;
+    padding-top: 10px;
+}
+
+.lpsearch-btn {
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #3084c7 !important;
+}
+
+.lpsearch-btn:hover {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    background-color: #3084c7 !important;
+}
+
+/*日期*/
+.lpsearch-date-two-box {
+    width: 240px;
+    height: 36px;
+    border-spacing: 0;
+    background-color: #ffffff;
+    float: left;
+}
+
+.lpsearch-date-two {
+    width: 113px;
+    position: relative;
+    float: left;
+    height: 36px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-date-one-box {
+    width: 240px;
+    height: 36px;
+    border-spacing: 0;
+    background-color: #ffffff;
+    float: left;
+}
+
+.lpsearch-date-one {
+    width: 240px;
+    position: relative;
+    float: left;
+    height: 36px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-date {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 36px;
+    border-radius: 0;
+    -ms-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    -webkit-border-radius: 0;
+    background-color: #ffffff !important;
+    padding: 6px 3px;
+    border: none;
+    box-shadow: none;
+    overflow: hidden;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-date-- {
+    width: 8px;
+    height: 1px;
+    margin-top: 17px;
+    float: left;
+    background-color: #858387;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.lpsearch-addon {
+    border-radius: 0;
+    background-color: #ffffff;
+    height: 36px;
+    border: none;
+    width: 24px;
+    padding: 0;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.lpsearch-date-glyphicon {
+    background: url(../images/Merchant/svgIcon/date.svg) center no-repeat;
+    background-size: 12px 14px;
+    width: 20px !important;
+    height: 36px !important;
+    display: block;
+}
+
+.lpsearch-date-glyphicon::before {
+    content: "" !important;
+}
+
+.glyphicon-arrow-left {
+    background: url(../images/Merchant/svgIcon/date-left.svg) center no-repeat;
+    width: 20px;
+    height: 20px;
+    background-size: 100% auto;
+}
+
+.glyphicon-arrow-right {
+    background: url(../images/Merchant/svgIcon/date-right.svg) center no-repeat;
+    width: 20px;
+    height: 20px;
+    background-size: 100% auto;
+}
+
+.glyphicon-arrow-left:before {
+    content: '' !important;
+}
+
+.glyphicon-arrow-right:before {
+    content: '' !important;
+}
+
+/**
+*@autor：wangliping
+*Desccription:查询列表的样式，展示列表样式
+*Created on 2017年12月14日
+*Modified date 2018年03月15日
+**/
+.lplist-box {
+    border: 1px solid #e8e6eb;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.lplist-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #858387;
+    background: #f1f4fc;
+    text-align: center;
+}
+
+/*.lplist-table-box{width:100%;padding:10px 20px;overflow-x: auto;}*/
+.lplist-table-box {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.lplist-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    min-height: 38px;
+}
+
+.lplist-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.lplist-table > thead > tr > th {
+    background-color: #3084c7;
+    color: #ffffff;
+    line-height: 36px;
+    height: 36px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #3084c7;
+    word-break: keep-all;
+    word-wrap: normal;
+    white-space: nowrap;
+    padding: 0px 6px;
+}
+
+.lplist-table > tbody > tr > td {
+    text-align: center;
+    font-size: 13px;
+    border: 1px solid #e8e6eb;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 2px 6px;
+    color: #858387;
+    height: 40px;
+    line-height: 20px;
+}
+
+.lplist-table-btn-box {
+    width: 100%;
+    float: left;
+    background-color: transparent;
+}
+
+.lplist-table-btn-box td {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    background-color: transparent;
+}
+
+.lplist-table-btn-box tr {
+    background-color: transparent !important;
+}
+
+.lplist-btn {
+    height: 26px;
+    line-height: 26px;
+    color: #337ab7;
+    border: none;
+    background: transparent;
+    padding: 0 8px !important;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 auto;
+    word-break: keep-all;
+    word-wrap: normal;
+    white-space: nowrap;
+}
+
+.lplist-btn.disabled {
+    color: #ccc;
+    cursor: default;
+}
+
+.lplist-cancel {
+    background-image: url(../images/Merchant/svgIcon/cancel.svg);
+}
+
+.lplist-resetpaw {
+    background-image: url(../images/Merchant/svgIcon/resetpaw.svg);
+}
+
+.lplist-info {
+    background-image: url(../images/Merchant/svgIcon/info.svg);
+}
+
+.lplist-edit {
+    background-image: url(../images/Merchant/svgIcon/edit.svg);
+}
+
+.lplist-bind {
+    background-image: url(../images/Merchant/svgIcon/bind.svg);
+}
+
+.lplist-unbind {
+    background-image: url(../images/Merchant/svgIcon/unbind.svg)
+}
+
+.lplist-distribution {
+    background-image: url(../images/Merchant/svgIcon/distribution.svg)
+}
+
+.lplist-btn:hover {
+    text-decoration: underline;
+}
+
+.lplist-textTip {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    line-height: 40px;
+}
+
+.lplist-table tr:nth-child(even) {
+    background: #f6f8fd;
+}
+
+.lplist-table tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.lplist-table tr .t_title {
+    background: #f6f8fd;
+}
+
+.lplist-table tr .t_content {
+    background: #ffffff;
+}
+
+.lpborder-right-none {
+    border-right: none !important;
+}
+
+.lpborder-left-none {
+    border-left: none !important;
+}
+
+/*详情*/
+.lpdetail-table-box {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.lpdetail-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.lpdetail-table > tbody > tr > td {
+    font-size: 13px;
+    border: 1px solid #e8e6eb;
+    font-size: 14px;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 6px 4px;
+    color: #666666;
+    height: 40px;
+    line-height: 24px;
+}
+
+.lpdetail-table-name {
+    text-align: right;
+    background: #f6f8fd;
+}
+
+.lpdetail-table-checkbox {
+}
+
+.lpdetail-table-checkbox-box {
+    margin-right: 12px;
+    float: left;
+}
+
+.lpdetail-table-td-right-none {
+    border-right: none !important;
+}
+
+.lpdetail-table-td-left-none {
+    border-left: none !important;
+}
+
+/**
+*@autor：wangliping
+*Desccription:列表的分页样式
+*Created on 2017年12月15日
+*Modified date 2017年12月15日
+**/
+.pagination {
+    width: 478px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 30px;
+}
+
+.pageBtnBox a {
+    cursor: pointer;
+    width: 48px;
+    text-align: center;
+    border: 1px solid #ddd;
+    line-height: 24px;
+    height: 26px;
+    font-size: 13px;
+    color: #333;
+    display: block;
+    float: left;
+    margin-left: 6px;
+    margin-right: 6px;
+    border-radius: 4px;
+}
+
+.pageBtnBox a:hover {
+    text-decoration: none !important;
+}
+
+.pageText {
+    min-width: 220px;
+    text-align: center;
+    float: left;
+    font-size: 13px;
+    color: #666;
+    line-height: 26px;
+    float: left;
+}
+
+.textZhu {
+    color: #3084c7;
+}
+
+.pageBtnBox .pageActive {
+    border: 1px solid #ddd;
+}
+
+.pageBtnBox .pageActive:hover {
+    background-color: #e55b4e;
+    text-align: center;
+    color: #fff !important;
+}
+
+.pageBtnBox .pageZhuGaryA {
+    background-color: #f6f8fd;
+    color: #333 !important;
+}
+
+.pageBtnBox .pageGaryA {
+    background-color: #f6f8fd;
+    color: #333 !important;
+}
+
+/**
+*@autor：wangliping
+*Desccription:欢迎页面的样式
+*Created on 2017年12月18日
+*Modified date 2017年12月18日
+**/
+.lpwelcome-img-box {
+    width: 100%;
+    background: url(../images/Merchant/welcom.png) center no-repeat;
+    background-size: auto 320px;
+    height: 390px;
+    position: relative;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.lpwelcome-img-text {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 36px;
+    height: 40px;
+    color: #ff6750;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    text-align: center;
+}
+
+.lpwelcome-lpcontent-box {
+    padding: 30px 30px 40px;
+    top: 10px;
+}
+
+.lpwelcome-proclamate-title {
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    box-sizing: content-box;
+    line-height: 30px;
+    padding-bottom: 10px;
+    color: #3084c7;
+    border-bottom: 2px solid #3084c7;
+    margin-bottom: 20px;
+}
+
+.lpwelcome-proclamate-content-box {
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px dotted #bbb;
+}
+
+.lpwelcome-list-dotted {
+    margin-right: 10px;
+    float: left;
+    height: 4px;
+    width: 4px;
+    background: #666;
+    margin-top: 18px;
+    border-radius: 50%;
+}
+
+.lpwelcome-proclamate-content {
+    float: left;
+    color: #666;
+    cursor: pointer;
+}
+
+.lpwelcome-proclamate-content:hover {
+    color: #2670b7;
+}
+
+.lpwelcome-proclamate-date {
+    float: right;
+    color: #666;
+}
+
+/**
+*@autor：wangliping
+*Desccription:登录
+*Created on 2017年12月18日
+*Modified date 2018年03月14日
+**/
+.lplogin-box {
+    background-color: transparent;
+    position: relative;
+    min-width: 1000px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    padding: 10px 40px;
+}
+
+.lplogin-content {
+    width: 344px;
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 290px;
+    position: absolute;
+    left: 50%;
+    top: 68px;
+    border: 1px solid #ddd;
+    margin-left: 20px;
+    border-radius: 8px;
+    -ms-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+.lplogin-img {
+    width: 1000px;
+    height: 416px;
+    border: 1px solid #d1e4fd;
+    background-image: url(../images/Merchant/loginBg.png);
+    background-size: 100% 100%;
+}
+
+.lplogin-box .lpwelcome-img-text {
+    bottom: 10px;
+}
+
+.lplogin-btn {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.lplogin-title {
+    text-align: left;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    background-color: transparent;
+    color: #ff6750;
+    border-bottom: 2px solid #ffffff;
+    text-align: center;
+}
+
+.lplogin-table {
+    width: 100%;
+    padding: 6px 30px;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+.lplogin-label {
+    font-size: 14px;
+    color: #858387;
+    font-weight: normal;
+}
+
+.maskImg {
+    width: 60px;
+    height: 28px;
+    float: right;
+    margin-top: -32px;
+    margin-right: 4px;
+}
+
+.lpbanquan-text {
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999999;
+}
+
+/**
+*@autor：wangliping
+*Desccription:操作失败和操作成功，系统报错或者操作超时
+*Created on 2017年12月18日
+*Modified date 2019年11月05日
+**/
+.lpsearch-operate {
+    width: 100%;
+    padding: 60px 20px 40px 20px;
+}
+
+.lpsearch-operate-img {
+    background-width: 100%;
+    height: 80px;
+    background-size: 80px;
+    margin-bottom:10px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lpsearch-operate-timeout {
+    background-image: url(../images/Merchant/svgIcon/timeout.svg);
+}
+
+.lpsearch-operate-error {
+    background-image: url(../images/Merchant/svgIcon/error.svg);
+}
+
+.lpsearch-operate-success {
+    background-image: url(../images/Merchant/svgIcon/success.svg);
+}
+
+.lpsearch-operate-text {
+    width: 100%;
+    color: #858387;
+    font-size: 14px;
+    text-align: center;
+    line-height: 48px;
+}
+
+/**
+*@autor：wangliping
+*Desccription:loading数据加载
+*Created on 2017年12月18日
+*Modified date 2017年12月18日
+**/
+.loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10000;
+    display: none;
+}
+
+/**
+*@autor：wangliping
+*Desccription:输入框或者from表单提交报错
+*Created on 2017年12月18日
+*Modified date 2017年12月18日
+**/
+.tip-yellow {
+    z-index: 10001;
+    text-align: left;
+    border: 1px solid #c1cfcf;
+    padding: 7px;
+    min-width: 50px;
+    max-width: 530px;
+    color: #ff0000;
+    background-image: url(../images/Merchant/tip-bg.png);
+}
+
+.tip-yellow .tip-inner {
+    font: bold 13px/18px 'trebuchet ms', arial, helvetica, sans-serif;
+    margin-top: -2px;
+    padding: 0 3px 1px 3px;
+}
+
+.tip-yellow .tip-arrow-top {
+    margin-top: -7px;
+    margin-left: 15px;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 10px;
+    background: url(../images/Merchant/tip-arrow.png) 0 0 no-repeat;
+}
+
+.tip-yellow .tip-arrow-right {
+    margin-top: -9px;
+    margin-left: -4px;
+    top: 50%;
+    left: 100%;
+    width: 10px;
+    height: 20px;
+    background: url(../images/Merchant/tip-arrow.png) -16px 0 no-repeat;
+}
+
+.tip-yellow .tip-arrow-bottom {
+    margin-top: -6px;
+    margin-left: 15px;
+    top: 100%;
+    left: 0;
+    width: 16px;
+    height: 13px;
+    background: url(../images/Merchant/tip-arrow.png) -32px 0 no-repeat;
+}
+
+.tip-yellow .tip-arrow-left {
+    margin-top: -9px;
+    margin-left: -6px;
+    top: 50%;
+    left: 0;
+    width: 10px;
+    height: 20px;
+    background: url(../images/Merchant/tip-arrow.png) -48px 0 no-repeat;
+}
+
+/*
+*@autor：wangliping
+*Desccription:输入框或者from表单提交报错
+*Created on 2018年03月14日
+*Modified date 2018年03月14日
+*/
+.lpoperate-tipbox {
+    width: 320px;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 2px rgba(0, 5, 3, 0.4);
+    height: 120px;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    margin-left: -160px;
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    display: none;
+}
+
+.lpoperate-tip-text {
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.lpoperate-tip-icon {
+    margin: 0 auto;
+    width: 60px;
+    height: 60px;
+    background-size: 100% 100%;
+}
+
+.lpoperate-tip-jumpBox {
+    position: absolute;
+    left: 80px;
+    top: 56px;
+    text-align: center;
+    width: 180px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.lpmodal-header {
+    padding: 6px 15px;
+}
+
+/*
+*@autor：wangliping
+*Desccription:ztree
+*Created on 2018年03月22日
+*Modified date 2018年03月22日
+*/
+.lpztree-box {
+    position: absolute;
+    left: -1px;
+    top: 35px;
+    max-height: 400px;
+    overflow: auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    z-index: 30000;
+    border-radius: 4px;
+    -ms-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    display: none;
+}
+
+.lpcheckbox-box {
+    width: 100%;
+    overflow: hidden;
+}
+
+.check-box {
+    width: 140px;
+    float: left;
+}
+
+.check-box input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.lpcheckbox-langName {
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+}
+
+/*
+可跨月不可跨月日期插件
+*/
+.runcode {
+    outline: none;
+    border: 1px solid #ddd;
+    background: url(../images/Merchant/svgIcon/date.svg) 94px center no-repeat;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-size: 10px;
+    cursor: pointer;
+    font: 14px tahoma, arial;
+    height: 36px;
+    width: 113px;
+    padding-left: 6px;
+}
+
+/*
+*@autor：wangliping
+*Desccription:在列表中展示的缩略图
+*Created on 2019年11月5日
+*Modified date 2019年11月5日
+*/
+.thumbnailImgBoxParentHidden{
+    display: block;
+    height: 40px;
+    width:70px;
+    background-color: #cccccc;
+    margin: 6px auto;
+    overflow: hidden;
+}
+.thumbnailImgBoxParent{
+    display: table;
+    /* margin-top: -1.5px; */
+}
+.thumbnailImgBox{
+    height: 40px;
+    width:70px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.thumbnailImg{
+    width:70px;
+}
+
+
+/*上传图片*/
+/*图片列表*/
+.pictureBoxParent{display: table;}
+.pictureTextBox{
+    width:500px;height:188px;overflow:hidden;margin: 16px;box-sizing: border-box;padding:10px;
+    -webkit-box-shadow: 0 1px 6px 0px rgba(44,44,44,0.3);box-shadow:  0 1px 4px 0px rgba(44,44,44,0.3);-moz-box-shadow: 0 1px 4px 0px  rgba(44,44,44,0.3);border-radius: 10px;
+}
+.modal-pictureConentBox{overflow: hidden}
+.pictureTextBox textarea{width:100%;
+    height: 168px;line-height:24px;border:none;background: #f8f8f8;}
+.pictureConentBox{min-width:300px;display: block;overflow:auto;padding:16px;float: left;}
+.pictureConent{width:280px;height: 188px;padding:6px;margin-left: auto;margin-right: auto;position: relative;}
+.pictureBox img{display: block;margin-left: auto;margin-right: auto;width: 100%;}
+.pictureBtnBox{width:100%;height: 30px;padding-top:8px;}
+.pictureViewBtn{width: 60px;height: 24px;font-size:12px;text-align: center;line-height: 24px;color:#fff;background-color:#3084c7;}
+.pictureBtn{width:24px;height: 24px;background-color:#fff;text-align: center;line-height: 24px;padding: 3px 0px;}
+.picturefile{display: none !important;}
+.pictureClose{background:#ffffff no-repeat url("../images/Merchant/svgIcon/cancel.svg") center center/20px 20px;display: none;}
+.pictureConent.boxShadow{ -webkit-box-shadow: 0 1px 6px 0px rgba(44,44,44,0.3);box-shadow:  0 1px 4px 0px rgba(44,44,44,0.3);-moz-box-shadow: 0 1px 4px 0px  rgba(44,44,44,0.3);}
+.pictureBoxHidden{width:268px;height: 143px;overflow:hidden;display: block;border:1px solid #eee;}
+.pictureBox{width:268px;height: 143px;overflow: hidden;display: table-cell;vertical-align: middle;}
+.prictureBoxUnll{background-color:#fafafa;background-image:url(../images/prictureBg.png);background-repeat:no-repeat;background-size:140px 122px;background-position:center center;}
+
+/*上传图片loading*/
+.updateLoadingBox{width:100%;height: 100%;position: absolute;left: 0;top:0;display:none;}
+.updateBg{background-color:rgba(0,0,0,0.7);width:100%;height: 100%;position: absolute;left: 0;top:0;}
+
+.updateLoadBtn {
+    width: 80px;
+    display: none;
+    line-height: 28px;
+    position: absolute;
+    left: 50%;
+    margin-left: -40px;
+    top: 60%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+}
+
+.updateLoadBtn:hover {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.updateText {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -30px;
+    color: #ffc8c3;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.updateLoadingText{background-image: -webkit-linear-gradient(left, #ddd, #fff 50%, #ddd 50%, #fff 100%, #ddd); -webkit-text-fill-color: transparent;-webkit-background-clip: text;-webkit-background-size: 300% 100%; -webkit-animation: masked-animation 2s infinite linear;}
+@-webkit-keyframes masked-animation {
+    0%  { background-position: 0 0;}
+    100% { background-position: -100% 0;}
+}
