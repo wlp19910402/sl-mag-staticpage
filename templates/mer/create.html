@@ -261,7 +261,7 @@
                     <td class="lpborder-right-none" colspan="4">
                       <input id="discountInfo" name="discountInfo" type="hidden" />
                       <textarea lass="content-area" id="discountText" name="discountText"
-                        style="width: 100%">Hello, World!</textarea>
+                        style="width: 100%"></textarea>
             </div>
             </td>
             <td class=" lpborder-left-none">
@@ -274,7 +274,7 @@
               <td class="lpborder-right-none" colspan="4">
                 <input id="importantClause" name="importantClause" type="hidden" />
                 <textarea lass="content-area" id="importantClauseText" name="importantClauseText"
-                  style="width: 100%">Hello, World!</textarea>
+                  style="width: 100%"></textarea>
         </div>
         </td>
         <td class="lpborder-left-none">
@@ -638,10 +638,7 @@
     }
 
     function onSubmitValidate() {
-      var discountText = nicEditors.findEditor('discountText').getContent();
-      $("#discountInfo").val(discountText);
-      var importantClauseText = nicEditors.findEditor('importantClauseText').getContent();
-      $("#importantClause").val(importantClauseText);
+
       var merTitleInput = $("#merTitle");
       var merTitle = merTitleInput.val();
       if (merTitle === "" || merTitle == null) {
@@ -751,18 +748,19 @@
           return;
         }
       }
-      if ($("#discountInfo").val().length > 4000) {
-        errorClassShow($("#discountInfo").parent(), '优惠信息长度超长');
+      var importantClauseText = $("#importantClauseText").next().find("#tinymce").find("p").text();
+      if (importantClauseText.length > 4000) {
+        errorClassShow($("#importantClauseText").next(), '特别声明长度超长');
         return;
       }
 
-      var importantClauseInput = $("#importantClause");
-      var importantClause = importantClauseInput.val();
-      if (importantClause.length > 4000) {
-        errorClassShow(importantClauseInput.parent(), '特别声明长度超长');
+      var discountText = $("#discountText").next().find("#tinymce").find("p").text();
+      if (discountText.length > 4000) {
+        errorClassShow($("#discountText").next(), '优惠信息长度超长');
         return;
       }
-
+      $("#discountInfo").val(discountText);
+      $("#importantClause").val(importantClauseText);
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();

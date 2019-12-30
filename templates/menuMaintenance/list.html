@@ -78,7 +78,7 @@
         </div>
         <!--列表-->
         <div class="lplist-box lpcontent-shadow">
-          <div class="lplist-title">商户信息查询列表</div>
+          <div class="lplist-title">二级菜单维护查询列表</div>
           <div th:if="${size >= 0}" class="lplist-table-box" id="lplist-table" style="display: none;">
             <input type="hidden" id="size" th:value="${size}" />
             <div class="lplist-table-scroll">
@@ -86,7 +86,7 @@
                 <thead>
                   <tr>
                     <th width="40px">序号</th>
-                    <th width="90px">菜单名称</th>
+                    <th>菜单名称</th>
                     <th>所属类型</th>
                     <th>菜单权重</th>
                     <th width="160px">操作</th>
@@ -535,7 +535,7 @@
         // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merInfoId=" + id + "\'");
         //前端静态页面写法------start
         var userIdEq = $(id).parents(".lplist-table-btn-box").parents("tr").index();
-        $("#confirmWarnYes").attr("onclick", '$(".lplist-table tbody").first().find("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
+        $("#confirmWarnYes").attr("onclick", '$(".lplist-table").children("tbody").children("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
         //前端静态页面写法------end
       }
     }

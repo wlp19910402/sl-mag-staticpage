@@ -12,134 +12,72 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>商户信息新增</title>
+  <title>商户信息编辑</title>
 </head>
 
 <body>
-  <input type="hidden" value="MenuMaintenance" id="pageTitle" />
+  <!--/*@thymesVar id="merInfo" type="com.yada.team2.entity.MerchantInfo"*/-->
+  <!--/*@thymesVar id="allDictItems" type="java.util.List<com.yada.team2.entity.DictItemInfo>"*/-->
+  <!--/*@thymesVar id="imgPre" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="mess" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="valueList" type="java.util.List<java.lang.String>"*/-->
+  <input type="hidden" value="MerLink" id="pageTitle" />
   <div class="lpfixed-content">
     <div class="lpscrolly-content">
       <!--内容-->
       <div class="lpcontent-box">
         <!--列表-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：二级菜单维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;二级菜单新增</div>
-          <form id="submitForm" method="post" action="" enctype="multipart/form-data">
+          <div class="lppage">当前位置：商户链接维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;商户链接维护编辑</div>
+          <form id="submitForm" method="post" th:action="@{/mer/update}" enctype="multipart/form-data">
+            <label for="merInfoId"></label><input type="hidden" name="merInfoId" id="merInfoId"
+              th:value="${merInfo.merInfoId}" />
             <div class="lpdetail-table-box">
               <table class="lpdetail-table">
                 <tbody>
                   <tr>
-                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>菜单名称:
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>商户标题:
                     </td>
                     <td class="lpborder-right-none" width="250px">
-                      <input class="lpsearch-input lpbox-sizing" type="text" id="menuTitle" name="menuTitle" />
+                      <input class="lpsearch-input lpbox-sizing" type="text" id="merTitle" name="merTitle"
+                        value="商户标题" />
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
                         data-placement="right" data-content="商户标题长度不可超过32位"></div>
                     </td>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>对应的父级菜单:</td>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>商户链接地址:</td>
                     <td class="lpborder-right-none">
-                      <div id="menuParentDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" id="menuParent">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="二级菜单的维护">二级菜单的维护</option>
-                          <option value="二级菜单的维护1">二级菜单的维护1</option>
-                        </select>
-                      </div>
+                      <input class="lpsearch-input lpbox-sizing" type="text" id="merLink" name="merLink"
+                        value="../link/...." />
                     </td>
                     <td class="lpborder-left-none"></td>
                   </tr>
                   <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>菜单权重:</td>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>序号:</td>
                     <td class="lpborder-right-none">
-                      <div id="menuWeightDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuWeight" id="menuWeight">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="宴会度假">宴会度假</option>
-                          <option value="娱乐休闲">娱乐休闲</option>
-                          <option value="商场">商场</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-
-                    <td class="lpdetail-table-name">简介:</td>
-                    <td class="lpborder-left-none" colspan="2">
-                      <input class="lpsearch-input lpbox-sizing" type="text" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>所属类型:</td>
-                    <td class="lpborder-right-none">
-                      <div class="lpsearch-selectBox lpbox-sizing" id="menuTypeDiv">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuType" id="menuType"
-                          onchange="belongTypeFun()">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="自定义">自定义</option>
-                          <option value="列表">列表</option>
-                          <option value="富文本框">富文本框</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-                    <td class="lpdetail-table-name">
-                      <span class="belongType belongType1"><span class="lpcolor-red">*</span>重定向路径</span>
-                      <span class="belongType belongType2"><span class="lpcolor-red">*</span>所属栏目</span>
-                    </td>
-                    <td class="lpborder-left-none" colspan="2">
-                      <div class="lpsearch-selectBox lpbox-sizing belongType belongType1" id="belongType1Div">
-                        <div class="lpselect-down"></div>
-                        <select name="redirectPath" class="lpsearch-select lpbox-sizing clear-select" id="belongType1">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="/delayweb/preposition">非实名卡延期 </option>
-                          <option value="/lostweb/preposition">实名卡挂失 </option>
-                          <option value="/infoweb/preremain">余额查询 </option>
-                          <option value="/infoweb/prerecord">消费记录查询 </option>
-                          <option value="/merweb/query?cardType=首付通卡&cardType=美点卡">首付通卡商户查询 </option>
-                          <option value="/merweb/query?cardType=美点卡">美点卡商户查询 </option>
-                          <option value="/merweb/query?cardType=西单卡">西单卡商户查询 </option>
-                          <option value="/merweb/query?cardType=贵友卡">贵友卡商户查询 </option>
-                        </select>
-                      </div>
-                      <div class="lpsearch-selectBox lpbox-sizing belongType belongType2" id="belongType2Div">
-                        <div class="lpselect-down"></div>
-                        <select name="redirectPath" value="/list" class="lpsearch-select lpbox-sizing clear-select"
-                          id="belongType2">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="公告">公告</option>
-                          <option value="促销信息">促销信息</option>
-                          <option value="消费攻略">消费攻略</option>
-                          <option value="金融知识普及">金融知识普及</option>
-                        </select>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="belongType belongType3">
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>富文本框:</td>
-                    <td class="lpborder-right-none" colspan="4">
-                      <input id="redirectPath" name="redirectPath" value="/text" type="hidden" />
-                      <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
+                      <input class="lpsearch-input lpbox-sizing" type="number" max="100" min="1" id="merSerial"
+                        name="merSerial" value="2" />
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="富文本框长度不可超过4000位"></div>
+                        data-placement="right" data-content="序号（数字1-100）"></div>
                     </td>
+                    <td class="lpdetail-table-name"></td>
+                    <td class="lpborder-right-none"></td>
+                    <td class="lpborder-left-none"></td>
                   </tr>
                 </tbody>
               </table>
               <table class="lpsearch-tableBtn">
                 <tbody>
-                  <tr>
+                  <tr align="left">
                     <td style="padding-left: 80px; width: 280px;">
                       <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="保存"
                         onclick="onSubmitValidate()" />
                     </td>
                     <td>
-                      <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
+                      <a type="reset" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
                         href="javascript:history.back(-1)">返回</a>
                     </td>
                   </tr>
@@ -147,7 +85,7 @@
               </table>
             </div>
           </form>
-          <!-- <input type="hidden" id="errorMessReturnResult" th:value="${mess}" /> -->
+          <input type="hidden" id="errorMessReturnResult" th:value="${mess}" />
         </div>
       </div>
       <!--菜单-->
@@ -464,64 +402,30 @@
   <script src="../../static/js/staticMerchat.js"></script>
   <script type="text/javascript" th:inline="javascript">
     $(function () {
-      contentWith();
-      menuFun();
       queryListReturnResult();
-    });
-    //修改图片
-    $(".picturefile").on("change", function () {
-      var srcs = getObjectURL(this.files[ 0 ]); //获取路径
-      loadUpPricture($(this), srcs);
-    });
+      belongTypeFun()
+    })
     function onSubmitValidate() {
-      var menuTitleInput = $("#menuTitle");
-      var menuTitle = menuTitleInput.val();
-      if (menuTitle === "" || menuTitle == null) {
-        errorClassShow(menuTitleInput, "菜单名称不可为空");
+      var merTitleInput = $("#merTitle");
+      var merTitle = merTitleInput.val();
+      if (merTitle === "" || merTitle == null) {
+        errorClassShow(merTitleInput, "商户标题不可为空");
         return;
       }
-      if (menuTitle.length > 32) {
-        errorClassShow(menuTitleInput, "菜单名称长度超长");
+      var merLink = $("#merLink").val();
+      if (merLink === "" || merLink == null) {
+        errorClassShow($("#merLink"), "商户链接地址不可为空");
+        return;
+      }
+      var merSerial = $("#merSerial").val();
+      if (merSerial === "" || merSerial == null) {
+        errorClassShow($("#merSerial"), '序号不可为空');
+        return;
+      } else if (merSerial > 100 || merSerial < 1) {
+        errorClassShow($("#merSerial"), '序号在数字1-100区间内');
         return;
       }
 
-      var menuParent = $("#menuParent").val();
-      if (menuParent === "" || menuParent == null) {
-        errorClassShow($("#menuParentDiv"), '请选择对应的父级菜单');
-        return;
-      }
-
-      var menuWeight = $("#menuWeight").val();
-      if (menuWeight === "" || menuWeight == null) {
-        errorClassShow($("#menuWeightDiv"), '请选择菜单权重');
-        return;
-      }
-      var menuType = $("#menuType").val();
-      if (menuType === "" || menuType == null) {
-        errorClassShow($("#menuTypeDiv"), '请选择菜单类型');
-        return;
-      } else if (menuType === "自定义") {
-        var belongType1 = $("#belongType1").val();
-        if (belongType1 === "" || belongType1 == null) {
-          errorClassShow($("#belongType1Div"), '请选择重定向路径');
-          return;
-        }
-      } else if (menuType === "列表") {
-        var belongType2 = $("#belongType2").val();
-        if (belongType2 === "" || belongType2 == null) {
-          errorClassShow($("#belongType2Div"), '请选择自定义');
-          return;
-        }
-      } else if (menuType === "富文本框") {
-        var belongType3 = $("#tinyCustomer").next().find("#tinymce").find("p").text();
-        if (belongType3 === "" || belongType3 == null) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框不可为空');
-          return;
-        } else if (belongType3.length > 4000) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框长度超长');
-          return;
-        }
-      }
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();
@@ -530,10 +434,8 @@
       setTimeout(() => {
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
-        var menuName = $("#menuTitle").val();
-        var menuWeight = $("#menuWeight").val();
-        var menuType = $("#menuType").val();
-        window.location.href = "../menuMaintenance/list.html?&page=0&menuName=" + menuName + "&menuWeight=" + menuWeight + "&menuType=" + menuType + "&mess=true,新增成功";
+        var menuName = $("#merTitle").val();
+        window.location.href = "../merLink/list.html?&page=0&merTitle=" + merTitle + "&mess=true,编辑成功";
         $("#lplist-table").slideDown();
       }, 500);
     }
@@ -542,7 +444,6 @@
       obj.poshytip('show');
       obj.poshytip('update', content);
     }
-
 
   </script>
 </body>

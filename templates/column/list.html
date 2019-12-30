@@ -12,142 +12,146 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>商户信息新增</title>
+  <title>商户信息查询</title>
 </head>
 
 <body>
-  <input type="hidden" value="MenuMaintenance" id="pageTitle" />
+  <input type="hidden" value="Column" id="pageTitle" />
   <div class="lpfixed-content">
     <div class="lpscrolly-content">
       <!--内容-->
       <div class="lpcontent-box">
-        <!--列表-->
+        <!--查询-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：二级菜单维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;二级菜单新增</div>
-          <form id="submitForm" method="post" action="" enctype="multipart/form-data">
-            <div class="lpdetail-table-box">
-              <table class="lpdetail-table">
-                <tbody>
-                  <tr>
-                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>菜单名称:
-                    </td>
-                    <td class="lpborder-right-none" width="250px">
-                      <input class="lpsearch-input lpbox-sizing" type="text" id="menuTitle" name="menuTitle" />
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="商户标题长度不可超过32位"></div>
-                    </td>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>对应的父级菜单:</td>
-                    <td class="lpborder-right-none">
-                      <div id="menuParentDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" id="menuParent">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="二级菜单的维护">二级菜单的维护</option>
-                          <option value="二级菜单的维护1">二级菜单的维护1</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>菜单权重:</td>
-                    <td class="lpborder-right-none">
-                      <div id="menuWeightDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuWeight" id="menuWeight">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="宴会度假">宴会度假</option>
-                          <option value="娱乐休闲">娱乐休闲</option>
-                          <option value="商场">商场</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
+          <div class="lppage">当前位置：栏目管理&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;栏目管理</div>
+          <form id="submitForm" method="get" action="">
+            <table class="lpsearch-tableBtn">
+              <tbody>
+                <tr>
+                  <td>
+                    <input id="searchList" type="button" class="lpsearch-btn lpbg-red" value="查询" style="width: 80px;"
+                      onclick="onSubmitValidate()" />
+                  </td>
 
-                    <td class="lpdetail-table-name">简介:</td>
-                    <td class="lpborder-left-none" colspan="2">
-                      <input class="lpsearch-input lpbox-sizing" type="text" />
-                    </td>
-                  </tr>
+                  <td>
+                    <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red"
+                      href="../column/create.html">新增</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+          <input type="hidden" id="errorMessReturnResult" th:value="${mess}" />
+        </div>
+        <!--列表-->
+        <div class="lplist-box lpcontent-shadow">
+          <div class="lplist-title">栏目管理列表</div>
+          <div th:if="${size >= 0}" class="lplist-table-box" id="lplist-table" style="display: none;">
+            <input type="hidden" id="size" th:value="${size}" />
+            <div class="lplist-table-scroll">
+              <table class="lplist-table" id="tableSort">
+                <thead>
                   <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>所属类型:</td>
-                    <td class="lpborder-right-none">
-                      <div class="lpsearch-selectBox lpbox-sizing" id="menuTypeDiv">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuType" id="menuType"
-                          onchange="belongTypeFun()">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="自定义">自定义</option>
-                          <option value="列表">列表</option>
-                          <option value="富文本框">富文本框</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-                    <td class="lpdetail-table-name">
-                      <span class="belongType belongType1"><span class="lpcolor-red">*</span>重定向路径</span>
-                      <span class="belongType belongType2"><span class="lpcolor-red">*</span>所属栏目</span>
-                    </td>
-                    <td class="lpborder-left-none" colspan="2">
-                      <div class="lpsearch-selectBox lpbox-sizing belongType belongType1" id="belongType1Div">
-                        <div class="lpselect-down"></div>
-                        <select name="redirectPath" class="lpsearch-select lpbox-sizing clear-select" id="belongType1">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="/delayweb/preposition">非实名卡延期 </option>
-                          <option value="/lostweb/preposition">实名卡挂失 </option>
-                          <option value="/infoweb/preremain">余额查询 </option>
-                          <option value="/infoweb/prerecord">消费记录查询 </option>
-                          <option value="/merweb/query?cardType=首付通卡&cardType=美点卡">首付通卡商户查询 </option>
-                          <option value="/merweb/query?cardType=美点卡">美点卡商户查询 </option>
-                          <option value="/merweb/query?cardType=西单卡">西单卡商户查询 </option>
-                          <option value="/merweb/query?cardType=贵友卡">贵友卡商户查询 </option>
-                        </select>
-                      </div>
-                      <div class="lpsearch-selectBox lpbox-sizing belongType belongType2" id="belongType2Div">
-                        <div class="lpselect-down"></div>
-                        <select name="redirectPath" value="/list" class="lpsearch-select lpbox-sizing clear-select"
-                          id="belongType2">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="公告">公告</option>
-                          <option value="促销信息">促销信息</option>
-                          <option value="消费攻略">消费攻略</option>
-                          <option value="金融知识普及">金融知识普及</option>
-                        </select>
-                      </div>
-                    </td>
+                    <th width="40px">序号</th>
+                    <th>栏目名称</th>
+                    <th width="160px">操作</th>
                   </tr>
-                  <tr class="belongType belongType3">
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>富文本框:</td>
-                    <td class="lpborder-right-none" colspan="4">
-                      <input id="redirectPath" name="redirectPath" value="/text" type="hidden" />
-                      <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="富文本框长度不可超过4000位"></div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="lpsearch-tableBtn">
+                </thead>
                 <tbody>
                   <tr>
-                    <td style="padding-left: 80px; width: 280px;">
-                      <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="保存"
-                        onclick="onSubmitValidate()" />
-                    </td>
+                    <td class="ellipsis">1</td>
+                    <td>栏目名称</td>
                     <td>
-                      <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
-                        href="javascript:history.back(-1)">返回</a>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../column/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ellipsis">2</td>
+                    <td>栏目名称2</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../column/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ellipsis">3</td>
+                    <td>栏目名称3</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../column/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ellipsis">4</td>
+                    <td>栏目名称4</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../column/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </form>
-          <!-- <input type="hidden" id="errorMessReturnResult" th:value="${mess}" /> -->
+            <div th:include="common/page"></div>
+            <!-- common/page -->
+            <div class="pagination marginAuto">
+              <div id="page">
+                <div class="pageBtnBox " th:if="${page eq null} ">
+                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">首页</a>
+                  <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">上一页</a>
+                </div>
+                <div th:if="${page eq null}" class="pageText">
+                  <span class="pageText">第<span class="textZhu">1</span>页/共<span class="textZhu">1</span>
+                    页&nbsp;&nbsp;总共<span class="textZhu">4</span>条</span>
+                </div>
+                <div class="pageBtnBox" th:if="${page eq null} ">
+                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">下一页</a>
+                  <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">末页</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!--菜单-->
@@ -458,84 +462,57 @@
   <script src="../../static/js/jquery.poshytip.js" th:src="@{/js/jquery.poshytip.js}"></script>
   <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <script src="../../static/js/tinymce/tinymce.js"></script>
-  <script src="../../static/js/tinymce/tinymce_language_zh_CN.js"></script>
-  <script src="../../static/js/tinymce/tinymce_customer.js"></script>
   <script src="../../static/js/staticMerchat.js"></script>
-  <script type="text/javascript" th:inline="javascript">
+  <script language="javascript">
     $(function () {
-      contentWith();
-      menuFun();
-      queryListReturnResult();
+      // queryListReturnResult();
+      //前端静态页面写法------start
+      createSave();
+      //前端静态页面写法------end
     });
-    //修改图片
-    $(".picturefile").on("change", function () {
-      var srcs = getObjectURL(this.files[ 0 ]); //获取路径
-      loadUpPricture($(this), srcs);
-    });
+
+    function deleteConfirm(id) {
+      if (id === "" || id === 'null' || id === null) {
+        alert("数据异常，参数错误");
+      } else {
+        $("#confirmWarn").modal('show');
+        $('#confirmWarnText').text("确定执行[删除]操作?");
+        // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merInfoId=" + id + "\'");
+        //前端静态页面写法------start
+        var userIdEq = $(id).parents(".lplist-table-btn-box").parents("tr").index();
+        console.log(userIdEq)
+        $("#confirmWarnYes").attr("onclick", '$(".lplist-table").children("tbody").children("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
+        //前端静态页面写法------end
+      }
+    }
+
     function onSubmitValidate() {
-      var menuTitleInput = $("#menuTitle");
-      var menuTitle = menuTitleInput.val();
-      if (menuTitle === "" || menuTitle == null) {
-        errorClassShow(menuTitleInput, "菜单名称不可为空");
-        return;
-      }
-      if (menuTitle.length > 32) {
-        errorClassShow(menuTitleInput, "菜单名称长度超长");
-        return;
-      }
-
-      var menuParent = $("#menuParent").val();
-      if (menuParent === "" || menuParent == null) {
-        errorClassShow($("#menuParentDiv"), '请选择对应的父级菜单');
-        return;
-      }
-
-      var menuWeight = $("#menuWeight").val();
-      if (menuWeight === "" || menuWeight == null) {
-        errorClassShow($("#menuWeightDiv"), '请选择菜单权重');
-        return;
-      }
-      var menuType = $("#menuType").val();
-      if (menuType === "" || menuType == null) {
-        errorClassShow($("#menuTypeDiv"), '请选择菜单类型');
-        return;
-      } else if (menuType === "自定义") {
-        var belongType1 = $("#belongType1").val();
-        if (belongType1 === "" || belongType1 == null) {
-          errorClassShow($("#belongType1Div"), '请选择重定向路径');
-          return;
-        }
-      } else if (menuType === "列表") {
-        var belongType2 = $("#belongType2").val();
-        if (belongType2 === "" || belongType2 == null) {
-          errorClassShow($("#belongType2Div"), '请选择自定义');
-          return;
-        }
-      } else if (menuType === "富文本框") {
-        var belongType3 = $("#tinyCustomer").next().find("#tinymce").find("p").text();
-        if (belongType3 === "" || belongType3 == null) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框不可为空');
-          return;
-        } else if (belongType3.length > 4000) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框长度超长');
-          return;
-        }
-      }
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();
       $('#LoadingBlack').modal('show');
       $('#Loading').show();
+      //前端静态页面写法------start
       setTimeout(() => {
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
-        var menuName = $("#menuTitle").val();
-        var menuWeight = $("#menuWeight").val();
-        var menuType = $("#menuType").val();
-        window.location.href = "../menuMaintenance/list.html?&page=0&menuName=" + menuName + "&menuWeight=" + menuWeight + "&menuType=" + menuType + "&mess=true,新增成功";
         $("#lplist-table").slideDown();
       }, 500);
+      //前端静态页面写法------end
+    }
+
+    function exportSubmit() {
+      var merTitleInput = $("#merTitle");
+      var merTitle = merTitleInput.val();
+      if (merTitle.length > 32) {
+        errorClassShow(merTitleInput, "商户标题长度超长");
+        return;
+      }
+      //提交表单
+      var url = "merDownload";
+      //.serializer()将form表单中所有有name属性的input标签里的value值按照a=1&b=2&c=3&d=4&e=5的方式提交
+      var params = $("#submitForm").serialize();
+      $(location).attr('href', 'merDownload?' + params);
     }
 
     function errorClassShow(obj, content) {
@@ -544,6 +521,64 @@
     }
 
 
+    //前端静态页面写法------start
+    function getUrlParam() {
+      //获取连接地址
+      var url = document.location.toString();
+      //分隔开连接,用?把传的值取出来
+      var arrObj = url.split("?");
+      //创建一个空对象
+      var result = {};
+      //判断连接里面是不是有值,如果有则执行下面操作
+      if (arrObj.length > 1) {
+        //取出所有传的值
+        var arrPara = arrObj[ 1 ].split("&");
+        var arr;
+        for (var i = 0; i < arrPara.length; i++) {
+
+          arr = arrPara[ i ].split("=");
+          //把第二个值赋值给第一个值
+          result[ arr[ 0 ] ] = arr[ 1 ];
+
+        }
+      }
+      return result;
+    }
+
+    function createSave() {
+      var str = getUrlParam();
+      var mess = decodeURI(str[ "mess" ]);
+      var createSaveBlur = mess.split(",");
+      $("#errorMessReturnResult").val(mess);
+      var columnName = decodeURI(str[ "columnName" ]);
+      if (createSaveBlur[ 1 ] === "编辑成功") {
+        $("#lplist-table tbody tr").first().find('td').eq(1).text(columnName);
+      } else if (createSaveBlur[ 1 ] === "新增成功") {
+        $("#lplist-table").find('tbody').first().append(
+          "<tr>" +
+          "<td>" + 5 + "</td>" +
+          "<td>" + columnName + "</td>" +
+          "<td>" +
+          '<table class="lplist-table-btn-box lpbox-sizing">' +
+          '<tbody>' +
+          '<tr>' +
+          '<td><a href="../column/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
+          '</td>' +
+          '<td><a onclick="deleteConfirm(5)" class="lplist-btn" title="删除">删除</a></td>' +
+          '</tr >' +
+          '</tbody >' +
+          '</table > ' +
+          "</td>" +
+          "</tr>"
+        )
+      }
+      if (createSaveBlur[ 0 ] === 'true') {
+        queryListReturnResult();
+        $("#lplist-table").slideDown();
+        trId();
+      }
+    }
+    //前端静态页面写法------end
   </script>
 </body>
 

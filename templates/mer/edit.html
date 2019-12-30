@@ -269,7 +269,7 @@
                     <td class="lpborder-right-none" colspan="4">
                       <input id="discountInfo" name="discountInfo" type="hidden" />
                       <textarea lass="content-area" id="discountText" name="discountText"
-                        style="width: 100%">Hello, World!</textarea>
+                        style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
@@ -281,7 +281,7 @@
                     <td class="lpborder-right-none" colspan="4">
                       <input id="importantClause" name="importantClause" type="hidden" />
                       <textarea lass="content-area" id="importantClauseText" name="importantClauseText"
-                        style="width: 100%">Hello, World!</textarea>
+                        style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
@@ -643,10 +643,6 @@
     });
 
     function onSubmitValidate() {
-      var discountText = nicEditors.findEditor('discountText').getContent();
-      $("#discountInfo").val(discountText);
-      var importantClauseText = nicEditors.findEditor('importantClauseText').getContent();
-      $("#importantClause").val(importantClauseText);
       var merTitleInput = $("#merTitle");
       var merTitle = merTitleInput.val();
       if (merTitle === "" || merTitle == null) {
@@ -743,16 +739,20 @@
         return;
       }
 
-      if ($("#discountInfo").val().length > 4000) {
-        errorClassShow($("#discountInfo").parent(), '优惠信息长度超长');
+      var importantClauseText = $("#importantClauseText").next().find("#tinymce").find("p").text();
+      if (importantClauseText.length > 4000) {
+        errorClassShow($("#importantClauseText").next(), '特别声明长度超长');
         return;
       }
-      var importantClauseInput = $("#importantClause");
-      var importantClause = importantClauseInput.val();
-      if (importantClause.length > 4000) {
-        errorClassShow($("#importantClause").parent(), '特别声明长度超长');
+
+      var discountText = $("#discountText").next().find("#tinymce").find("p").text();
+      if (discountText.length > 4000) {
+        errorClassShow($("#discountText").next(), '优惠信息长度超长');
         return;
       }
+      $("#discountInfo").val(discountText);
+      $("#importantClause").val(importantClauseText);
+
       var merMainImg = $("#merMainImg").val();
       if (!(merMainImg === "" || merMainImg == null)) {
         var imgSize = document.getElementById("merMainImg").files[ 0 ].size;

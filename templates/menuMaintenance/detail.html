@@ -67,6 +67,16 @@
                 </tr>
               </tbody>
             </table>
+            <table class="lpsearch-tableBtn">
+              <tbody>
+                <tr>
+                  <td>
+                    <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
+                      href="javascript:history.back(-1)">返回</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -439,154 +449,6 @@
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
   <script src="../../static/js/staticMerchat.js"></script>
   <script th:inline="javascript">
-    function onSubmitClose() {
-      $("#modalPricture").find(".hiddenInput").html("");
-      $("#modalPricture").find(".pictureImg").attr("src", "");
-      $("#modalPricture").find(".pictureTextBox textarea").text("");
-      $("#modalPricture").find(".pictureBox").addClass("prictureBoxUnll");//移除图片不存在的情况
-      $("#modalPricture").find(".pictureClose").hide();//删除按钮显示
-      $("#modalPricture").find(".pictureViewBtn").text("上传图片");//撤回上传图片按钮文字
-      $('#modalPricture').hide();
-    }
-    //新增，插入，编辑的上传图片功能
-    function extPricture($this, extOperate, imgSrc, merchantInfoExtId, merImgOrder) {
-      $("#modalPricture").find(".hiddenInput").html("");
-      $("#modalPricture").find(".pictureImg").attr("src", "");
-      $("#modalPricture").find(".pictureTextBox textarea").val("");
-      $("#modalPricture").find(".pictureBox").addClass("prictureBoxUnll");//移除图片不存在的情况
-      $("#modalPricture").find(".pictureClose").hide();//删除按钮显示
-      $("#modalPricture").find(".pictureViewBtn").text("上传图片");//撤回上传图片按钮文字
-      $("#modalPricture").find(".pictureBtnBox input").val("");
-      $("#formId").val("");
-      var formAction = "";
-      if (extOperate === "add") {
-        formAction = $("#formSave").val();
-        $("#modalPricture").find(".modalPrictureTitle").text("新增扩展信息");
-      } else if (extOperate === "insert") {
-        $("#formId").val($this.parents(".lplist-table-btn-box").parent().parent().index());
-        formAction = $("#formSave").val();
-        $("#modalPricture").find(".modalPrictureTitle").text("在前方插入扩展信息");
-        $("#modalPricture").find(".hiddenInput").html(
-          "<input type='hidden' name='merchantInfoExtId' value='" + merchantInfoExtId + "'/>" +
-          "<input type='hidden' name='merImgOrder' value='" + merImgOrder + "'/>"
-        );
-      } else if (extOperate === "modify") {
-        $("#formId").val($this.parents(".lplist-table-btn-box").parent().parent().index());
-        formAction = $("#formUpdate").val();
-        var merExtImg = $this.next(".modifyImgSrc").text();
-        $("#modalPricture").find(".hiddenInput").html(
-          "<input type='hidden' name='merchantInfoExtId' value='" + merchantInfoExtId + "'/>" +
-          "<input type='hidden' name='merImg' value='" + merExtImg + "'/>"
-        );
-        $("#modalPricture").find(".modalPrictureTitle").text("修改扩展信息");
-        if ($this.parent().parent().parent().parent().parent().parent().find(".prictureBgNull").length === 0) {
-          var imgSrc = $this.parents(".lplist-table-btn-box").parent().parent().find(".thumbnailImg").attr("src");
-          $("#modalPricture").find(".pictureImg").attr("src", imgSrc);
-          $("#modalPricture").find(".pictureClose").show();//删除按钮显示
-          $("#modalPricture").find(".pictureBox").removeClass("prictureBoxUnll");//移除图片不存在的情况
-          $("#modalPricture").find(".pictureViewBtn").text("修改图片");//修改上传图片按钮文字
-        }
-        $("#modalPricture").find(".pictureTextBox textarea").val($this.parents(".lplist-table-btn-box").parent().prev().text());
-      }
-      $("#modalPricture").find(".modalPrictureFrom").attr("action", formAction);
-      $("#modalPricture").show();
-    }
-
-    //修改图片
-    $(".picturefile").on("change", function () {
-      var srcs = getObjectURL(this.files[ 0 ]); //获取路径
-      loadUpPricture($(this), srcs);
-    });
-
-    function deleteConfirm(id) {
-      if (id === "" || id === 'null' || id === null) {
-        alert("数据异常，参数错误");
-      } else {
-        $("#confirmWarn").modal('show');
-        $('#confirmWarnText').text("确定执行[删除]操作?");
-        // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merchantInfoExtId=" + id + "\'");
-        //前端静态页面写法------start
-        var userIdEq = $(id).parents(".lplist-table-btn-box").parents("tr").index();
-        $("#confirmWarnYes").attr("onclick", '$(".lplist-table tbody").first().find("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
-        //前端静态页面写法------end
-      }
-    }
-
-    function onSubmitValidate() {
-      var merExtImg = $("#merExtImg").val();
-      if (merExtImg.length !== 0) {
-        var objImg = document.getElementById("merExtImg");
-        var imgSize = objImg.files[ 0 ].size;
-        var fileMaxSize = 10240;
-        if (imgSize / 1024 > fileMaxSize) {
-          errorClassShow($("#merExtImg").parent(), '商户扩展图片不能大于' + 10 + "M");
-          return;
-        }
-      }
-      var imgTextInput = $("#imgText");
-      var imgText = imgTextInput.val();
-      if (imgText.length > 512) {
-        errorClassShow(imgTextInput.parent(), "图片介绍长度超长");
-        return;
-      }
-      //提交表单
-      var form = $("#submitForm");
-      // form[ 0 ].submit();
-      $('#LoadingBlack').modal('show');
-      $('#Loading').show();
-      var formAction = $(".modalPrictureFrom").attr("action")
-      // 如果是新增
-      // 如果是编辑
-      var formId = $("#formId").val();
-      var imgSrc = $("#modalPricture").find(".pictureImg").attr("src")
-      setTimeout(() => {
-        if (formAction === "save") {
-          var html = "<tr>" +
-            "<td class='ellipsis'></td>" +
-            "<td>" +
-            "<div class='thumbnailImgBoxParentHidden'>" +
-            "<div class='thumbnailImgBoxParent'>" +
-            "<img class='thumbnailImg' src='" + imgSrc + "'/>" +
-            "</div >" +
-            "</div >" +
-            "</div>" +
-            "</td>" +
-            "<td>" + imgText + "</td>" +
-            "<td>" +
-            '<table class="lplist-table-btn-box lpbox-sizing">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td>' +
-            '<div style="width: 80px" class="lplist-btn" title="修改信息" onclick = "extPricture($(this),\'modify\')" >修改信息</div >' +
-            '</td>' +
-            ' <td>' +
-            '<input type = "button" class="lplist-btn" value = "前方插入信息" title = "前方插入" onclick = "extPricture($(this), \'insert\')" >' +
-            '</td >' +
-            '<td >' +
-            '<a class="lplist-btn" value = "删除" onclick = "deleteConfirm(this)" > 删除</a >' +
-            '</td >' +
-            '</tr >' +
-            '</tbody >' +
-            '</table >' +
-            "</td>" +
-            "</tr>";
-          if (formId === "" || formId === null || formId === "-1") {
-            $("#lplist-table").find("tbody").first().append(html);
-          } else {
-            $("#lplist-table").find("tbody").first().children("tr").eq(formId).before(html);
-          }
-        } else if (formAction === "update") {
-          $("#lplist-table").find("tbody").first().children("tr").eq(formId).find(".thumbnailImg").attr("src", imgSrc);
-          $("#lplist-table").find("tbody").first().children("tr").eq(formId).children("td").eq(2).text(imgText);
-        }
-        $('#LoadingBlack').modal('hide');
-        $('#Loading').hide();
-        $("#modalPricture").hide();
-        trId();
-      }, 500);
-
-    }
-
 
     $(function () {
       contentWith();
@@ -598,128 +460,6 @@
     $(window).resize(function () {
       contentWith();
     });
-
-    var trxDtTmBoxObj = $("#trxDtTmBox");
-    var form_datetime = $(".form_datetime");
-
-    function errorClassShow(obj, content) {
-      obj.poshytip('show');
-      obj.poshytip('update', content);
-    }
-
-    trxDtTmBoxObj.datetimepicker({
-      format: 'yyyymmdd',
-      language: 'fr',
-      weekStart: 1,
-      clearBtn: true,
-      autoclose: 1,
-      todayHighlight: 1,
-      startView: 2,
-      forceParse: 0,
-      minView: 2,
-      showMeridian: 1,
-      startDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 1),
-      endDate: new Date()
-    }).on("show", function () {
-
-    });
-
-    form_datetime.poshytip({
-      content: '请输入交易开始日期！',
-      className: 'tip-yellow',
-      showOn: 'none',
-      alignTo: 'target',
-      alignX: 'right',
-      alignY: 'center',
-      offsetX: 5,
-      timeOnScreen: 2000
-    });
-
-    $('.lpsearch-input').poshytip({
-      className: 'tip-yellow',
-      showOn: 'none',
-      alignTo: 'target',
-      alignX: 'right',
-      alignY: 'center',
-      offsetX: 5,
-      timeOnScreen: 2000
-    });
-
-    var oldOutTradeNo = "false";
-
-    function myMouseUp() {
-      var oldOutObj = $("#oldOut");
-      var trabTypeObj = $("#tranType");
-      var tranType = trabTypeObj.val();
-      if (tranType === "3") {
-        oldOutTradeNo = "true";
-        oldOutObj.show();
-      } else {
-        oldOutObj.hide();
-      }
-    }
-
-
-    //前端静态页面写法------start
-    function getUrlParam() {
-      //获取连接地址
-      var url = document.location.toString();
-      //分隔开连接,用?把传的值取出来
-      var arrObj = url.split("?");
-      //创建一个空对象
-      var result = {};
-      //判断连接里面是不是有值,如果有则执行下面操作
-      if (arrObj.length > 1) {
-        //取出所有传的值
-        var arrPara = arrObj[ 1 ].split("&");
-        var arr;
-        for (var i = 0; i < arrPara.length; i++) {
-
-          arr = arrPara[ i ].split("=");
-          //把第二个值赋值给第一个值
-          result[ arr[ 0 ] ] = arr[ 1 ];
-
-        }
-      }
-      return result;
-    }
-
-    function createSave() {
-      var str = getUrlParam();
-      var mess = decodeURI(str[ "mess" ]);
-      var createSaveBlur = mess.split(",");
-      $("#errorMessReturnResult").val(mess);
-      var roleName = decodeURI(str[ "roleName" ]);
-      var ids = decodeURI(str[ "ids" ]);
-      if (createSaveBlur[ 1 ] === "编辑成功") {
-        $("#lplist-table tbody tr").first().find('td').eq(1).text(roleName);
-        $("#lplist-table tbody tr").first().find('td').eq(2).text(ids);
-      } else if (createSaveBlur[ 1 ] === "新增成功") {
-        $("#lplist-table").find('tbody').first().append(
-          "<tr>" +
-          "<td>" + 5 + "</td>" +
-          "<td>" + roleName + "</td>" +
-          "<td>" + ids + "</td>" +
-          "<td>" +
-          '<table class="lplist-table-btn-box lpbox-sizing">' +
-          '<tbody>' +
-          '<tr>' +
-          '<td><a href="../permission/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
-          '</td>' +
-          '<td><a onclick="deleteConfirm(5)" class="lplist-btn" title="删除">删除</a></td>' +
-          '</tr >' +
-          '</tbody >' +
-          '</table > ' +
-          "</td>" +
-          "</tr>"
-        )
-      }
-      if (createSaveBlur[ 0 ] === 'true') {
-        queryListReturnResult();
-        $("#lplist-table").slideDown();
-      }
-    }
-    //前端静态页面写法------end
   </script>
 </body>
 
