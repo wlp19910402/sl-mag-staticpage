@@ -30,226 +30,43 @@
       <div class="lpcontent-box">
         <!--查询-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：商户信息维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;商户扩展信息展示</div>
-          <form method="get" th:action="@{/merExt/queryMerExt}" action="">
-            <table class="lpsearch-tableBtn">
+          <div class="lppage">当前位置：二级菜单维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;二级菜单维护详情</div>
+
+          <div class="lpdetail-table-box" id="lplist-table">
+            <table class="lpdetail-table">
               <tbody>
                 <tr>
-                  <td>
-                    <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="新增"
-                      onclick="extPricture($(this),'add','','','')" /></td>
-                  <td>
-                    <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
-                      href="javascript:history.back(-1)">返回</a>
+                  <td class="lpdetail-table-name" width="120px">
+                    <label>菜单名称:</label>
                   </td>
+                  <td>二级菜单</td>
+                  <td class="lpdetail-table-name" width="140px">
+                    <label>对应的父级菜单:</label>
+                  </td>
+                  <td>二级菜单维护1</td>
+                </tr>
+                <tr>
+                  <td class="lpdetail-table-name">
+                    <label>菜单权重:</label>
+                  </td>
+                  <td>宴会度假</td>
+                  <td class="lpdetail-table-name">
+                    <label>简介:</label>
+                  </td>
+                  <td>二级菜单简介简介简介简介</td>
+                </tr>
+                <tr>
+                  <td class="lpdetail-table-name">
+                    <label>所属类型:</label>
+                  </td>
+                  <td>富文本框</td>
+                  <td class="lpdetail-table-name">
+                    <label>富文本框:</label>
+                  </td>
+                  <td>富文本框富文本框富文本框富文本框富文本框富文本框富文本框富文本框富文本框富文本框富文本框</td>
                 </tr>
               </tbody>
             </table>
-          </form>
-          <input type="hidden" id="errorMessReturnResult" th:value="${mess}" />
-        </div>
-        <!--列表-->
-        <div class="lplist-box lpcontent-shadow">
-          <div class="lplist-title">商户扩展信息查询列表</div>
-          <div th:if="${size >= 0}" class="lplist-table-box" id="lplist-table">
-            <div class="lplist-table-scroll">
-              <table class="lplist-table">
-                <thead>
-                  <tr>
-                    <th width="60px">序号</th>
-                    <th width="200px">图片</th>
-                    <th>图片介绍</th>
-                    <th width="160px">操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- <tr th:each="merExt:${page.content}">
-                    <td class="ellipsis" th:text="${merExtStat.index+1}"></td>
-                    <td>
-                        <div class="thumbnailImgBoxParentHidden">
-                            <div class="thumbnailImgBoxParent">
-                                <div class="thumbnailImgBox">
-                                    <img th:if="!(${merExt.merImg==''||merExt.merImg==null})"
-                                         class="thumbnailImg" th:src="${imgPre} + ${merExt.merImg}"/>
-                                    <img th:if="${merExt.merImg==''||merExt.merImg==null}"
-                                         class="thumbnailImg prictureBgNull"
-                                         th:src="@{/images/prictureBgNull.png}"/>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="ellipsis" th:utext="${merExt.textIntroduction}"
-                        th:title="${merExt.textIntroduction}"></td>
-                    <td>
-                        <table class="lplist-table-btn-box lpbox-sizing">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="modifyImgText" style="display: none;"
-                                         th:utext="${merExt.textIntroduction}"></div>
-                                    th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"
-                  <div style="width: 80px" class="lplist-btn" title="修改信息"
-                    th:onclick="'extPricture($(this),\'modify\',\''+${imgPre} + ${merExt.merImg}+'\',\''+${merExt.merchantInfoExtId}+'\',\''+${merExt.merImgOrder}+'\')'">
-                    修改信息
-                  </div>
-                  <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
-                  </td>
-                  <td>
-                    <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                      th:onclick="'extPricture($(this),\'insert\',\''+${imgPre} + ${merExt.merImg}+'\',\''+${merExt.merchantInfoExtId}+'\',\''+${merExt.merImgOrder}+'\')'">
-
-                  </td>
-                  <td>
-                    <a class="lplist-btn" value="删除"
-                      th:onclick="'javascript:deleteConfirm(\''+${merExt.merchantInfoExtId}+'\')'">删除</a>
-                  </td>
-                  </tr>
-                </tbody>
-              </table>
-              </td>
-              </tr> -->
-                  <tr>
-                    <td class="ellipsis">1</td>
-                    <td>
-                      <div class="thumbnailImgBoxParentHidden">
-                        <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" />
-                            <!-- <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965726756096763.jpg" /> -->
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="ellipsis">想要您的活动给您的客人留下深刻的印象，让人眼前一亮吗？</td>
-                    <td>
-                      <table class="lplist-table-btn-box lpbox-sizing">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
-                            </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
-                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ellipsis">2</td>
-                    <td>
-                      <div class="thumbnailImgBoxParentHidden">
-                        <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <!-- <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" /> -->
-                            <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965726756096763.jpg" />
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="ellipsis"> 精致豪华的大宴会厅面积达 966 平米（无柱），是举办 1,000 人以下聚会的理想场所。 在 北京凯宾斯基大宴会厅
-                      举办董事会议、会议、演讲或鸡尾酒会堪称身份地位的象征。</td>
-                    <td>
-                      <table class="lplist-table-btn-box lpbox-sizing">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
-                            </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
-                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ellipsis">3</td>
-                    <td>
-                      <div class="thumbnailImgBoxParentHidden">
-                        <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <!-- <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" /> -->
-                            <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965777729071746.jpg" />
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="ellipsis">无论您要举办一场会议，演讲或是酒会，北京凯宾斯基饭店的宴会厅都是最佳选择！</td>
-                    <td>
-                      <table class="lplist-table-btn-box lpbox-sizing">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
-                            </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
-                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div th:include="common/page"></div>
-            <!-- common/page -->
-            <div class="pagination marginAuto">
-              <div id="page">
-                <div class="pageBtnBox " th:if="${page eq null} ">
-                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">首页</a>
-                  <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">上一页</a>
-                </div>
-                <div th:if="${page eq null}" class="pageText">
-                  <span class="pageText">第<span class="textZhu">1</span>页/共<span class="textZhu">1</span>
-                    页&nbsp;&nbsp;总共<span class="textZhu">4</span>条</span>
-                </div>
-                <div class="pageBtnBox" th:if="${page eq null} ">
-                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th:title="不能操作">下一页</a>
-                  <a class="pageGaryA" data-toggle="tooltip" th:title="不能操作">末页</a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

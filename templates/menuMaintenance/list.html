@@ -116,6 +116,75 @@
                       </table>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="ellipsis">2</td>
+                    <td>菜单名称</td>
+                    <td>所属类型</td>
+                    <td>菜单权重</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuMaintenance/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuMaintenance/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ellipsis">3</td>
+                    <td>菜单名称</td>
+                    <td>所属类型</td>
+                    <td>菜单权重</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuMaintenance/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuMaintenance/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ellipsis">4</td>
+                    <td>菜单名称</td>
+                    <td>所属类型</td>
+                    <td>菜单权重</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuMaintenance/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuMaintenance/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -505,23 +574,6 @@
       obj.poshytip('update', content);
     }
 
-    //前端静态页面写法------start
-    //切换list页面的按钮 置为轮播图
-    function switchFigure($t) {
-      if ($($t).text() === "置为轮播图") {
-        $($t).text("取消轮播图")
-      } else {
-        $($t).text("置为轮播图")
-      }
-    }
-    function switchRecommend($t) {
-      if ($($t).text() === "置为推荐") {
-        $($t).text("取消推荐")
-      } else {
-        $($t).text("置为推荐")
-      }
-    }
-    //前端静态页面写法------end
 
     //前端静态页面写法------start
     function getUrlParam() {
@@ -552,11 +604,39 @@
       var mess = decodeURI(str[ "mess" ]);
       var createSaveBlur = mess.split(",");
       $("#errorMessReturnResult").val(mess);
-      var name = decodeURI(str[ "name" ]);
-      var dsc = decodeURI(str[ "dsc" ]);
-      if (createSaveBlur[ 0 ] === 'false') {
+      var menuName = decodeURI(str[ "menuName" ]);
+      var menuWeight = decodeURI(str[ "menuWeight" ]);
+      var menuType = decodeURI(str[ "menuType" ]);
+      if (createSaveBlur[ 1 ] === "编辑成功") {
+        $("#lplist-table tbody tr").first().find('td').eq(1).text(menuName);
+        $("#lplist-table tbody tr").first().find('td').eq(2).text(menuType);
+        $("#lplist-table tbody tr").first().find('td').eq(3).text(menuWeight);
+      } else if (createSaveBlur[ 1 ] === "新增成功") {
+        $("#lplist-table").find('tbody').first().append(
+          "<tr>" +
+          "<td>" + 5 + "</td>" +
+          "<td>" + menuName + "</td>" +
+          "<td>" + menuType + "</td>" +
+          "<td>" + menuWeight + "</td>" +
+          "<td>" +
+          '<table class="lplist-table-btn-box lpbox-sizing">' +
+          '<tbody>' +
+          '<tr>' +
+          '<td><a href="../menuMaintenance/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
+          '</td>' +
+          '<td><a onclick="deleteConfirm(5)" class="lplist-btn" title="删除">删除</a></td>' +
+          '<td width="72px"> <a class= "lplist-btn" value = "查看详情" href = "../menuMaintenance/detail.html"> 查看详情</a></td >' +
+          '</tr >' +
+          '</tbody >' +
+          '</table > ' +
+          "</td>" +
+          "</tr>"
+        )
+      }
+      if (createSaveBlur[ 0 ] === 'true') {
         queryListReturnResult();
         $("#lplist-table").slideDown();
+        trId();
       }
     }
     //前端静态页面写法------end
