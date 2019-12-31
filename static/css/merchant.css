@@ -1804,7 +1804,18 @@ select.lpsearch-select {
 .thumbnailImg{
     width:70px;
 }
-
+.thumbnailImgBoxParentHiddenIcon{
+width: 48px !important;
+height: 48px !important;
+background-color: transparent !important;
+}
+.thumbnailImgBoxIcon{
+  width: 48px !important;
+  height: 48px !important;
+}
+.thumbnailImgIcon{
+  width: 48px !important;
+}
 
 /*上传图片*/
 /*图片列表*/
@@ -1816,7 +1827,7 @@ select.lpsearch-select {
 .modal-pictureConentBox{overflow: hidden}
 .pictureTextBox textarea{width:100%;
     height: 168px;line-height:24px;border:none;background: #f8f8f8;}
-.pictureConentBox{min-width:300px;display: block;overflow:auto;padding:16px;float: left;}
+.pictureConentBox{min-width:288px;display: block;overflow:auto;padding:3px;float: left;}
 .pictureConent{width:280px;height: 188px;padding:6px;margin-left: auto;margin-right: auto;position: relative;}
 .pictureBox img{display: block;margin-left: auto;margin-right: auto;width: 100%;}
 .pictureBtnBox{width:100%;height: 30px;padding-top:8px;}

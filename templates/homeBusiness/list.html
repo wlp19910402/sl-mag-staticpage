@@ -12,35 +12,53 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>商户扩展信息查询</title>
+  <title>首页业务介绍</title>
 </head>
 
 <body>
-  <!--/*@thymesVar id="size" type="java.lang.Integer"*/-->
-  <!--/*@thymesVar id="merInfoId" type="java.lang.String"*/-->
-  <!--/*@thymesVar id="imgText" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="merTitle" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="size" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="discountMerFlag" type="java.lang.String"*/-->
   <!--/*@thymesVar id="mess" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="area" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="merType" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="cardType" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="page" type="com.yada.team2.core.page.Page<com.yada.team2.entity.MerchantInfo>"*/-->
+  <!--/*@thymesVar id="allDictItems" type="java.util.List<com.yada.team2.entity.DictItemInfo>"*/-->
   <!--/*@thymesVar id="imgPre" type="java.lang.String"*/-->
-  <!--/*@thymesVar id="merExt" type="com.yada.team2.entity.MerchantInfoExt"*/-->
-  <!--/*@thymesVar id="page" type="com.yada.team2.core.page.Page<com.yada.team2.entity.MerchantInfoExt>"*/-->
-  <input type="hidden" value="MenuPicture" id="pageTitle" />
+  <!--/*@thymesVar id="merMainImg" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="enableFlag" type="java.lang.String"*/-->
+  <input type="hidden" value="HomeBusiness" id="pageTitle" />
   <div class="lpfixed-content">
     <div class="lpscrolly-content">
       <!--内容-->
       <div class="lpcontent-box">
         <!--查询-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：商户信息维护&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;商户扩展信息展示</div>
-          <form method="get" th:action="@{/merExt/queryMerExt}" action="">
+          <div class="lppage">当前位置：首页业务介绍&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;首页业务介绍查询</div>
+          <form id="submitForm" method="get" th:action="@{/mer/query}">
+            <table class="lpsearch-table">
+              <tbody id="tbody">
+                <tr>
+                  <td class="lpsearch-label" width="116px">业务标题：</td>
+                  <td>
+                    <input id="businessTitle" class="lpsearch-input 1pbox-sizing" type="text" name="businessTitle"
+                      placeholder="请输入业务标题" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <table class="lpsearch-tableBtn">
               <tbody>
                 <tr>
                   <td>
-                    <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="新增"
-                      onclick="extPricture($(this),'add','','','')" /></td>
-                  <td>
-                    <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
-                      href="javascript:history.back(-1)">返回</a>
+                    <input id="searchList" type="button" class="lpsearch-btn lpbg-red" value="查询" style="width: 80px;"
+                      onclick="onSubmitValidate()" />
+                  </td>
+                  <td><input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="重置"
+                      onclick="resetFun()" /></td>
+                  <td><a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red"
+                      href="../homeBusiness/create.html">新增</a>
                   </td>
                 </tr>
               </tbody>
@@ -50,98 +68,125 @@
         </div>
         <!--列表-->
         <div class="lplist-box lpcontent-shadow">
-          <div class="lplist-title">商户扩展信息查询列表</div>
-          <div th:if="${size >= 0}" class="lplist-table-box" id="lplist-table">
+          <div class="lplist-title">商户信息查询列表</div>
+          <div th:if="${size >= 0}" class="lplist-table-box" id="lplist-table" style="display: none;">
+            <input type="hidden" id="size" th:value="${size}" />
             <div class="lplist-table-scroll">
-              <table class="lplist-table">
+              <table class="lplist-table" id="tableSort">
                 <thead>
                   <tr>
-                    <th width="60px">序号</th>
-                    <th width="200px">图片</th>
-                    <th>图片介绍</th>
-                    <th width="160px">操作</th>
+                    <th width="40px">序号</th>
+                    <th>业务图标</th>
+                    <th>业务标题</th>
+                    <th width="290px">操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr th:each="merExt:${page.content}">
-                    <td class="ellipsis" th:text="${merExtStat.index+1}"></td>
+                  <tr th:each="item:${page.content}">
+                    <td class="ellipsis" th:text="${itemStat.index+1}">1</td>
                     <td>
-                        <div class="thumbnailImgBoxParentHidden">
-                            <div class="thumbnailImgBoxParent">
-                                <div class="thumbnailImgBox">
-                                    <img th:if="!(${merExt.merImg==''||merExt.merImg==null})"
-                                         class="thumbnailImg" th:src="${imgPre} + ${merExt.merImg}"/>
-                                    <img th:if="${merExt.merImg==''||merExt.merImg==null}"
-                                         class="thumbnailImg prictureBgNull"
-                                         th:src="@{/images/prictureBgNull.png}"/>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="ellipsis" th:utext="${merExt.textIntroduction}"
-                        th:title="${merExt.textIntroduction}"></td>
-                    <td>
-                        <table class="lplist-table-btn-box lpbox-sizing">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="modifyImgText" style="display: none;"
-                                         th:utext="${merExt.textIntroduction}"></div>
-                                    th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"
-                  <div style="width: 80px" class="lplist-btn" title="修改信息"
-                    th:onclick="'extPricture($(this),\'modify\',\''+${imgPre} + ${merExt.merImg}+'\',\''+${merExt.merchantInfoExtId}+'\',\''+${merExt.merImgOrder}+'\')'">
-                    修改信息
-                  </div>
-                  <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
-                  </td>
-                  <td>
-                    <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                      th:onclick="'extPricture($(this),\'insert\',\''+${imgPre} + ${merExt.merImg}+'\',\''+${merExt.merchantInfoExtId}+'\',\''+${merExt.merImgOrder}+'\')'">
-
-                  </td>
-                  <td>
-                    <a class="lplist-btn" value="删除"
-                      th:onclick="'javascript:deleteConfirm(\''+${merExt.merchantInfoExtId}+'\')'">删除</a>
-                  </td>
-                  </tr>
-                </tbody>
-              </table>
-              </td>
-              </tr> -->
-                  <tr>
-                    <td class="ellipsis">1</td>
-                    <td>
-                      <div class="thumbnailImgBoxParentHidden">
+                      <div class="thumbnailImgBoxParentHidden thumbnailImgBoxParentHiddenIcon">
                         <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" />
-                            <!-- <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965726756096763.jpg" /> -->
+                          <div class="thumbnailImgBox thumbnailImgBoxIcon">
+                            <!-- <img th:if="${item.merMainImg==''||item.merMainImg==null}" class="thumbnailImg"
+                              src="../../static/images/prictureBgNull.png" /> -->
+                            <img th:if="${item.merMainImg==''||item.merMainImg==null}"
+                              class="thumbnailImg thumbnailImgIcon"
+                              src="../../static/images/Merchant/svgIcon/timeout.svg" />
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td class="ellipsis">想要您的活动给您的客人留下深刻的印象，让人眼前一亮吗？</td>
+                    <td>业务标题业务标题业务标题1</td>
                     <td>
                       <table class="lplist-table-btn-box lpbox-sizing">
                         <tbody>
                           <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../homeBusiness/edit.html" title="编辑">编辑</a>
                             </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
+                            <td width="36px">
                               <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../homeBusiness/detail.html">查看详情</a>
+                            </td>
+                            <td th:if="${item.recommendFlag=='0'}" width="116px">
+                              <a class="lplist-btn" onclick="showHome(this)" value="展示在首页">展示在首页</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr th:each="item:${page.content}">
+                    <td class="ellipsis" th:text="${itemStat.index+1}">2</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden thumbnailImgBoxParentHiddenIcon">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox thumbnailImgBoxIcon">
+                            <!-- <img th:if="${item.merMainImg==''||item.merMainImg==null}" class="thumbnailImg"
+                              src="../../static/images/prictureBgNull.png" /> -->
+                            <img th:if="${item.merMainImg==''||item.merMainImg==null}"
+                              class="thumbnailImg thumbnailImgIcon"
+                              src="../../static/images/Merchant/svgIcon/warnIcon.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>业务标题业务标题业务标题2</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../homeBusiness/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../homeBusiness/detail.html">查看详情</a>
+                            </td>
+                            <td th:if="${item.recommendFlag=='0'}" width="116px">
+                              <a class="lplist-btn" onclick="showHome(this)" value="展示在首页">展示在首页</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr th:each="item:${page.content}">
+                    <td class="ellipsis" th:text="${itemStat.index+1}">3</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden thumbnailImgBoxParentHiddenIcon">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox thumbnailImgBoxIcon">
+                            <!-- <img th:if="${item.merMainImg==''||item.merMainImg==null}" class="thumbnailImg"
+                              src="../../static/images/prictureBgNull.png" /> -->
+                            <img th:if="${item.merMainImg==''||item.merMainImg==null}"
+                              class="thumbnailImg thumbnailImgIcon"
+                              src="../../static/images/Merchant/svgIcon/error.svg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>业务标题业务标题业务标题3</td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../homeBusiness/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../homeBusiness/detail.html">查看详情</a>
+                            </td>
+                            <td th:if="${item.recommendFlag=='0'}" width="116px">
+                              <a class="lplist-btn" onclick="showHome(this)" value="展示在首页">展示在首页</a>
                             </td>
                           </tr>
                         </tbody>
@@ -149,80 +194,36 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="ellipsis">2</td>
+                    <td>4</td>
                     <td>
-                      <div class="thumbnailImgBoxParentHidden">
+                      <div class="thumbnailImgBoxParentHidden thumbnailImgBoxParentHiddenIcon">
                         <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <!-- <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" /> -->
-                            <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965726756096763.jpg" />
+                          <div class="thumbnailImgBox thumbnailImgBoxIcon">
+                            <!-- <img th:if="${item.merMainImg==''||item.merMainImg==null}" class="thumbnailImg"
+                              src="../../static/images/prictureBgNull.png" /> -->
+                            <img th:if="${item.merMainImg==''||item.merMainImg==null}"
+                              class="thumbnailImg thumbnailImgIcon"
+                              src="../../static/images/Merchant/svgIcon/success.svg" />
                           </div>
                         </div>
                       </div>
                     </td>
-                    <td class="ellipsis"> 精致豪华的大宴会厅面积达 966 平米（无柱），是举办 1,000 人以下聚会的理想场所。 在 北京凯宾斯基大宴会厅
-                      举办董事会议、会议、演讲或鸡尾酒会堪称身份地位的象征。</td>
+                    <td>业务标题业务标题业务标题4</td>
                     <td>
                       <table class="lplist-table-btn-box lpbox-sizing">
                         <tbody>
                           <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../homeBusiness/edit.html" title="编辑">编辑</a>
                             </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
+                            <td width="36px">
                               <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
                             </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ellipsis">3</td>
-                    <td>
-                      <div class="thumbnailImgBoxParentHidden">
-                        <div class="thumbnailImgBoxParent">
-                          <div class="thumbnailImgBox">
-                            <!-- <img class="thumbnailImg prictureBgNull" src="../../static/images/prictureBgNull.png" /> -->
-                            <img class="thumbnailImg"
-                              src="../../static/images/upload/ueditor/image/20181123/1542965777729071746.jpg" />
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="ellipsis">无论您要举办一场会议，演讲或是酒会，北京凯宾斯基饭店的宴会厅都是最佳选择！</td>
-                    <td>
-                      <table class="lplist-table-btn-box lpbox-sizing">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="modifyImgText" style="display: none;" th:utext="${merExt.textIntroduction}">
-                              </div>
-                              <!--th:href="@{/merExt/queryById(merchantInfoExtId=${merExt.merchantInfoExtId})}"-->
-                              <div style="width: 80px" class="lplist-btn" title="修改信息"
-                                onclick="extPricture($(this),'modify')">
-                                修改信息
-                              </div>
-                              <div class="modifyImgSrc" style="display: none;" th:utext="${merExt.merImg}"></div>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../homeBusiness/detail.html">查看详情</a>
                             </td>
-                            <td>
-                              <input type="button" class="lplist-btn" value="前方插入信息" title="前方插入"
-                                onclick="extPricture($(this),'insert')">
-                            </td>
-                            <td>
-                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            <td th:if="${item.recommendFlag=='0'}" width="116px">
+                              <a class="lplist-btn" onclick="showHome(this)" value="展示在首页">展示在首页</a>
                             </td>
                           </tr>
                         </tbody>
@@ -553,65 +554,6 @@
       </div>
     </div>
   </div>
-  <div class="">
-    <!--确认是否操作-->
-    <div class="modal" id="modalPricture">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header lpmodal-header">
-            <button type="button" class="close" onclick=" $('#modalPricture').hide();">×</button>
-            <h4 class="modalPrictureTitle">修改/添加/插入扩展信息</h4>
-            <input type="hidden" id="formSave" value="save">
-            <input type="hidden" id="formUpdate" value="update">
-            <input type="hidden" id="formId" value="">
-          </div>
-          <form id="submitForm" class="modalPrictureFrom" method="post" enctype="multipart/form-data">
-            <input type="hidden" id="size" name="size" th:value="${size}" />
-            <div class="modal-body">
-              <div class="hiddenInput"></div>
-              <input type="hidden" name="merInfoId" id="merInfoId" th:value="${merInfoId}" />
-              <div class="modal-pictureConentBox">
-                <div class="pictureConentBox lppull-left">
-                  <div class="pictureConent boxShadow">
-                    <div class="pictureBoxHidden">
-                      <div class="pictureBoxParent">
-                        <div class="pictureBox boxSize prictureBoxUnll">
-                          <img class="pictureImg">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="pictureBtnBox">
-                      <div class="pictureClose pictureBtn btn pull-left boxSize" onclick="canclePricture(this)"></div>
-                      <input type="file" accept="image/jpg,image/JPG, image/png,image/PNG, image/jpeg,image/JPEG"
-                        class="picturefile" name="file" id="merExtImg" />
-                      <div class="pictureViewBtn addBtn pull-right" onClick="$(this).prev('input').click()">上传图片
-                      </div>
-                    </div>
-                    <div class="updateLoadingBox">
-                      <div class="updateBg"></div>
-                      <div class="updateText updateLoadingText">正在上传...</div>
-                      <div class="updateLoadBtn addBtn">我知道了</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="lppull-left pictureTextBox">
-                  <textarea id="imgText" name="textIntroduction"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" style="margin-left:30px;" class="lpsearch-btn lpbg-red lppull-right"
-                onclick="onSubmitValidate()">保存
-              </button>
-              <button type="button" class="lpsearch-btn lpbg-yellow lppull-right"
-                onclick="$('#modalPricture').hide();">取消
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
   <script src="../../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
   <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
   <script src="../../static/js/merchant.js" th:src="@{/js/merchant.js}"></script>
@@ -621,64 +563,12 @@
   <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
   <script src="../../static/js/staticMerchat.js"></script>
-  <script th:inline="javascript">
-    function onSubmitClose() {
-      $("#modalPricture").find(".hiddenInput").html("");
-      $("#modalPricture").find(".pictureImg").attr("src", "");
-      $("#modalPricture").find(".pictureTextBox textarea").text("");
-      $("#modalPricture").find(".pictureBox").addClass("prictureBoxUnll");//移除图片不存在的情况
-      $("#modalPricture").find(".pictureClose").hide();//删除按钮显示
-      $("#modalPricture").find(".pictureViewBtn").text("上传图片");//撤回上传图片按钮文字
-      $('#modalPricture').hide();
-    }
-    //新增，插入，编辑的上传图片功能
-    function extPricture($this, extOperate, imgSrc, merchantInfoExtId, merImgOrder) {
-      $("#modalPricture").find(".hiddenInput").html("");
-      $("#modalPricture").find(".pictureImg").attr("src", "");
-      $("#modalPricture").find(".pictureTextBox textarea").val("");
-      $("#modalPricture").find(".pictureBox").addClass("prictureBoxUnll");//移除图片不存在的情况
-      $("#modalPricture").find(".pictureClose").hide();//删除按钮显示
-      $("#modalPricture").find(".pictureViewBtn").text("上传图片");//撤回上传图片按钮文字
-      $("#modalPricture").find(".pictureBtnBox input").val("");
-      $("#formId").val("");
-      var formAction = "";
-      if (extOperate === "add") {
-        formAction = $("#formSave").val();
-        $("#modalPricture").find(".modalPrictureTitle").text("新增扩展信息");
-      } else if (extOperate === "insert") {
-        $("#formId").val($this.parents(".lplist-table-btn-box").parent().parent().index());
-        formAction = $("#formSave").val();
-        $("#modalPricture").find(".modalPrictureTitle").text("在前方插入扩展信息");
-        $("#modalPricture").find(".hiddenInput").html(
-          "<input type='hidden' name='merchantInfoExtId' value='" + merchantInfoExtId + "'/>" +
-          "<input type='hidden' name='merImgOrder' value='" + merImgOrder + "'/>"
-        );
-      } else if (extOperate === "modify") {
-        $("#formId").val($this.parents(".lplist-table-btn-box").parent().parent().index());
-        formAction = $("#formUpdate").val();
-        var merExtImg = $this.next(".modifyImgSrc").text();
-        $("#modalPricture").find(".hiddenInput").html(
-          "<input type='hidden' name='merchantInfoExtId' value='" + merchantInfoExtId + "'/>" +
-          "<input type='hidden' name='merImg' value='" + merExtImg + "'/>"
-        );
-        $("#modalPricture").find(".modalPrictureTitle").text("修改扩展信息");
-        if ($this.parent().parent().parent().parent().parent().parent().find(".prictureBgNull").length === 0) {
-          var imgSrc = $this.parents(".lplist-table-btn-box").parent().parent().find(".thumbnailImg").attr("src");
-          $("#modalPricture").find(".pictureImg").attr("src", imgSrc);
-          $("#modalPricture").find(".pictureClose").show();//删除按钮显示
-          $("#modalPricture").find(".pictureBox").removeClass("prictureBoxUnll");//移除图片不存在的情况
-          $("#modalPricture").find(".pictureViewBtn").text("修改图片");//修改上传图片按钮文字
-        }
-        $("#modalPricture").find(".pictureTextBox textarea").val($this.parents(".lplist-table-btn-box").parent().prev().text());
-      }
-      $("#modalPricture").find(".modalPrictureFrom").attr("action", formAction);
-      $("#modalPricture").show();
-    }
-
-    //修改图片
-    $(".picturefile").on("change", function () {
-      var srcs = getObjectURL(this.files[ 0 ]); //获取路径
-      loadUpPricture($(this), srcs);
+  <script language="javascript">
+    $(function () {
+      // queryListReturnResult();
+      //前端静态页面写法------start
+      createSave();
+      //前端静态页面写法------end
     });
 
     function deleteConfirm(id) {
@@ -687,7 +577,7 @@
       } else {
         $("#confirmWarn").modal('show');
         $('#confirmWarnText').text("确定执行[删除]操作?");
-        // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merchantInfoExtId=" + id + "\'");
+        // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merInfoId=" + id + "\'");
         //前端静态页面写法------start
         var userIdEq = $(id).parents(".lplist-table-btn-box").parents("tr").index();
         $("#confirmWarnYes").attr("onclick", '$(".lplist-table").children("tbody").children("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
@@ -696,152 +586,49 @@
     }
 
     function onSubmitValidate() {
-      var merExtImg = $("#merExtImg").val();
-      if (merExtImg.length !== 0) {
-        var objImg = document.getElementById("merExtImg");
-        var imgSize = objImg.files[ 0 ].size;
-        var fileMaxSize = 10240;
-        if (imgSize / 1024 > fileMaxSize) {
-          errorClassShow($("#merExtImg").parent(), '商户扩展图片不能大于' + 10 + "M");
-          return;
-        }
-      }
-      var imgTextInput = $("#imgText");
-      var imgText = imgTextInput.val();
-      if (imgText.length > 512) {
-        errorClassShow(imgTextInput.parent(), "图片介绍长度超长");
-        return;
-      }
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();
       $('#LoadingBlack').modal('show');
       $('#Loading').show();
-      var formAction = $(".modalPrictureFrom").attr("action")
-      // 如果是新增
-      // 如果是编辑
-      var formId = $("#formId").val();
-      var imgSrc = $("#modalPricture").find(".pictureImg").attr("src")
+      //前端静态页面写法------start
       setTimeout(() => {
-        if (formAction === "save") {
-          var html = "<tr>" +
-            "<td class='ellipsis'></td>" +
-            "<td>" +
-            "<div class='thumbnailImgBoxParentHidden'>" +
-            "<div class='thumbnailImgBoxParent'>" +
-            "<img class='thumbnailImg' src='" + imgSrc + "'/>" +
-            "</div >" +
-            "</div >" +
-            "</div>" +
-            "</td>" +
-            "<td>" + imgText + "</td>" +
-            "<td>" +
-            '<table class="lplist-table-btn-box lpbox-sizing">' +
-            '<tbody>' +
-            '<tr>' +
-            '<td>' +
-            '<div style="width: 80px" class="lplist-btn" title="修改信息" onclick = "extPricture($(this),\'modify\')" >修改信息</div >' +
-            '</td>' +
-            ' <td>' +
-            '<input type = "button" class="lplist-btn" value = "前方插入信息" title = "前方插入" onclick = "extPricture($(this), \'insert\')" >' +
-            '</td >' +
-            '<td >' +
-            '<a class="lplist-btn" value = "删除" onclick = "deleteConfirm(this)" > 删除</a >' +
-            '</td >' +
-            '</tr >' +
-            '</tbody >' +
-            '</table >' +
-            "</td>" +
-            "</tr>";
-          if (formId === "" || formId === null || formId === "-1") {
-            $("#lplist-table").find("tbody").first().append(html);
-          } else {
-            $("#lplist-table").find("tbody").first().children("tr").eq(formId).before(html);
-          }
-        } else if (formAction === "update") {
-          $("#lplist-table").find("tbody").first().children("tr").eq(formId).find(".thumbnailImg").attr("src", imgSrc);
-          $("#lplist-table").find("tbody").first().children("tr").eq(formId).children("td").eq(2).text(imgText);
-        }
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
-        $("#modalPricture").hide();
-        trId();
+        $("#lplist-table").slideDown();
       }, 500);
-
+      //前端静态页面写法------end
     }
 
-
-    $(function () {
-      contentWith();
-      menuFun();
-      myMouseUp();
-      queryListReturnResult();
-    });
-
-    $(window).resize(function () {
-      contentWith();
-    });
-
-    var trxDtTmBoxObj = $("#trxDtTmBox");
-    var form_datetime = $(".form_datetime");
+    function exportSubmit() {
+      var merTitleInput = $("#merTitle");
+      var merTitle = merTitleInput.val();
+      if (merTitle.length > 32) {
+        errorClassShow(merTitleInput, "商户标题长度超长");
+        return;
+      }
+      //提交表单
+      var url = "merDownload";
+      //.serializer()将form表单中所有有name属性的input标签里的value值按照a=1&b=2&c=3&d=4&e=5的方式提交
+      var params = $("#submitForm").serialize();
+      $(location).attr('href', 'merDownload?' + params);
+    }
 
     function errorClassShow(obj, content) {
       obj.poshytip('show');
       obj.poshytip('update', content);
     }
 
-    trxDtTmBoxObj.datetimepicker({
-      format: 'yyyymmdd',
-      language: 'fr',
-      weekStart: 1,
-      clearBtn: true,
-      autoclose: 1,
-      todayHighlight: 1,
-      startView: 2,
-      forceParse: 0,
-      minView: 2,
-      showMeridian: 1,
-      startDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 1),
-      endDate: new Date()
-    }).on("show", function () {
-
-    });
-
-    form_datetime.poshytip({
-      content: '请输入交易开始日期！',
-      className: 'tip-yellow',
-      showOn: 'none',
-      alignTo: 'target',
-      alignX: 'right',
-      alignY: 'center',
-      offsetX: 5,
-      timeOnScreen: 2000
-    });
-
-    $('.lpsearch-input').poshytip({
-      className: 'tip-yellow',
-      showOn: 'none',
-      alignTo: 'target',
-      alignX: 'right',
-      alignY: 'center',
-      offsetX: 5,
-      timeOnScreen: 2000
-    });
-
-    var oldOutTradeNo = "false";
-
-    function myMouseUp() {
-      var oldOutObj = $("#oldOut");
-      var trabTypeObj = $("#tranType");
-      var tranType = trabTypeObj.val();
-      if (tranType === "3") {
-        oldOutTradeNo = "true";
-        oldOutObj.show();
+    //前端静态页面写法------start
+    //切换list页面的按钮 是否展示在首页
+    function showHome($t) {
+      if ($($t).text() === "展示在首页") {
+        $($t).text("取消展示在首页")
       } else {
-        oldOutObj.hide();
+        $($t).text("展示在首页")
       }
     }
-
+    //前端静态页面写法------end
 
     //前端静态页面写法------start
     function getUrlParam() {
@@ -872,24 +659,33 @@
       var mess = decodeURI(str[ "mess" ]);
       var createSaveBlur = mess.split(",");
       $("#errorMessReturnResult").val(mess);
-      var roleName = decodeURI(str[ "roleName" ]);
-      var ids = decodeURI(str[ "ids" ]);
+      var merMainImg = decodeURI(str[ "merMainImg" ]);
+      var businessTitle = decodeURI(str[ "businessTitle" ]);
       if (createSaveBlur[ 1 ] === "编辑成功") {
-        $("#lplist-table tbody tr").first().find('td').eq(1).text(roleName);
-        $("#lplist-table tbody tr").first().find('td').eq(2).text(ids);
+        $("#lplist-table tbody tr").first().find('td').eq(1).find(".thumbnailImg").attr("src", merMainImg);
+        $("#lplist-table tbody tr").first().find('td').eq(2).text(businessTitle);
       } else if (createSaveBlur[ 1 ] === "新增成功") {
         $("#lplist-table").find('tbody').first().append(
           "<tr>" +
           "<td>" + 5 + "</td>" +
-          "<td>" + roleName + "</td>" +
-          "<td>" + ids + "</td>" +
+          "<td>" +
+          '<div class="thumbnailImgBoxParentHidden">' +
+          '<div class="thumbnailImgBoxParent">' +
+          '<div class="thumbnailImgBox" >' +
+          '<img class="thumbnailImg" src="' + merMainImg + '"/>' +
+          '</div >' +
+          '</div >' +
+          '</div >' +
+          "</td>" +
+          "<td>" + businessTitle + "</td>" +
           "<td>" +
           '<table class="lplist-table-btn-box lpbox-sizing">' +
           '<tbody>' +
           '<tr>' +
-          '<td><a href="../permission/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
+          '<td><a href="../homeBusiness/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
           '</td>' +
           '<td><a onclick="deleteConfirm(5)" class="lplist-btn" title="删除">删除</a></td>' +
+          '<td width="72px"> <a class= "lplist-btn" value = "查看详情" href = "../homeBusiness/detail.html"> 查看详情</a></td >' +
           '</tr >' +
           '</tbody >' +
           '</table > ' +
@@ -900,6 +696,7 @@
       if (createSaveBlur[ 0 ] === 'true') {
         queryListReturnResult();
         $("#lplist-table").slideDown();
+        trId();
       }
     }
     //前端静态页面写法------end

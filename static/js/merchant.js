@@ -57,6 +57,7 @@ function resetFun () {
   }
   $(".form-control").val('');
   $('.form_datetime').val('');
+  $("tr[data-toggle='distpicker']").distpicker('reset');
 }
 
 /*

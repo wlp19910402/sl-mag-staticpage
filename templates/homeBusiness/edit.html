@@ -12,67 +12,81 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>菜单图片信息新增</title>
+  <title>首页业务介绍</title>
 </head>
 
 <body>
+  <!--/*@thymesVar id="merInfo" type="com.yada.team2.entity.MerchantInfo"*/-->
   <!--/*@thymesVar id="allDictItems" type="java.util.List<com.yada.team2.entity.DictItemInfo>"*/-->
-  <!--/*@thymesVar id="mess" type="java.lang.String"*/-->
-  <!--/*@thymesVar id="merchantInfo" type="com.yada.team2.entity.MerchantInfo"*/-->
   <!--/*@thymesVar id="imgPre" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="mess" type="java.lang.String"*/-->
   <!--/*@thymesVar id="valueList" type="java.util.List<java.lang.String>"*/-->
-  <input type="hidden" value="MenuPicture" id="pageTitle" />
+  <input type="hidden" value="HomeBusiness" id="pageTitle" />
   <div class="lpfixed-content">
     <div class="lpscrolly-content">
       <!--内容-->
       <div class="lpcontent-box">
         <!--列表-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：菜单图片信息管理&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;菜单图片信息新增</div>
-          <form id="submitForm" method="post" th:action="@{/mer/save}" enctype="multipart/form-data">
+          <div class="lppage">当前位置：首页业务介绍&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;首页业务介绍编辑</div>
+          <form id="submitForm" method="post" th:action="@{/mer/update}" enctype="multipart/form-data">
+            <label for="merInfoId"></label><input type="hidden" name="merInfoId" id="merInfoId"
+              th:value="${merInfo.merInfoId}" />
             <div class="lpdetail-table-box">
               <table class="lpdetail-table">
                 <tbody>
-                  <tr data-toggle="distpicker">
-                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>一级菜单：</td>
+                  <tr>
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>业务标题:
+                    </td>
                     <td class="lpborder-right-none" width="250px">
-                      <div class="lpsearch-selectBox lpbox-sizing" id="parentMenuDiv">
-                        <div class="lpselect-down"></div>
-                        <select class="form-control lpsearch-select lpbox-sizing clear-select" id="parentMenu"></select>
-                      </div>
+                      <input class="lpsearch-input lpbox-sizing" type="text" id="businessTitle" name="businessTitle"
+                        value="业务标题业务标题业务标题1" />
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="一级菜单是必选，只有选了一级菜单才能选则二级菜单"></div>
+                        data-placement="right" data-content="业务标题长度不可超过32位"></div>
                     </td>
-                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>二级菜单：</td>
-                    <td class="lpborder-right-none" width="250px">
-                      <div class="lpsearch-selectBox lpbox-sizing" id="subMenuDiv">
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>二级菜单id:</td>
+                    <td class="lpborder-right-none">
+                      <div id="subMenuDiv" class="lpsearch-selectBox lpbox-sizing">
                         <div class="lpselect-down"></div>
-                        <select class="form-control lpsearch-select lpbox-sizing clear-select" id="subMenu"></select>
+                        <select class="lpsearch-select lpbox-sizing clear-select" id="subMenu">
+                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                          <option value="二级菜单id1" selected>二级菜单id1</option>
+                          <option value="二级菜单id2">二级菜单id2</option>
+                        </select>
                       </div>
                     </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="一级菜单是必选，只有选了一级菜单才能选则二级菜单"></div>
-                    </td>
+                    <td class="lpborder-left-none"></td>
                   </tr>
                   <tr>
-                    <td class="lpdetail-table-name">图片超链接:</td>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>菜单权重:</td>
                     <td class="lpborder-right-none">
-                      <input class="lpsearch-input lpbox-sizing" id="prictureLink" type="text" name="prictureLink" />
+                      <div id="menuWeightDiv" class="lpsearch-selectBox lpbox-sizing">
+                        <div class="lpselect-down"></div>
+                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuWeight" id="menuWeight">
+                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                          <option value="宴会度假" selected>宴会度假</option>
+                          <option value="娱乐休闲">娱乐休闲</option>
+                          <option value="商场">商场</option>
+                        </select>
+                      </div>
                     </td>
                     <td class="lpborder-left-none"></td>
 
-                    <td class="lpdetail-table-name" width="118px;">图片介绍:</td>
-                    <td class="lpborder-right-none" width="250px">
-                      <input class="lpsearch-input lpbox-sizing" id="prictureDec" type="text" name="prictureDec" />
-                    </td>
-                    <td class="lpborder-left-none">
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>是否展示在首页:</td>
+                    <td class="lpborder-left-none" colspan="2">
+                      <div class="lpsearch-selectBox lpbox-sizing" id="showHomeDiv">
+                        <div class="lpselect-down"></div>
+                        <select class="lpsearch-select lpbox-sizing clear-select" name="showHome" id="showHome">
+                          <option value="0">否</option>
+                          <option value="1" selected>是</option>
+                        </select>
+                      </div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>图片:
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>业务图标:
                     </td>
                     <td class="lpborder-right-none" colspan="2">
                       <div class="pictureConentBox">
@@ -80,13 +94,15 @@
                           <div class="pictureBoxHidden">
                             <div class="pictureBoxParent">
                               <div class="pictureBox boxSize prictureBoxUnll">
-                                <img class="pictureImg">
+                                <img class="pictureImg" src="../../static/images/Merchant/svgIcon/timeout.svg"
+                                  style="width: 120px;">
                               </div>
                             </div>
                           </div>
                           <div class="pictureBtnBox">
                             <input type="file" accept="image/jpg,image/JPG, image/png,image/PNG, image/jpeg,image/JPEG"
-                              class="picturefile" name="file" id="merMainImg" />
+                              class="picturefile" name="file" id="merMainImg"
+                              value="../../static/images/Merchant/svgIcon/timeout.svg" />
                             <div class="pictureViewBtn addBtn pull-right" onClick="$(this).prev('input').click()">上传图片
                             </div>
                           </div>
@@ -103,17 +119,29 @@
                         data-placement="right" data-content="请上传jpg或png或jpeg格式，且大小不要超过10M"></div>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>业务简介:</td>
+                    <td class="lpborder-right-none" colspan="4">
+                      <input id="tinyCustomerVal" name="tinyCustomerVal" value="/text" type="hidden" />
+                      <textarea lass="content-area" id="tinyCustomer" name="richText"
+                        style="width: 100%">业务简介业务简介业务简介业务简介</textarea>
+                    </td>
+                    <td class="lpborder-left-none">
+                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
+                        data-placement="right" data-content="业务简介长度不可超过4000位"></div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
               <table class="lpsearch-tableBtn">
                 <tbody>
-                  <tr>
+                  <tr align="left">
                     <td style="padding-left: 80px; width: 280px;">
                       <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="保存"
                         onclick="onSubmitValidate()" />
                     </td>
                     <td>
-                      <a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
+                      <a type="reset" style="width: 80px;" class="lpsearch-btn lpbg-red" value="返回"
                         href="javascript:history.back(-1)">返回</a>
                     </td>
                   </tr>
@@ -435,14 +463,11 @@
   <script src="../../static/js/tinymce/tinymce.js"></script>
   <script src="../../static/js/tinymce/tinymce_language_zh_CN.js"></script>
   <script src="../../static/js/tinymce/tinymce_customer.js"></script>
-  <script src="../../static/js/distpicker/distpicker.data.js"></script>
-  <script src="../../static/js/distpicker/distpicker.js"></script>
   <script type="text/javascript" th:inline="javascript">
     $(function () {
-      contentWith();
-      menuFun();
+      earchImg();
       queryListReturnResult();
-    });
+    })
     //修改图片
     $(".picturefile").on("change", function () {
       var srcs = getObjectURL(this.files[ 0 ]); //获取路径
@@ -450,9 +475,9 @@
     });
 
     function onSubmitValidate() {
-      var parentMenu = $("#parentMenu").val();
-      if (parentMenu === "" || parentMenu == null) {
-        errorClassShow($("#parentMenuDiv"), '请选择一级菜单');
+      var businessTitle = $("#businessTitle").val();
+      if (businessTitle === "" || businessTitle == null) {
+        errorClassShow($("#businessTitle"), '业务标题不可为空');
         return;
       }
       var subMenu = $("#subMenu").val();
@@ -460,12 +485,14 @@
         errorClassShow($("#subMenuDiv"), '请选择二级菜单');
         return;
       }
+      var menuWeight = $("#menuWeight").val();
+      if (menuWeight === "" || menuWeight == null) {
+        errorClassShow($("#menuWeightDiv"), '请选择菜单权重');
+        return;
+      }
 
       var merMainImg = $("#merMainImg").val();
-      if (merMainImg === "" || merMainImg == null) {
-        errorClassShow($("#merMainImg").parent(), '请上传商户主图片');
-        return;
-      } else {
+      if (!(merMainImg === "" || merMainImg == null)) {
         var imgSize = document.getElementById("merMainImg").files[ 0 ].size;
         // var fileMaxSize = (/\d+(\.\d+)?/).exec([ [ ${ fileMaxSize } ] ])[ 0 ];
         var fileMaxSize = 10240;
@@ -474,6 +501,12 @@
           return;
         }
       }
+      // var tinyCustomer = $("#tinyCustomer").parent().find("#tinymce").find("p").text();
+      // if (tinyCustomer === "" || tinyCustomer == null) {
+      //   errorClassShow($("#tinyCustomer").next(), '内容不可为空');
+      //   return;
+      // }
+      // $("#tinyCustomerVal").val(tinyCustomer);
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();
@@ -483,7 +516,7 @@
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
         var userName = 'admin001';
-        window.location.href = "../menuPicture/list.html?&merMainImg=" + merMainImg + "&page=0&mess=true,新增成功";
+        window.location.href = "../homeBusiness/list.html?&merMainImg=" + merMainImg + "&businessTitle=" + businessTitle + "&page=0&mess=true,编辑成功";
         $("#lplist-table").slideDown();
       }, 500);
     }

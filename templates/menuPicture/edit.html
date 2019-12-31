@@ -35,201 +35,48 @@
             <div class="lpdetail-table-box">
               <table class="lpdetail-table">
                 <tbody>
-                  <tr>
-                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>商户标题:
-                    </td>
+                  <tr data-toggle="distpicker">
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>一级菜单：</td>
                     <td class="lpborder-right-none" width="250px">
-                      <input class="lpsearch-input lpbox-sizing" th:value="${merInfo.merTitle}" value="凯宾斯基饭店宴会厅"
-                        id="merTitle" type="text" name="merTitle" />
+                      <div class="lpsearch-selectBox lpbox-sizing" id="parentMenuDiv">
+                        <div class="lpselect-down"></div>
+                        <select class="form-control lpsearch-select lpbox-sizing clear-select" id="parentMenu"></select>
+                      </div>
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="商户标题长度不可超过32位"></div>
+                        data-placement="right" data-content="一级菜单是必选，只有选了一级菜单才能选则二级菜单"></div>
                     </td>
-
-                    <td class="lpdetail-table-name" width="118px;">其他描述:</td>
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>二级菜单：</td>
                     <td class="lpborder-right-none" width="250px">
-                      <input class="lpsearch-input lpbox-sizing" th:value="${merInfo.otherDesc}" id="otherDesc"
-                        type="text" name="otherDesc" />
+                      <div class="lpsearch-selectBox lpbox-sizing" id="subMenuDiv">
+                        <div class="lpselect-down"></div>
+                        <select class="form-control lpsearch-select lpbox-sizing clear-select" id="subMenu"></select>
+                      </div>
                     </td>
                     <td class="lpborder-left-none">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="其他描述长度不可超过4000位"></div>
+                        data-placement="right" data-content="一级菜单是必选，只有选了一级菜单才能选则二级菜单"></div>
                     </td>
                   </tr>
                   <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>电话:
-                    </td>
+                    <td class="lpdetail-table-name">图片超链接:</td>
                     <td class="lpborder-right-none">
-                      <input class="lpsearch-input lpbox-sizing" th:value="${merInfo.telephone}" value="64653388"
-                        id="telephone" type="text" name="telephone" />
+                      <input class="lpsearch-input lpbox-sizing" id="prictureLink" type="text" name="prictureLink"
+                        value="http://8080...." />
+                    </td>
+                    <td class="lpborder-left-none"></td>
+
+                    <td class="lpdetail-table-name" width="118px;">图片介绍:</td>
+                    <td class="lpborder-right-none" width="250px">
+                      <input class="lpsearch-input lpbox-sizing" id="prictureDec" type="text" name="prictureDec"
+                        value="图片介绍" />
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="电话以数字或者+号开头长度不能超过16位"></div>
-                    </td>
-
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>地址:
-                    </td>
-                    <td class="lpborder-right-none">
-                      <input class="lpsearch-input lpbox-sizing" value="朝阳区亮马桥路50号（饭店三层）" th:value="${merInfo.address}"
-                        id="address" type="text" name="address" />
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="地址长度不可超过256位"></div>
                     </td>
                   </tr>
-
                   <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>经度:
-                    </td>
-                    <td class="lpborder-right-none">
-                      <input class="lpsearch-input lpbox-sizing" value="116.4644955765152" th:value="${merInfo.mapLng}"
-                        id="mapLng" type="text" name="mapLng" />
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="地址经度长度不可超过64位，且必须为数字和.组合"></div>
-                    </td>
-
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>纬度:
-                    </td>
-                    <td class="lpborder-right-none">
-                      <input class="lpsearch-input lpbox-sizing" value="39.948975406947035" th:value="${merInfo.mapLat}"
-                        id="mapLat" type="text" name="mapLat" />
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="地址纬度长度不可超过64位，且必须为数字和.组合"></div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="lpdetail-table-name">是否为特惠商户:</td>
-                    <td class="lpborder-right-none">
-                      <div class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="discountMerFlag"
-                          id="discountMerFlag">
-                          <option th:value="1" th:text="是" th:selected="${'1' eq merInfo.discountMerFlag}">是</option>
-                          <option th:value="0" th:text="否" th:selected="${'0' eq merInfo.discountMerFlag}" selected>否
-                          </option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>所属区域:</td>
-                    <td class="lpborder-right-none">
-                      <div id="areaDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="area" id="area">
-                          <!-- <option th:each="dictItems:${allDictItems}" th:if="${dictItems.itemType=='区域'}"
-                            th:value="${dictItems.itemValue}" th:text="${dictItems.itemValue}"
-                            th:selected="${dictItems.itemValue eq merInfo.area}"></option> -->
-                          <option>--请选择--</option>
-                          <option value="平谷">平谷</option>
-                          <option value="朝阳区" selected>朝阳区</option>
-                          <option value="延庆">延庆</option>
-                          <option value="大兴区">大兴区</option>
-                          <option value="门头沟">门头沟</option>
-                          <option value="海淀区">海淀区</option>
-                          <option value="昌平区">昌平区</option>
-                          <option value="天津市">天津市</option>
-                          <option value="丰台区">丰台区</option>
-                          <option value="顺义区">顺义区</option>
-                          <option value="东城区">东城区</option>
-                          <option value="河北易县">河北易县</option>
-                          <option value="丰台区">房山</option>
-                          <option value="顺义区">怀柔</option>
-                          <option value="东城区">通州区</option>
-                          <option value="河北易县">西城区</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>商户类型:</td>
-                    <td class="lpborder-right-none">
-                      <div id="merTypeDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="merType" id="merType">
-                          <!-- <option th:each="dictItems:${allDictItems}" th:if="${dictItems.itemType=='商户类型'}"
-                            th:value="${dictItems.itemValue}" th:text="${dictItems.itemValue}"
-                            th:selected="${dictItems.itemValue eq merInfo.merType}"></option> -->
-                          <option>--请选择--</option>
-                          <option value="宴会度假" selected>宴会度假</option>
-                          <option value="娱乐休闲">娱乐休闲</option>
-                          <option value="商场">商场</option>
-                          <option value="糕点">糕点</option>
-                          <option value="生活服务">生活服务</option>
-                          <option value="汽车服务">汽车服务</option>
-                          <option value="餐饮">餐饮</option>
-                          <option value="酒店">酒店</option>
-                          <option value="食品">食品</option>
-                          <option value="旅行票务">旅行票务</option>
-                          <option value="康体医疗">康体医疗</option>
-                          <option value="珠宝古玩">珠宝古玩</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>卡类型:</td>
-                    <td class="lpborder-left-none" colspan="2">
-                      <div id="cardTypeDiv" class="lpcheckbox-box lpbox-sizing">
-                        <!-- <div th:each="dictValue : ${valueList}" class="check-box">
-                          <input type="checkbox" name="cardTypes" th:value="${dictValue}" th:text="${dictValue}"
-                            th:checked="${#strings.contains(merInfo.cardType,dictValue)}"/>
-                                        </div> -->
-                        <div class="check-box">
-                          <input type="checkbox" name="cardTypes" value="首付通卡" checked />首付通卡
-                        </div>
-                        <div class="check-box">
-                          <input type="checkbox" name="cardTypes" value="美点卡" />美点卡
-                        </div>
-                        <div class="check-box">
-                          <input type="checkbox" name="cardTypes" value="贵友卡" />贵友卡
-                        </div>
-                        <div class="check-box">
-                          <input type="checkbox" name="cardTypes" value="西单吉祥卡" />西单吉祥卡
-                        </div>
-                      </div>
-
-                    </td>
-                    <!--<td class="lpborder-left-none"></td>-->
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name">是否启用:</td>
-                    <td class="lpborder-right-none">
-                      <div class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="enableFlag" id="enableFlag">
-                          <option th:value="1" th:text="启用" th:selected="${'1' eq merInfo.enableFlag}" selected>启用
-                          </option>
-                          <option th:value="0" th:text="停用" th:selected="${'0' eq merInfo.enableFlag}">停用</option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-
-                    <td class="lpdetail-table-name">是否轮播:</td>
-                    <td class="lpborder-right-none">
-                      <div class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="carouselFlag" id="carouselFlag">
-                          <option th:value="1" th:text="是" th:selected="${'1' eq merInfo.carouselFlag}">是</option>
-                          <option th:value="0" th:text="否" th:selected="${'0' eq merInfo.carouselFlag}" selected>否
-                          </option>
-                        </select>
-                      </div>
-                    </td>
-                    <td class="lpborder-left-none"></td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>商户主图片:
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>图片:
                     </td>
                     <td class="lpborder-right-none" colspan="2">
                       <div class="pictureConentBox">
@@ -238,17 +85,15 @@
                             <div class="pictureBoxParent">
                               <div class="pictureBox boxSize prictureBoxUnll">
                                 <img class="pictureImg"
-                                  src="../../static/images/upload/merchant/thumbnails/20181123173327618719.jpg">
+                                  src="../../static/images/upload/merchant/thumbnails/20160121140314247829.jpg">
                               </div>
                             </div>
                           </div>
                           <div class="pictureBtnBox">
-                            <!--为编辑时获取原图片名称-->
-                            <input type="hidden" name="merMainImg" th:value="${merInfo.merMainImg}" />
                             <input type="file" accept="image/jpg,image/JPG, image/png,image/PNG, image/jpeg,image/JPEG"
                               class="picturefile" name="file" id="merMainImg"
-                              th:value="${imgPre} + ${merInfo.merMainImg}" />
-                            <div class="pictureViewBtn addBtn pull-right" onClick="$(this).prev('input').click()">修改图片
+                              value="../../static/images/upload/merchant/thumbnails/20160121140314247829.jpg" />
+                            <div class="pictureViewBtn addBtn pull-right" onClick="$(this).prev('input').click()">上传图片
                             </div>
                           </div>
                           <div class="updateLoadingBox">
@@ -262,30 +107,6 @@
                     <td class="lpborder-left-none" colspan="3">
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
                         data-placement="right" data-content="请上传jpg或png或jpeg格式，且大小不要超过10M"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name">优惠信息:</td>
-                    <td class="lpborder-right-none" colspan="4">
-                      <input id="discountInfo" name="discountInfo" type="hidden" />
-                      <textarea lass="content-area" id="discountText" name="discountText"
-                        style="width: 100%"></textarea>
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="优惠信息长度不可超过4000位"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="lpdetail-table-name">特别声明:</td>
-                    <td class="lpborder-right-none" colspan="4">
-                      <input id="importantClause" name="importantClause" type="hidden" />
-                      <textarea lass="content-area" id="importantClauseText" name="importantClauseText"
-                        style="width: 100%"></textarea>
-                    </td>
-                    <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="特别声明长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -617,9 +438,8 @@
   <script src="../../static/js/jquery.poshytip.js" th:src="@{/js/jquery.poshytip.js}"></script>
   <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <script src="../../static/js/tinymce/tinymce.js"></script>
-  <script src="../../static/js/tinymce/tinymce_language_zh_CN.js"></script>
-  <script src="../../static/js/tinymce/tinymce_customer.js"></script>
+  <script src="../../static/js/distpicker/distpicker.data.js"></script>
+  <script src="../../static/js/distpicker/distpicker.js"></script>
   <script type="text/javascript" th:inline="javascript">
     $(function () {
       earchImg();
@@ -630,128 +450,18 @@
       var srcs = getObjectURL(this.files[ 0 ]); //获取路径
       loadUpPricture($(this), srcs);
     });
-    //初始化副文本框
-    bkLib.onDomLoaded(function () {
-      new nicEditor({
-        fullPanel: true,
-        iconsPath: "../../static/js/nicEditor/nicEditorIcons.gif"
-      }).panelInstance('discountText');
-      new nicEditor({
-        fullPanel: true,
-        iconsPath: "../../static/js/nicEditor/nicEditorIcons.gif"
-      }).panelInstance('importantClauseText');
-    });
 
     function onSubmitValidate() {
-      var merTitleInput = $("#merTitle");
-      var merTitle = merTitleInput.val();
-      if (merTitle === "" || merTitle == null) {
-        errorClassShow(merTitleInput, "商户标题不可为空");
+      var parentMenu = $("#parentMenu").val();
+      if (parentMenu === "" || parentMenu == null) {
+        errorClassShow($("#parentMenuDiv"), '请选择一级菜单');
         return;
       }
-      if (merTitle.length > 32) {
-        errorClassShow(merTitleInput, "商户标题长度超长");
+      var subMenu = $("#subMenu").val();
+      if (subMenu === "" || subMenu == null) {
+        errorClassShow($("#subMenuDiv"), '请选择二级菜单');
         return;
       }
-      var otherDescInput = $("#otherDesc");
-      var otherDesc = otherDescInput.val();
-      if (otherDesc.length > 4000) {
-        errorClassShow(otherDescInput, '其他描述长度超长');
-        return;
-      }
-
-      var telephoneInput = $("#telephone");
-      var telephone = telephoneInput.val();
-      var telephoneReg = /^((\+)|[0-9])?[0-9]{1,15}$/;
-      if (telephone === "" || telephone == null) {
-        errorClassShow(telephoneInput, "电话不可为空");
-        return;
-      }
-      if (telephone.length > 16) {
-        errorClassShow(telephoneInput, "电话长度超长");
-        return;
-      }
-      if (!telephoneReg.test(telephone)) {
-        errorClassShow(telephoneInput, "电话格式错误");
-        return;
-      }
-
-      var addressInput = $("#address");
-      var address = addressInput.val();
-      if (address === "" || address == null) {
-        errorClassShow(addressInput, "地址不可为空");
-        return;
-      }
-      if (address.length > 256) {
-        errorClassShow(addressInput, "地址长度超长");
-        return;
-      }
-
-      var mapInfoInput = $("#mapLng");
-      var mapInfo = mapInfoInput.val();
-      var mapReg = /[0-9.]{1,64}$/;
-      if (mapInfo === "" || mapInfo == null) {
-        errorClassShow(mapInfoInput, "经度不可为空");
-        return;
-      }
-      if (mapInfo.length > 64) {
-        errorClassShow(mapInfoInput, "经度长度超长");
-        return;
-      }
-      if (!mapReg.test(mapInfo)) {
-        errorClassShow(mapInfoInput, "经度只能为数字和.组合");
-        return;
-      }
-
-      var mapLatInput = $("#mapLat");
-      var mapLat = mapLatInput.val();
-      if (mapLat === "" || mapLat == null) {
-        errorClassShow(mapLatInput, "纬度不可为空");
-        return;
-      }
-      if (mapLat.length > 64) {
-        errorClassShow(mapLatInput, "纬度长度超长");
-        return;
-      }
-      if (!mapReg.test(mapLat)) {
-        errorClassShow(mapLatInput, "纬度只能为数字和.组合");
-        return;
-      }
-
-      var area = $("#area").val();
-      if (area === "" || area == null) {
-        errorClassShow($("#areaDiv"), '请选择所属区域');
-        return;
-      }
-
-      var merType = $("#merType").val();
-      if (merType === "" || merType == null) {
-        errorClassShow($("#merTypeDiv"), '请选择商户类型');
-        return;
-      }
-
-      var cardType = "";
-      $('input[name="cardTypes"]:checked').each(function () {
-        cardType = cardType + $(this).val() + ",";
-      });
-      if (cardType === "" || cardType == null) {
-        errorClassShow($("#cardTypeDiv"), '请选择卡类型');
-        return;
-      }
-
-      var importantClauseText = $("#importantClauseText").next().find("#tinymce").find("p").text();
-      if (importantClauseText.length > 4000) {
-        errorClassShow($("#importantClauseText").next(), '特别声明长度超长');
-        return;
-      }
-
-      var discountText = $("#discountText").next().find("#tinymce").find("p").text();
-      if (discountText.length > 4000) {
-        errorClassShow($("#discountText").next(), '优惠信息长度超长');
-        return;
-      }
-      $("#discountInfo").val(discountText);
-      $("#importantClause").val(importantClauseText);
 
       var merMainImg = $("#merMainImg").val();
       if (!(merMainImg === "" || merMainImg == null)) {
@@ -772,7 +482,7 @@
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
         var userName = 'admin001';
-        window.location.href = "../mer/list.html?&page=0&mess=false,编辑失败";
+        window.location.href = "../menuPicture/list.html?&merMainImg=" + merMainImg + "&page=0&mess=true,编辑成功";
         $("#lplist-table").slideDown();
       }, 500);
     }
