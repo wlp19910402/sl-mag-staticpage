@@ -121,12 +121,11 @@
                   <tr class="belongType belongType3">
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>富文本框:</td>
                     <td class="lpborder-right-none" colspan="4">
-                      <input id="redirectPath" name="redirectPath" value="/text" type="hidden" />
                       <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="富文本框长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="tinyCustomerDivError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="富文本框长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -513,15 +512,17 @@
           return;
         }
       } else if (menuType === "富文本框") {
-        var belongType3 = $("#tinyCustomer").next().find("#tinymce").find("p").text();
-        if (belongType3 === "" || belongType3 == null) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框不可为空');
+        var tinyCustomer = $("#tinyCustomer").val();
+        if (tinyCustomer === "" || tinyCustomer == null) {
+          errorClassShow($("#tinyCustomerDivError"), '富文本框不可为空');
           return;
-        } else if (belongType3.length > 4000) {
-          errorClassShow($("#tinyCustomer").next(), '富文本框长度超长');
+        } else if (tinyCustomer.length > 4000) {
+          errorClassShow($("#tinyCustomerDivError").next(), '富文本框长度超长');
           return;
         }
       }
+
+
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();

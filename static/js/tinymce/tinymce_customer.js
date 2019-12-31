@@ -7,7 +7,7 @@ const uploadPath = result + "/demo/tinyFileUpload";
 tinymce.init({
   selector: '#tinyCustomer,#importantClauseText,#discountText',
   language: 'zh_CN',
-  plugins: 'preview fullpage paste importcss searchreplace autolink directionality visualblocks visualchars image link table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textpattern noneditable charmap quickbars emoticons',
+  plugins: 'preview paste importcss searchreplace autolink directionality visualblocks visualchars image link table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textpattern noneditable charmap quickbars emoticons',
   imagetools_cors_hosts: [ 'picsum.photos' ],
   menubar: 'file edit view insert format table help',
   removed_menuitems: 'media,template,codesample,formats,fontformats',
@@ -16,7 +16,7 @@ tinymce.init({
   images_upload_url: uploadPath,
   template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
   template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-  height: 600,
+  height: 400,
   image_caption: true,
   quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
   noneditable_noneditable_class: "mceNonEditable",
@@ -26,4 +26,13 @@ tinymce.init({
   //     alert(blobInfo.base64());
   //     succFun("data:image/png;base64,"+blobInfo.base64());
   // }
+  setup: function (editor) {
+    editor.on('change', function (e) {
+      editor.save()
+    })
+
+    editor.on('keyup', function (e) {
+      editor.save()
+    })
+  }
 });

@@ -267,32 +267,30 @@
                   <tr>
                     <td class="lpdetail-table-name">优惠信息:</td>
                     <td class="lpborder-right-none" colspan="4">
-                      <input id="discountInfo" name="discountInfo" type="hidden" />
                       <textarea lass="content-area" id="discountText" name="discountText"
                         style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="优惠信息长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="discountTextError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="优惠信息长度不可超过4000位"></div>
                     </td>
                   </tr>
                   <tr>
                     <td class="lpdetail-table-name">特别声明:</td>
                     <td class="lpborder-right-none" colspan="4">
-                      <input id="importantClause" name="importantClause" type="hidden" />
                       <textarea lass="content-area" id="importantClauseText" name="importantClauseText"
                         style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="特别声明长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="importantClauseTextError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="特别声明长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <table class="lpsearch-tableBtn">
                 <tbody>
-                  <tr align="left">
+                  <tr>
                     <td style="padding-left: 80px; width: 280px;">
                       <input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="保存"
                         onclick="onSubmitValidate()" />
@@ -630,18 +628,6 @@
       var srcs = getObjectURL(this.files[ 0 ]); //获取路径
       loadUpPricture($(this), srcs);
     });
-    //初始化副文本框
-    bkLib.onDomLoaded(function () {
-      new nicEditor({
-        fullPanel: true,
-        iconsPath: "../../static/js/nicEditor/nicEditorIcons.gif"
-      }).panelInstance('discountText');
-      new nicEditor({
-        fullPanel: true,
-        iconsPath: "../../static/js/nicEditor/nicEditorIcons.gif"
-      }).panelInstance('importantClauseText');
-    });
-
     function onSubmitValidate() {
       var merTitleInput = $("#merTitle");
       var merTitle = merTitleInput.val();
@@ -739,19 +725,17 @@
         return;
       }
 
-      var importantClauseText = $("#importantClauseText").next().find("#tinymce").find("p").text();
+      var importantClauseText = $("#importantClauseText").val();
       if (importantClauseText.length > 4000) {
-        errorClassShow($("#importantClauseText").next(), '特别声明长度超长');
+        errorClassShow($("#importantClauseTextError").next(), '特别声明长度超长');
         return;
       }
-
+      var discountText = $("#discountText").val();
       var discountText = $("#discountText").next().find("#tinymce").find("p").text();
       if (discountText.length > 4000) {
-        errorClassShow($("#discountText").next(), '优惠信息长度超长');
+        errorClassShow($("#discountTextError").next(), '优惠信息长度超长');
         return;
       }
-      $("#discountInfo").val(discountText);
-      $("#importantClause").val(importantClauseText);
 
       var merMainImg = $("#merMainImg").val();
       if (!(merMainImg === "" || merMainImg == null)) {

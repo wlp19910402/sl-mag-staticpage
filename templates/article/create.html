@@ -12,7 +12,7 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>商户信息新增</title>
+  <title>文章管理</title>
 </head>
 
 <body>
@@ -58,12 +58,12 @@
                   <tr>
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>内容:</td>
                     <td class="lpborder-right-none" colspan="4">
-                      <input id="tinyCustomerVal" name="tinyCustomerVal" value="/text" type="hidden" />
+                      <div id="tinyCustomerDiv"></div>
                       <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="内容长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="tinyCustomerDivError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="内容长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -417,12 +417,12 @@
         errorClassShow($("#column"), "请选择所属栏目");
         return;
       }
-      // var tinyCustomer = $("#tinyCustomer").parent().find("#tinymce").find("p").text();
-      // if (tinyCustomer === "" || tinyCustomer == null) {
-      //   errorClassShow($("#tinyCustomer").next(), '内容不可为空');
-      //   return;
-      // }
-      // $("#tinyCustomerVal").val(tinyCustomer);
+
+      var tinyCustomer = $("#tinyCustomer").val();
+      if (tinyCustomer === "" || tinyCustomer == null) {
+        errorClassShow($("#tinyCustomerDivError"), '内容不可为空');
+        return;
+      }
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();

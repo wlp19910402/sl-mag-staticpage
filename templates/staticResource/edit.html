@@ -37,7 +37,7 @@
                   <tr>
                     <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>名称:
                     </td>
-                    <td class="lpborder-right-none">
+                    <td class="lpborder-right-none lptable-gary ">
                       <input class="lpsearch-input lpbox-sizing" type="hidden" id="staticResourceName"
                         name="staticResourceName" value="静态资源维护名称" />
                       静态资源维护名称
@@ -50,12 +50,11 @@
                   <tr>
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>内容:</td>
                     <td class="lpborder-right-none">
-                      <input id="redirectPath" name="redirectPath" value="/text" type="hidden" />
                       <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="内容长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="tinyCustomerDivError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="内容长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -403,9 +402,9 @@
         return;
       }
 
-      var tinyCustomer = $("#tinyCustomer").next().find("#tinymce").find("p").text();
+      var tinyCustomer = $("#tinyCustomer").val();
       if (tinyCustomer === "" || tinyCustomer == null) {
-        errorClassShow($("#tinyCustomer").next(), '内容不可为空');
+        errorClassShow($("#tinyCustomerDivError"), '内容不可为空');
         return;
       }
 

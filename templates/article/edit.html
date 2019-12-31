@@ -64,13 +64,12 @@
                   <tr>
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>内容:</td>
                     <td class="lpborder-right-none" colspan="4">
-                      <input id="tinyCustomerVal" name="tinyCustomerVal" value="/text" type="hidden" />
                       <textarea lass="content-area" id="tinyCustomer" name="richText"
                         style="width: 100%">内容内容内容内容内容内容内容</textarea>
                     </td>
                     <td class="lpborder-left-none">
-                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
-                        data-placement="right" data-content="内容长度不可超过4000位"></div>
+                      <div class="lpsearch-td-wranIcon" id="tinyCustomerDivError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="内容长度不可超过4000位"></div>
                     </td>
                   </tr>
                 </tbody>
@@ -423,12 +422,11 @@
         errorClassShow($("#column"), "请选择所属栏目");
         return;
       }
-      // var tinyCustomer = $("#tinyCustomer").parent().find("#tinymce").find("p").text();
-      // if (tinyCustomer === "" || tinyCustomer == null) {
-      //   errorClassShow($("#tinyCustomer").next(), '内容不可为空');
-      //   return;
-      // }
-      // $("#tinyCustomerVal").val(tinyCustomer);
+      var tinyCustomer = $("#tinyCustomer").val();
+      if (tinyCustomer === "" || tinyCustomer == null) {
+        errorClassShow($("#tinyCustomerDivError"), '内容不可为空');
+        return;
+      }
       //提交表单
       var form = $("#submitForm");
       // form[ 0 ].submit();
