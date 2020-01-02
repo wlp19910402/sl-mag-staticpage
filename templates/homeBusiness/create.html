@@ -59,17 +59,13 @@
                   <tr>
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>菜单权重:</td>
                     <td class="lpborder-right-none">
-                      <div id="menuWeightDiv" class="lpsearch-selectBox lpbox-sizing">
-                        <div class="lpselect-down"></div>
-                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuWeight" id="menuWeight">
-                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
-                          <option value="宴会度假">宴会度假</option>
-                          <option value="娱乐休闲">娱乐休闲</option>
-                          <option value="商场">商场</option>
-                        </select>
-                      </div>
+                      <input class="lpsearch-input lpbox-sizing" type="number" placeholder="请输入菜单权重" min="1" max="100"
+                        id="menuWeight" name="menuWeight">
                     </td>
-                    <td class="lpborder-left-none"></td>
+                    <td class="lpborder-left-none">
+                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
+                        data-placement="right" data-content="菜单权重只能输入数字"></div>
+                    </td>
 
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>是否展示在首页:</td>
                     <td class="lpborder-left-none" colspan="2">
@@ -481,9 +477,14 @@
       }
       var menuWeight = $("#menuWeight").val();
       if (menuWeight === "" || menuWeight == null) {
-        errorClassShow($("#menuWeightDiv"), '请选择菜单权重');
+        errorClassShow($("#menuWeight"), '菜单权重不可为空');
+        return;
+      } else if (menuWeight > 100 || menuWeight < 1) {
+        errorClassShow($("#menuWeight"), '菜单权重在数字1-100区间内');
         return;
       }
+
+
       var merMainImg = $("#merMainImg").val();
       if (merMainImg === "" || merMainImg == null) {
         errorClassShow($("#merMainImg").parent(), '请上传商户主图片');
