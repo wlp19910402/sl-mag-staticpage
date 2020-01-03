@@ -46,6 +46,123 @@
                       <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
                         data-placement="right" data-content="商户标题长度不可超过32位"></div>
                     </td>
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>菜单权重:</td>
+                    <td class="lpborder-right-none" width="250px">
+                      <input class="lpsearch-input lpbox-sizing" type="number" placeholder="请输入菜单权重" min="1" max="100"
+                        id="menuWeight" name="menuWeight">
+                    </td>
+                    <td class="lpborder-left-none">
+                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
+                        data-placement="right" data-content="菜单权重只能输入数字"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>对应的父级菜单:</td>
+                    <td class="lpborder-right-none" colspan="4">
+                      <div class="lpcheckbox-box" id="menuParent">
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单1" checked>父级菜单1
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单2" checked>父级菜单2
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单3">父级菜单3
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单4">父级菜单4
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单5">父级菜单5
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单6">父级菜单6
+                        </label>
+                        <label class="check-box">
+                          <input type="checkbox" name="menuParent" value="父级菜单7">父级菜单7
+                        </label>
+                      </div>
+                    </td>
+                    <td class="lpborder-left-none"></td>
+                  </tr>
+                  <tr>
+                    <td class="lpdetail-table-name">简介:</td>
+                    <td class="lpborder-left-none" colspan="2">
+                      <input class="lpsearch-input lpbox-sizing" type="text" />
+                    </td>
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>所属类型:</td>
+                    <td class="lpborder-right-none">
+                      <div class="lpsearch-selectBox lpbox-sizing" id="menuTypeDiv">
+                        <div class="lpselect-down"></div>
+                        <select class="lpsearch-select lpbox-sizing clear-select" name="menuType" id="menuType"
+                          onchange="belongTypeFun()">
+                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                          <option value="自定义">自定义</option>
+                          <option value="列表">列表</option>
+                          <option value="富文本框">富文本框</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td class="lpborder-left-none"></td>
+                  </tr>
+                  <tr class="belongType belongType1">
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>重定向路径</td>
+                    <td class="lpborder-left-none" colspan="5">
+                      <div class="lpsearch-selectBox lpbox-sizing" id="belongType1Div">
+                        <div class="lpselect-down"></div>
+                        <select name="redirectPath" class="lpsearch-select lpbox-sizing clear-select" id="belongType1">
+                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                          <option value="/delayweb/preposition">非实名卡延期 </option>
+                          <option value="/lostweb/preposition">实名卡挂失 </option>
+                          <option value="/infoweb/preremain">余额查询 </option>
+                          <option value="/infoweb/prerecord">消费记录查询 </option>
+                          <option value="/merweb/query?cardType=首付通卡&cardType=美点卡">首付通卡商户查询 </option>
+                          <option value="/merweb/query?cardType=美点卡">美点卡商户查询 </option>
+                          <option value="/merweb/query?cardType=西单卡">西单卡商户查询 </option>
+                          <option value="/merweb/query?cardType=贵友卡">贵友卡商户查询 </option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="belongType belongType2">
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>所属栏目</td>
+                    <td class="lpborder-left-none" colspan="5">
+                      <div class="lpsearch-selectBox lpbox-sizing " id="belongType2Div">
+                        <div class="lpselect-down"></div>
+                        <select name="redirectPath" value="/list" class="lpsearch-select lpbox-sizing clear-select"
+                          id="belongType2">
+                          <option value="">&#45;&#45;请选择&#45;&#45;</option>
+                          <option value="公告">公告</option>
+                          <option value="促销信息">促销信息</option>
+                          <option value="消费攻略">消费攻略</option>
+                          <option value="金融知识普及">金融知识普及</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="belongType belongType3">
+                    <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>富文本框:</td>
+                    <td class="lpborder-right-none" colspan="4">
+                      <textarea lass="content-area" id="tinyCustomer" name="richText" style="width: 100%"></textarea>
+                    </td>
+                    <td class="lpborder-left-none">
+                      <div class="lpsearch-td-wranIcon" id="tinyCustomerDivError" data-container="body"
+                        data-toggle="popover" data-placement="right" data-content="富文本框长度不可超过4000位"></div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <td class="lpdetail-table-name" width="118px;"><span class="lpcolor-red">*</span>菜单名称:
+                    </td>
+                    <td class="lpborder-right-none" width="250px">
+                      <input class="lpsearch-input lpbox-sizing" type="text" id="menuTitle" name="menuTitle"
+                        value="菜单名称" />
+                    </td>
+                    <td class="lpborder-left-none">
+                      <div class="lpsearch-td-wranIcon" data-container="body" data-toggle="popover"
+                        data-placement="right" data-content="商户标题长度不可超过32位"></div>
+                    </td>
                     <td class="lpdetail-table-name"><span class="lpcolor-red">*</span>对应的父级菜单:</td>
                     <td class="lpborder-right-none">
                       <div id="menuParentDiv" class="lpsearch-selectBox lpbox-sizing">
@@ -236,23 +353,7 @@
                 </a>
               </div>
             </div>
-            <!--URL生成工具-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingSeven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
-                  <span class="lpmenu-icon lpmenu-icon-url"></span>
-                  <span class="lpmenu-title">URL生成工具</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFive">
-                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
-                  lp-menu="UrlBuilder">URL生成工具
-                </a>
-              </div>
-            </div>
+
             <!--二级菜单维护-->
             <div class="lppanel panel">
               <div class="lppanel-heading" role="tab" id="headingEight">
@@ -267,71 +368,6 @@
                 aria-labelledby="headingEight">
                 <a href="../menuMaintenance/list.html" th:href="@{/menuMaintenance/list}" class="lpbox-sizing"
                   lp-menu="MenuMaintenance">二级菜单维护
-                </a>
-              </div>
-            </div>
-            <!--商户链接维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingNine">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-                  <span class="lpmenu-icon lpmenu-icon-merLink"></span>
-                  <span class="lpmenu-title">商户链接维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingNine">
-                <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
-                </a>
-              </div>
-            </div>
-            <!--栏目管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingEleven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
-                  <span class="lpmenu-icon lpmenu-icon-column"></span>
-                  <span class="lpmenu-title">栏目管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingEleven">
-                <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
-                </a>
-              </div>
-            </div>
-            <!--静态资源维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingTwelve">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
-                  <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
-                  <span class="lpmenu-title">静态资源维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingTwelve">
-                <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
-                  lp-menu="StaticResource">静态资源维护
-                </a>
-              </div>
-            </div>
-            <!--文章管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingThirteen">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
-                  <span class="lpmenu-icon lpmenu-icon-article"></span>
-                  <span class="lpmenu-title">文章管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingThirteen">
-                <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">文章管理
                 </a>
               </div>
             </div>
@@ -352,6 +388,41 @@
                 </a>
               </div>
             </div>
+
+            <!--栏目管理-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingEleven">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                  <span class="lpmenu-icon lpmenu-icon-column"></span>
+                  <span class="lpmenu-title">栏目管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingEleven">
+                <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
+                </a>
+              </div>
+            </div>
+
+            <!--文章管理-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingThirteen">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                  <span class="lpmenu-icon lpmenu-icon-article"></span>
+                  <span class="lpmenu-title">文章管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingThirteen">
+                <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">新闻资讯管理
+                </a>
+              </div>
+            </div>
+
             <!--首页业务介绍-->
             <div class="lppanel panel">
               <div class="lppanel-heading" role="tab" id="headingFifteen">
@@ -366,6 +437,56 @@
                 aria-labelledby="headingFifteen">
                 <a href="../homeBusiness/list.html" th:href="@{/homeBusiness/list}" class="lpbox-sizing"
                   lp-menu="HomeBusiness">首页业务介绍
+                </a>
+              </div>
+            </div>
+            <!--商户链接维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingNine">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                  <span class="lpmenu-icon lpmenu-icon-merLink"></span>
+                  <span class="lpmenu-title">商户链接维护</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingNine">
+                <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
+                </a>
+              </div>
+            </div>
+            <!--静态资源维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingTwelve">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                  <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
+                  <span class="lpmenu-title">静态资源维护</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingTwelve">
+                <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
+                  lp-menu="StaticResource">底部公司相关信息维护
+                </a>
+              </div>
+            </div>
+            <!--URL生成工具-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingSeven">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                  <span class="lpmenu-icon lpmenu-icon-url"></span>
+                  <span class="lpmenu-title">URL生成工具</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingFive">
+                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                  lp-menu="UrlBuilder">URL生成工具
                 </a>
               </div>
             </div>

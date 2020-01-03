@@ -12,7 +12,7 @@
   <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
   <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
-  <title>商户信息编辑</title>
+  <title>新闻资讯管理</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
       <div class="lpcontent-box">
         <!--列表-->
         <div class="lpsearch-box lpcontent-shadow">
-          <div class="lppage">当前位置：文章管理&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;文章管理</div>
+          <div class="lppage">当前位置：文章管理&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;新闻资讯管理编辑</div>
           <form id="submitForm" method="post" action="" enctype="multipart/form-data">
             <label for="merInfoId"></label><input type="hidden" name="" id="" th:value="" />
             <div class="lpdetail-table-box">
@@ -177,23 +177,7 @@
                 </a>
               </div>
             </div>
-            <!--URL生成工具-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingSeven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
-                  <span class="lpmenu-icon lpmenu-icon-url"></span>
-                  <span class="lpmenu-title">URL生成工具</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFive">
-                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
-                  lp-menu="UrlBuilder">URL生成工具
-                </a>
-              </div>
-            </div>
+
             <!--二级菜单维护-->
             <div class="lppanel panel">
               <div class="lppanel-heading" role="tab" id="headingEight">
@@ -208,71 +192,6 @@
                 aria-labelledby="headingEight">
                 <a href="../menuMaintenance/list.html" th:href="@{/menuMaintenance/list}" class="lpbox-sizing"
                   lp-menu="MenuMaintenance">二级菜单维护
-                </a>
-              </div>
-            </div>
-            <!--商户链接维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingNine">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-                  <span class="lpmenu-icon lpmenu-icon-merLink"></span>
-                  <span class="lpmenu-title">商户链接维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingNine">
-                <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
-                </a>
-              </div>
-            </div>
-            <!--栏目管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingEleven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
-                  <span class="lpmenu-icon lpmenu-icon-column"></span>
-                  <span class="lpmenu-title">栏目管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingEleven">
-                <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
-                </a>
-              </div>
-            </div>
-            <!--静态资源维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingTwelve">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
-                  <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
-                  <span class="lpmenu-title">静态资源维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingTwelve">
-                <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
-                  lp-menu="StaticResource">静态资源维护
-                </a>
-              </div>
-            </div>
-            <!--文章管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingThirteen">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
-                  <span class="lpmenu-icon lpmenu-icon-article"></span>
-                  <span class="lpmenu-title">文章管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingThirteen">
-                <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">文章管理
                 </a>
               </div>
             </div>
@@ -293,6 +212,41 @@
                 </a>
               </div>
             </div>
+
+            <!--栏目管理-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingEleven">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                  <span class="lpmenu-icon lpmenu-icon-column"></span>
+                  <span class="lpmenu-title">栏目管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingEleven">
+                <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
+                </a>
+              </div>
+            </div>
+
+            <!--文章管理-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingThirteen">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                  <span class="lpmenu-icon lpmenu-icon-article"></span>
+                  <span class="lpmenu-title">文章管理</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingThirteen">
+                <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">新闻资讯管理
+                </a>
+              </div>
+            </div>
+
             <!--首页业务介绍-->
             <div class="lppanel panel">
               <div class="lppanel-heading" role="tab" id="headingFifteen">
@@ -307,6 +261,56 @@
                 aria-labelledby="headingFifteen">
                 <a href="../homeBusiness/list.html" th:href="@{/homeBusiness/list}" class="lpbox-sizing"
                   lp-menu="HomeBusiness">首页业务介绍
+                </a>
+              </div>
+            </div>
+            <!--商户链接维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingNine">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                  <span class="lpmenu-icon lpmenu-icon-merLink"></span>
+                  <span class="lpmenu-title">商户链接维护</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingNine">
+                <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
+                </a>
+              </div>
+            </div>
+            <!--静态资源维护-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingTwelve">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                  <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
+                  <span class="lpmenu-title">静态资源维护</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingTwelve">
+                <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
+                  lp-menu="StaticResource">底部公司相关信息维护
+                </a>
+              </div>
+            </div>
+            <!--URL生成工具-->
+            <div class="lppanel panel">
+              <div class="lppanel-heading" role="tab" id="headingSeven">
+                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                  <span class="lpmenu-icon lpmenu-icon-url"></span>
+                  <span class="lpmenu-title">URL生成工具</span>
+                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                </a>
+              </div>
+              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+                aria-labelledby="headingFive">
+                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                  lp-menu="UrlBuilder">URL生成工具
                 </a>
               </div>
             </div>
