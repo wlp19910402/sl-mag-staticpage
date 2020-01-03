@@ -409,7 +409,7 @@
         //前端静态页面写法------start
         $('#LoadingBlack').modal('show');
         $('#Loading').show();
-        setTimeout(() => {
+        setTimeout(function() {
           $('#LoadingBlack').modal('hide');
           $('#Loading').hide();
           window.location.href = "../permission/list.html?name=" + name + "&dsc=" + dsc + "&page=0&mess=true,新增成功";

@@ -432,7 +432,7 @@
       // form[ 0 ].submit();
       $('#LoadingBlack').modal('show');
       $('#Loading').show();
-      setTimeout(() => {
+      setTimeout(function() {
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
         window.location.href = "../article/list.html?&page=0&title=" + title + "&column=" + column + "&date=" + (new Date()).toLocaleString() + "&mess=true,新增成功";

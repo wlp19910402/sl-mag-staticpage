@@ -417,7 +417,7 @@
       // form[ 0 ].submit();
       $('#LoadingBlack').modal('show');
       $('#Loading').show();
-      setTimeout(() => {
+      setTimeout(function() {
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
         window.location.href = "../staticResource/list.html?&page=0&staticResourceName=" + staticResourceName + "&mess=true,编辑成功";
