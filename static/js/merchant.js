@@ -166,17 +166,17 @@ function menuBoxToggle () {
     $(".lpcontent-box").animate({ "width": $(window).width() - 75 + "px", "left": "45px" })
   } else {
     MenuNum = 0
-    $(".lpmenu-box").animate({ "width": "240px" });
-    $(".lpmenu-boxbg").animate({ "width": "240px" });
+    $(".lpmenu-box").animate({ "width": "260px" });
+    $(".lpmenu-boxbg").animate({ "width": "260px" });
     $(".lpmenu-content-box").show();
-    $(".lpmenu-contraction").animate({ "left": "225px" });
-    $(".lpcontent-box").animate({ "width": $(window).width() - 300 + "px", "left": "270px" })
+    $(".lpmenu-contraction").animate({ "left": "245px" });
+    $(".lpcontent-box").animate({ "width": $(window).width() - 300 + "px", "left": "280px" })
   }
 }
 
 function contentWith () {
   if (MenuNum == 0) {
-    $(".lpcontent-box").css({ "width": $(window).width() - 300 + "px", "left": "270px" })
+    $(".lpcontent-box").css({ "width": $(window).width() - 300 + "px", "left": "280px" })
   } else {
     $(".lpcontent-box").css({ "width": $(window).width() - 75 + "px", "left": "45px" })
   }
