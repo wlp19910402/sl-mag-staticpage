@@ -1,0 +1,990 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+  <link href="../../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+    th:href="@{/css/bootstrap-datetimepicker.min.css}" />
+  <link href="../../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link href="../../static/css/merchant.css" rel="stylesheet" th:href="@{/css/merchant.css}" />
+  <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
+  <!-- Latest compiled and minified CSS -->
+  <!-- <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/css/bootstrap-select/bootstrap-select.min.css"> -->
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" /> -->
+  <link href="../../static/css/select2/select2.min.css" rel="stylesheet" />
+  <title>菜单图片信息管理</title>
+</head>
+
+<body>
+  <!--/*@thymesVar id="merTitle" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="size" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="discountMerFlag" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="mess" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="area" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="merType" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="cardType" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="page" type="com.yada.team2.core.page.Page<com.yada.team2.entity.MerchantInfo>"*/-->
+  <!--/*@thymesVar id="allDictItems" type="java.util.List<com.yada.team2.entity.DictItemInfo>"*/-->
+  <!--/*@thymesVar id="imgPre" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="merMainImg" type="java.lang.String"*/-->
+  <!--/*@thymesVar id="enableFlag" type="java.lang.String"*/-->
+  <input type="hidden" value="MenuPicture" id="pageTitle" />
+  <div class="lpfixed-content">
+    <div class="lpscrolly-content">
+      <!--内容-->
+      <div class="lpcontent-box">
+        <!--查询-->
+        <div class="lpsearch-box lpcontent-shadow">
+          <div class="lppage">当前位置：菜单图片信息管理&nbsp;&nbsp;&nbsp;〉&nbsp;&nbsp;&nbsp;菜单图片信息查询</div>
+          <form id="submitForm" method="get" th: action="@{/mer/query}">
+            <table class="lpsearch-table">
+              <tbody id="tbody">
+                <tr data-toggle="distpicker">
+                  <td class="lpsearch-label" width="116px"><span class="necessary-tips-l"></span>一级菜单：</td>
+                  <td>
+                    <div class="lpsearch-selectBox lpbox-sizing">
+                      <div class="lpselect-down"></div>
+                      <select class="form-control lpsearch-select lpbox-sizing clear-select" id="parentMenu"></select>
+                    </div>
+                  </td>
+                  <td class="lpsearch-label" width="116px"><span class="necessary-tips-l"></span>二级菜单：</td>
+                  <td>
+                    <div class="lpsearch-selectBox lpbox-sizing">
+                      <div class="lpselect-down"></div>
+                      <select class="form-control lpsearch-select lpbox-sizing clear-select" id="subMenu"></select>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="lpsearch-label" width="170px">上传日期：</td>
+                  <td>
+                    <div class="lpsearch-date-two-box">
+                      <div id="trxDtTmBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyymmdd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="rroductReportDateStart"
+                          name="rroductReportDateStart" title="rroductReportDateStart" size="8" type="text" value=""
+                          readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                      <div class="lpsearch-date--"></div>
+                      <div id="tranDateTimeEndBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyymmdd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="rroductReportDateEnd"
+                          name="rroductReportDateEnd" title="rroductReportDateEnd" size="8" type="text" value=""
+                          readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                    </div>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="lpsearch-label" width="170px">上传日期：</td>
+                  <td colspan="3">
+                    <div class="lpsearch-date-two-box">
+                      <div id="startTimeBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyy-mm-dd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="startTime" name="startTime"
+                          title="startTime" size="8" type="text" value="" readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                      <div class="lpsearch-date--"></div>
+                      <div id="endTimeBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyy-mm-dd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="endTime" name="endTime"
+                          title="endTime" size="8" type="text" value="" readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td class="lpsearch-label" width="170px">客资类型:
+                  </td>
+                  <td colspan="3">
+                    <style>
+                      .select2-container {
+                        width: 100% !important;
+                      }
+
+                      .select2-container--default.select2-container--focus .select2-selection--multiple {
+                        border: 1px solid #eeeeee;
+                      }
+
+                      .select2-container--default .select2-selection--multiple {
+                        border: 1px solid #dddddd;
+                      }
+                    </style>
+                    <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                      <option value="AL">Alabama</option>
+                      <option value="WY">Wyoming</option>
+                      <option value="WY2">李四</option>
+                      <option value="WY1">张三</option>
+                      <option value="AL">Alabama1</option>
+                      <option value="WY">Wyoming1</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <select id="bIds" multiple="multiple" class="select"></select>
+                    <select id="bookIds" multiple="multiple" style="display: none;">
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="lpsearch-tableBtn">
+              <tbody>
+                <tr>
+                  <td>
+                    <input id="searchList" type="button" class="lpsearch-btn lpbg-red" value="查询" style="width: 80px;"
+                      onclick="onSubmitValidate()" />
+                  </td>
+                  <td><input type="button" style="width: 80px;" class="lpsearch-btn lpbg-red" value="重置"
+                      onclick="resetFun()" /></td>
+                  <td><a type="button" style="width: 80px;" class="lpsearch-btn lpbg-red"
+                      href="../menuPicture/create.html">新增</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+          <input type="hidden" id="errorMessReturnResult" th: value="${mess}" />
+        </div>
+        <!--列表-->
+        <div class="lplist-box lpcontent-shadow">
+          <div class="lplist-title">商户信息查询列表</div>
+          <div th: if="${size >= 0}" class="lplist-table-box" id="lplist-table">
+            <input type="hidden" id="size" th: value="${size}" />
+            <div class="lplist-table-scroll">
+              <table class="lplist-table" id="tableSort">
+                <thead>
+                  <tr>
+                    <th width="40px">序号</th>
+                    <th>图片</th>
+
+                    <th width="160px">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th: each="item:${page.content}">
+                    <td class="ellipsis" th: text="${itemStat.index + 1}">1</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox">
+                            <!-- <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                                        src="../../static/images/prictureBgNull.png" /> -->
+                            <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                              src="../../static/images/upload/merchant/thumbnails/20181123173327618719.jpg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuPicture/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuPicture/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr th: each="item:${page.content}">
+                    <td class="ellipsis" th: text="${itemStat.index + 1}">2</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox">
+                            <!-- <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                                    src="../../static/images/prictureBgNull.png" /> -->
+                            <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                              src="../../static/images/upload/merchant/thumbnails/20160122100823553424.jpg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuPicture/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuPicture/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr th: each="item:${page.content}">
+                    <td class="ellipsis" th: text="${itemStat.index + 1}">3</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox">
+                            <!-- <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                                src="../../static/images/prictureBgNull.png" /> -->
+                            <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                              src="../../static/images/upload/merchant/thumbnails/20181226153015433176.jpg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuPicture/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuPicture/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <div class="thumbnailImgBoxParentHidden">
+                        <div class="thumbnailImgBoxParent">
+                          <div class="thumbnailImgBox">
+                            <!-- <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                                src="../../static/images/prictureBgNull.png" /> -->
+                            <img th: if="${item.merMainImg == '' || item.merMainImg == null}" class="thumbnailImg"
+                              src="../../static/images/upload/merchant/thumbnails/20160121140314247829.jpg" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <table class="lplist-table-btn-box lpbox-sizing">
+                        <tbody>
+                          <tr>
+                            <td width="36px">
+                              <a class="lplist-btn" href="../menuPicture/edit.html" title="编辑">编辑</a>
+                            </td>
+                            <td width="36px">
+                              <a class="lplist-btn" value="删除" onclick="deleteConfirm(this)">删除</a>
+                            </td>
+                            <td width="72px">
+                              <a class="lplist-btn" value="查看详情" href="../menuPicture/detail.html">查看详情</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div th: include="common/page"></div>
+            <!-- common/page -->
+            <div class="pagination marginAuto">
+              <div id="page">
+                <div class="pageBtnBox " th: if="${page eq null} ">
+                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th: title="不能操作">首页</a>
+                  <a class="pageGaryA" data-toggle="tooltip" th: title="不能操作">上一页</a>
+                </div>
+                <div th: if="${page eq null}" class="pageText">
+                  <span class="pageText">第<span class="textZhu">1</span>页/共<span class="textZhu">1</span>
+                    页&nbsp;&nbsp;总共<span class="textZhu">4</span>条</span>
+                </div>
+                <div class="pageBtnBox" th: if="${page eq null} ">
+                  <a class="pageGaryA" style="margin-right: 10px;" data-toggle="tooltip" th: title="不能操作">下一页</a>
+                  <a class="pageGaryA" data-toggle="tooltip" th: title="不能操作">末页</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--菜单-->
+    <div class="lpmenu-box lpbox-sizing">
+      <div class="lpmenu-boxbg"></div>
+      <table class="lpmenu-contraction">
+        <tr>
+          <td>
+            <div class="contraction" onclick="menuBoxToggle()"></div>
+          </td>
+        </tr>
+      </table>
+      <div class="lpmenu-content-box">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+          <!--用户信息管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading1ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1ne"
+                aria-expanded="true" aria-controls="collapse1ne">
+                <span class="lpmenu-icon lpmenu-icon-one"></span>
+                <span class="lpmenu-title">用户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-public ">公共</span>
+              </a>
+            </div>
+            <div id="collapse1ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading1ne">
+              <a href="../user/edit_password.html" th:href="@{/user/editPassword}" class="lpbox-sizing"
+                lp-menu="EditPassword">修改登录密码
+              </a>
+              <a href="../user/list.html" th:href="@{/user/list}" class="lpbox-sizing" lp-menu="UserQuery">用户管理
+              </a>
+              <a href="../permission/list.html" th:href="@{/per/list}" class="lpbox-sizing"
+                lp-menu="permissionQuery">权限管理
+              </a>
+              <a href="../role/list.html" th:href="@{/role/list}" class="lpbox-sizing" lp-menu="roleQuery">角色管理
+              </a>
+            </div>
+          </div>
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading2ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2ne"
+                aria-expanded="true" aria-controls="collapse2ne">
+                <span class="lpmenu-icon lpmenu-icon-xinxiguanli"></span>
+                <span class="lpmenu-title">卡bin信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
+            </div>
+            <div id="collapse2ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading2ne">
+              <a href="../cardBinType/list.html" th:href="@{/cardBin/list}" class="lpbox-sizing"
+                lp-menu="CardBinQuery">卡bin信息查询
+              </a>
+            </div>
+          </div>
+          <!--数字字典维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFive">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
+                aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-zidianweihu"></span>
+                <span class="lpmenu-title">数字字典管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <a href="../dict/list.html" th:href="@{/dict/list}" class="lpbox-sizing" lp-menu="DictItemQuery">数字字典查询
+              </a>
+            </div>
+          </div>
+          <!--商户信息维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSix">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
+                aria-expanded="true" aria-controls="collapseSix">
+                <span class="lpmenu-icon lpmenu-icon-xinxiweihu"></span>
+                <span class="lpmenu-title">商户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat">微信</span>
+              </a>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingSix">
+              <a href="../mer/list.html" th:href="@{/mer/list}" class="lpbox-sizing" lp-menu="MerQuery">商户信息查询
+              </a>
+            </div>
+          </div>
+
+          <!--二级菜单维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingEight">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                <span class="lpmenu-icon lpmenu-icon-menuMaintenance"></span>
+                <span class="lpmenu-title">二级菜单维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingEight">
+              <a href="../menuMaintenance/list.html" th:href="@{/menuMaintenance/list}" class="lpbox-sizing"
+                lp-menu="MenuMaintenance">二级菜单维护
+              </a>
+            </div>
+          </div>
+          <!--菜单图片信息管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFourteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseFourteen" aria-expanded="true" aria-controls="collapseFourteen">
+                <span class="lpmenu-icon lpmenu-icon-menuPicture"></span>
+                <span class="lpmenu-title">菜单图片信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseFourteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFourteen">
+              <a href="../menuPicture/list.html" th:href="@{/menuPicture/list}" class="lpbox-sizing"
+                lp-menu="MenuPicture">菜单图片信息管理
+              </a>
+            </div>
+          </div>
+
+          <!--栏目管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingEleven">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                <span class="lpmenu-icon lpmenu-icon-column"></span>
+                <span class="lpmenu-title">栏目管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingEleven">
+              <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
+              </a>
+            </div>
+          </div>
+
+          <!--文章管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingThirteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                <span class="lpmenu-icon lpmenu-icon-article"></span>
+                <span class="lpmenu-title">文章管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingThirteen">
+              <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">新闻资讯管理
+              </a>
+            </div>
+          </div>
+
+          <!--首页业务介绍-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFifteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseFifteen" aria-expanded="true" aria-controls="collapseFifteen">
+                <span class="lpmenu-icon lpmenu-icon-homeBusiness"></span>
+                <span class="lpmenu-title">首页业务介绍</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseFifteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFifteen">
+              <a href="../homeBusiness/list.html" th:href="@{/homeBusiness/list}" class="lpbox-sizing"
+                lp-menu="HomeBusiness">首页业务介绍
+              </a>
+            </div>
+          </div>
+          <!--商户链接维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingNine">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"
+                aria-expanded="true" aria-controls="collapseNine">
+                <span class="lpmenu-icon lpmenu-icon-merLink"></span>
+                <span class="lpmenu-title">商户链接维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingNine">
+              <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
+              </a>
+            </div>
+          </div>
+          <!--静态资源维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingTwelve">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
+                <span class="lpmenu-title">静态资源维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingTwelve">
+              <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
+                lp-menu="StaticResource">底部公司相关信息维护
+              </a>
+            </div>
+          </div>
+          <!--URL生成工具-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSeven">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-url"></span>
+                <span class="lpmenu-title">URL生成工具</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                lp-menu="UrlBuilder">URL生成工具
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--loading -->
+  <div>
+    <div id="LoadingBlack" class="modal fade hide" style="border:none;padding:0;" tabindex="-1" role="dialog"
+      backdrop="true" aria-hidden="true"></div>
+    <img id="Loading" class="loading" src="../../static/images/Merchant/loading.gif" />
+  </div>
+  <!--mian头header-->
+  <div class="lpheader-box lpshadow-down lpbox-sizing">
+    <a href="../layout/welcome.html" class="lplogo lppull-left">首旅管理端</a>
+    <div class="lppull-right  lpheader-right">
+      <div class="lpexit-box lppull-right">
+        <a href="../login/login.html" title="退出"></a>
+      </div>
+      <div class="lpheader-text-box lppull-right">
+        <div class="lppull-right lpheader-text" title="用户名">
+          <span class="lppull-left">用户名：</span>
+          <span>admin001</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--saveresult -->
+  <div>
+    <!--提示保存成功-->
+    <div class="lpoperate-tipbox" id="lpsearchOperateSuccess">
+      <div class="lpoperate-tip-icon lpsearch-operate-success"></div>
+      <div class="lpoperate-tip-text lpcolor-blue">保存成功</div>
+      <!--<div class="lpoperate-tip-jumpBox" id="lpsearchOperateSuccessJump">还有&nbsp;<span class="lpcolor-yellow"-->
+      <!--id="jumpSec">5</span>&nbsp;秒将<a-->
+      <!--class="lpoperate-tip-jump lpcolor-red" href="detail.html">&nbsp;跳转&nbsp;</a>到详情页面-->
+      <!--</div>-->
+    </div>
+    <!--提示保存失败-->
+    <div class="lpoperate-tipbox" id="lpsearchOperateFail">
+      <div class="lpoperate-tip-icon lpsearch-operate-error"></div>
+      <div class="lpoperate-tip-text lpcolor-red">保存失败</div>
+    </div>
+    <!--提示信息我知道了-->
+    <div class="modal fade " id="commonWarn" tabindex="-1" role="dialog" aria-labelledby="commonWarn" backdrop="true"
+      aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header lpmodal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>提示</h4>
+          </div>
+          <div class="modal-body">
+            <div class="commonWarnText" id="commonWarnText"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="lpsearch-btn lpbg-red lpmargin-auto lplogin-btn" data-dismiss="modal"
+              id="commonWarnYes">我知道了
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--确认是否操作-->
+    <div class="modal fade " id="confirmWarn" tabindex="-1" role="dialog" aria-labelledby="commonWarn" backdrop="true"
+      aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header lpmodal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>提示</h4>
+          </div>
+          <div class="modal-body">
+            <div class="commonWarnText" id="confirmWarnText"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="lpsearch-btn lpbg-yellow lppull-left" data-dismiss="modal">取消</button>
+            <button type="button" class="lpsearch-btn lpbg-red lppull-right" data-dismiss="modal" id="confirmWarnYes">确定
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../../static/js/jquery-3.3.1.min.js" th: src="@{/js/jquery-3.3.1.min.js}"></script>
+  <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+  <script src="../../static/js/merchant.js" th:src="@{/js/merchant.js}"></script>
+  <script src="../../static/js/bootstrap-datetimepicker.js" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+  <script src="../../static/js/bootstrap-datetimepicker.fr.js" th:src="@{/js/bootstrap-datetimepicker.fr.js}"></script>
+  <script src="../../static/js/jquery.poshytip.js" th:src="@{/js/jquery.poshytip.js}"></script>
+  <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
+  <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
+  <script src="../../static/js/staticMerchat.js"></script>
+  <script src="../../static/js/distpicker/distpicker.js"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script> -->
+  <script src="../../static/js/select2/select2.min.js"></script>
+  <script src="../../static/js/select2/i18n/zh-CN.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+
+
+  <script language="javascript">
+    $(function () {
+      // queryListReturnResult();
+      //前端静态页面写法------start
+      createSave();
+      //前端静态页面写法------end
+      $('.js-example-basic-multiple').select2({
+        language: "zh-CN"
+      });
+
+    });
+    var bData = [ {
+      id: '1111',
+      text: "张三",
+      name: "333"
+    }, {
+      id: '1111',
+      text: "李四",
+      name: "333"
+    }, {
+      id: '1111',
+      text: "aaa",
+      name: "333"
+    }, {
+      id: '1111',
+      text: "egag333",
+      name: "333"
+    }, {
+      id: '1111',
+      text: "2adfgagaa",
+      name: "333"
+    }, {
+      id: '1111',
+      text: "12发给",
+      name: "12发给"
+    }, {
+      id: '1111',
+      text: "2嘎哈",
+      name: "2嘎哈"
+    }, {
+      id: '1111',
+      text: "111发嘎嘎1",
+      name: "111发嘎嘎1"
+    }, {
+      id: '1111',
+      text: "111发嘎嘎2",
+      name: "111发嘎嘎2"
+    }, {
+      id: '1111',
+      text: "111发嘎嘎3",
+      name: "111发嘎嘎3"
+    } ];
+
+    var bselect = $("#bIds").select2({
+      data: bData,
+    });
+    $("#bIds").on("select2:select", function (evt) {
+      var element = evt.params.data.element;
+      var $element = $(element);
+      $element.detach();
+      $(this).append($element);
+      $(this).trigger("change");
+    });
+
+    var startTimeBoxObj = $("#startTimeBox");
+    var endTimeBoxObj = $("#endTimeBox");
+    startTimeBoxObj.datetimepicker({
+      format: 'yyyy-mm-dd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var endval = $("#endTime").val();
+      var beginval = $("#startTime").val();
+      if (endval != "" && endval != null) {
+        startTimeBoxObj.datetimepicker('setEndDate', endval);
+      }
+    });
+    endTimeBoxObj.datetimepicker({
+      format: 'yyyy-mm-dd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var endval = $("#endTime").val();
+      var beginval = $("#startTime").val();
+      if (beginval !== "" && beginval != null) {
+        setBegin = beginval;
+        endTimeBoxObj.datetimepicker('setStartDate', beginval);
+      }
+    });
+
+
+    var trxDtTmBoxObj = $("#trxDtTmBox");
+    var tranDateTimeEndBoxObj = $("#tranDateTimeEndBox");
+    var form_datetime = $(".form_datetime");
+
+    trxDtTmBoxObj.datetimepicker({
+      format: 'yyyymmdd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var end = $("#rroductReportDateEnd").val();
+      var begin = $("#rroductReportDateStart").val();
+      var endval = initialFun(end);
+      var beginval = initialFun(begin);
+      var setEnd = "";
+      if (end != "" && end != null) {
+        setEnd = endval;
+        trxDtTmBoxObj.datetimepicker('setEndDate', setEnd);
+        var startDate = getNewDay(setEnd, -365);
+        trxDtTmBoxObj.datetimepicker('setStartDate', startDate);
+      } else {
+        setEnd = new Date();
+        trxDtTmBoxObj.datetimepicker('setEndDate', null);
+        trxDtTmBoxObj.datetimepicker('setStartDate', null);
+      }
+      if (begin === "" || begin === null) {
+        trxDtTmBoxObj.datetimepicker('update', setEnd);
+      } else {
+        trxDtTmBoxObj.datetimepicker('setDate', beginval);
+      }
+    });
+    tranDateTimeEndBoxObj.datetimepicker({
+      format: 'yyyymmdd',
+      language: 'fr',
+      weekStart: 1,
+      autoclose: 1,
+      clearBtn: true,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var end = $("#rroductReportDateEnd").val();
+      var begin = $("#rroductReportDateStart").val();
+      var endval = initialFun(end);
+      var beginval = initialFun(begin);
+      var setBegin = "";
+      if (begin !== "" && begin != null) {
+        setBegin = beginval;
+        var endDate = getNewDay(setBegin, 365);
+        tranDateTimeEndBoxObj.datetimepicker('setEndDate', endDate);
+        tranDateTimeEndBoxObj.datetimepicker('setStartDate', beginval);
+      } else {
+        setBegin = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 365);
+        tranDateTimeEndBoxObj.datetimepicker('setEndDate', null);
+        tranDateTimeEndBoxObj.datetimepicker('setStartDate', null);
+      }
+      if (end === "" || end === null) {
+        if (begin != "") {
+          tranDateTimeEndBoxObj.datetimepicker('update', setBegin);
+        } else {
+          tranDateTimeEndBoxObj.datetimepicker('update', new Date());
+        }
+      } else {
+        tranDateTimeEndBoxObj.datetimepicker('setDate', endval);
+      }
+    });
+    function deleteConfirm(id) {
+      if (id === "" || id === 'null' || id === null) {
+        alert("数据异常，参数错误");
+      } else {
+        $("#confirmWarn").modal('show');
+        $('#confirmWarnText').text("确定执行[删除]操作?");
+        // $("#confirmWarnYes").attr("onclick", "window.location.href = 'delete?merInfoId=" + id + "\'");
+        //前端静态页面写法------start
+        var userIdEq = $(id).parents(".lplist-table-btn-box").parents("tr").index();
+        $("#confirmWarnYes").attr("onclick", '$(".lplist-table").children("tbody").children("tr").eq(' + userIdEq + ').remove();saveOperate("true","删除成功");trId();');
+        //前端静态页面写法------end
+      }
+    }
+
+    function onSubmitValidate() {
+      //提交表单
+      var form = $("#submitForm");
+      // form[ 0 ].submit();
+      $('#LoadingBlack').modal('show');
+      $('#Loading').show();
+      //前端静态页面写法------start
+      setTimeout(function () {
+        $('#LoadingBlack').modal('hide');
+        $('#Loading').hide();
+        $("#lplist-table").slideDown();
+      }, 500);
+      //前端静态页面写法------end
+    }
+
+    function exportSubmit() {
+      var merTitleInput = $("#merTitle");
+      var merTitle = merTitleInput.val();
+      if (merTitle.length > 32) {
+        errorClassShow(merTitleInput, "商户标题长度超长");
+        return;
+      }
+      //提交表单
+      var url = "merDownload";
+      //.serializer()将form表单中所有有name属性的input标签里的value值按照a=1&b=2&c=3&d=4&e=5的方式提交
+      var params = $("#submitForm").serialize();
+      $(location).attr('href', 'merDownload?' + params);
+    }
+
+    function errorClassShow(obj, content) {
+      obj.poshytip('show');
+      obj.poshytip('update', content);
+    }
+
+    //前端静态页面写法------start
+    //切换list页面的按钮 置为轮播图
+    function switchFigure($t) {
+      if ($($t).text() === "置为轮播图") {
+        $($t).text("取消轮播图")
+      } else {
+        $($t).text("置为轮播图")
+      }
+    }
+    function switchRecommend($t) {
+      if ($($t).text() === "置为推荐") {
+        $($t).text("取消推荐")
+      } else {
+        $($t).text("置为推荐")
+      }
+    }
+    //前端静态页面写法------end
+
+    //前端静态页面写法------start
+    function getUrlParam() {
+      //获取连接地址
+      var url = document.location.toString();
+      //分隔开连接,用?把传的值取出来
+      var arrObj = url.split("?");
+      //创建一个空对象
+      var result = {};
+      //判断连接里面是不是有值,如果有则执行下面操作
+      if (arrObj.length > 1) {
+        //取出所有传的值
+        var arrPara = arrObj[ 1 ].split("&");
+        var arr;
+        for (var i = 0; i < arrPara.length; i++) {
+
+          arr = arrPara[ i ].split("=");
+          //把第二个值赋值给第一个值
+          result[ arr[ 0 ] ] = arr[ 1 ];
+
+        }
+      }
+      return result;
+    }
+
+    function createSave() {
+      var str = getUrlParam();
+      var mess = decodeURI(str[ "mess" ]);
+      var createSaveBlur = mess.split(",");
+      $("#errorMessReturnResult").val(mess);
+      var merMainImg = decodeURI(str[ "merMainImg" ]);
+      if (createSaveBlur[ 1 ] === "编辑成功") {
+        $("#lplist-table tbody tr").first().find('td').eq(1).find(".thumbnailImg").attr("src", merMainImg);
+      } else if (createSaveBlur[ 1 ] === "新增成功") {
+        $("#lplist-table").find('tbody').first().append(
+          "<tr>" +
+          "<td>" + 5 + "</td>" +
+          "<td>" +
+          '<div class="thumbnailImgBoxParentHidden">' +
+          '<div class="thumbnailImgBoxParent">' +
+          '<div class="thumbnailImgBox" >' +
+          '<img class="thumbnailImg" src="' + merMainImg + '"/>' +
+          '</div >' +
+          '</div >' +
+          '</div >' +
+          "</td>" +
+          "<td>" +
+          '<table class="lplist-table-btn-box lpbox-sizing">' +
+          '<tbody>' +
+          '<tr>' +
+          '<td><a href="../menuMaintenance/edit.html" class="lplist-btn" title="编辑">编辑</a>' +
+          '</td>' +
+          '<td><a onclick="deleteConfirm(5)" class="lplist-btn" title="删除">删除</a></td>' +
+          '<td width="72px"> <a class= "lplist-btn" value = "查看详情" href = "../menuMaintenance/detail.html"> 查看详情</a></td >' +
+          '</tr >' +
+          '</tbody >' +
+          '</table > ' +
+          "</td>" +
+          "</tr>"
+        )
+      }
+      if (createSaveBlur[ 0 ] === 'true') {
+        queryListReturnResult();
+        $("#lplist-table").slideDown();
+        trId();
+      }
+    }
+//前端静态页面写法------end
+  </script>
+</body>
+
+</html>

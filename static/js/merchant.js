@@ -487,3 +487,18 @@ function getObjectURL (file) {
   return url
 };
 
+
+
+//yyyy-mm-dd类型的字符串转添加相应的天数，返回新的日期
+function getNewDay (dateTemp, days) {
+  var dateTemp = dateTemp.toString().split("-");
+  var nDate = new Date(dateTemp[ 1 ] + '-' + dateTemp[ 2 ] + '-' + dateTemp[ 0 ]);
+  var millSeconds = Math.abs(nDate) + (days * 24 * 60 * 60 * 1000);
+  var rDate = new Date(millSeconds);
+  var year = rDate.getFullYear();
+  var month = rDate.getMonth() + 1;
+  if (month < 10) month = "0" + month;
+  var date = rDate.getDate();
+  if (date < 10) date = "0" + date;
+  return (year + '-' + month + '-' + date);
+}

@@ -301,10 +301,11 @@ a:active {
     position: absolute;
     left: 0;
     top: 0;
-    width: 240px;
+    width: 260px;
     padding-top: 0;
     color: #403d3c;
     height: 100%;
+    padding-top: 80px;
 }
 
 .lpmenu-contraction {
@@ -314,7 +315,7 @@ a:active {
     border-right: 1px solid #e0e0e0;
     height: 100%;
     position: fixed;
-    left: 225px;
+    left: 245px;
     top: 0;
 }
 
@@ -339,19 +340,20 @@ a:active {
 }
 
 .lpmenu-content-box {
-    position: absolute;
+    position: relative;
     left: 0;
     top: 0;
-    width: 225px;
+    width: 245px;
     color: #403d3c;
     float: left;
+    height: 100%;
+    overflow-y: auto;
 }
-
 .lpmenu-boxbg {
     position: fixed;
     left: 0;
     top: 0;
-    width: 240px;
+    width: 260px;
     background-color: #f1f4fc;
     height: 100%;
 }
@@ -1884,3 +1886,31 @@ background-color: transparent !important;
 }
 
 .belongType{display: none;}
+
+
+.lpmenu-title-type-icon {
+  float: right;
+  padding: 0 4px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 14px;
+  font-size: 10px;
+  color: #ffffff;
+  border-radius: 3px;
+  margin-right: 1px;
+}
+
+.lpmenu-title-type-icon-webchat {
+  background: #1fb922;
+}
+
+.lpmenu-title-type-icon-website {
+  background: #3084c7;
+}
+.lpmenu-title-type-icon-website {
+  background: #3084c7;
+}
+
+.lpmenu-title-type-icon-public{
+  background: #fab02a;
+}

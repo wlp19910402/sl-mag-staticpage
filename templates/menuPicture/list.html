@@ -55,6 +55,57 @@
                     </div>
                   </td>
                 </tr>
+                <tr>
+                  <td class="lpsearch-label" width="170px">上传日期：</td>
+                  <td>
+                    <div class="lpsearch-date-two-box">
+                      <div id="trxDtTmBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyymmdd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="rroductReportDateStart"
+                          name="rroductReportDateStart" title="rroductReportDateStart" size="8" type="text" value=""
+                          readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                      <div class="lpsearch-date--"></div>
+                      <div id="tranDateTimeEndBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyymmdd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="rroductReportDateEnd"
+                          name="rroductReportDateEnd" title="rroductReportDateEnd" size="8" type="text" value=""
+                          readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="lpsearch-label" width="170px">上传日期：</td>
+                  <td>
+                    <div class="lpsearch-date-two-box">
+                      <div id="startTimeBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyy-mm-dd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="startTime" name="startTime"
+                          title="startTime" size="8" type="text" value="" readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                      <div class="lpsearch-date--"></div>
+                      <div id="endTimeBox" class="input-group date form_datetime lpsearch-date-two lpbox-sizing"
+                        data-date-format="yyyy-mm-dd " data-link-field="dtp_input1">
+                        <input class="form-control lpsearch-date lpbox-sizing" id="endTime" name="endTime"
+                          title="endTime" size="8" type="text" value="" readonly="">
+                        <span class="input-group-addon lpsearch-addon lpbox-sizing"
+                          onclick="$(this).prev('.lpsearch-date').click();"><span
+                            class="glyphicon glyphicon-th lpsearch-date-glyphicon"></span></span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table class="lpsearch-tableBtn">
@@ -243,226 +294,238 @@
           </div>
         </div>
       </div>
-      <!--菜单-->
-      <div class="lpmenu-box lpbox-sizing">
-        <div class="lpmenu-boxbg"></div>
-        <table class="lpmenu-contraction">
-          <tr>
-            <td>
-              <div class="contraction" onclick="menuBoxToggle()"></div>
-            </td>
-          </tr>
-        </table>
-        <div class="lpmenu-content-box">
-          <div id="accordion" role="tablist" aria-multiselectable="true">
-            <!--用户信息管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="heading1ne">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapse1ne" aria-expanded="true" aria-controls="collapse1ne">
-                  <span class="lpmenu-icon lpmenu-icon-one"></span>
-                  <span class="lpmenu-title">用户信息管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapse1ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="heading1ne">
-                <a href="../user/edit_password.html" th:href="@{/user/editPassword}" class="lpbox-sizing"
-                  lp-menu="EditPassword">修改登录密码
-                </a>
-                <a href="../user/list.html" th:href="@{/user/list}" class="lpbox-sizing" lp-menu="UserQuery">用户管理
-                </a>
-                <a href="../permission/list.html" th:href="@{/per/list}" class="lpbox-sizing"
-                  lp-menu="permissionQuery">权限管理
-                </a>
-                <a href="../role/list.html" th:href="@{/role/list}" class="lpbox-sizing" lp-menu="roleQuery">角色管理
-                </a>
-              </div>
+    </div>
+    <!--菜单-->
+    <div class="lpmenu-box lpbox-sizing">
+      <div class="lpmenu-boxbg"></div>
+      <table class="lpmenu-contraction">
+        <tr>
+          <td>
+            <div class="contraction" onclick="menuBoxToggle()"></div>
+          </td>
+        </tr>
+      </table>
+      <div class="lpmenu-content-box">
+        <div id="accordion" role="tablist" aria-multiselectable="true">
+          <!--用户信息管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading1ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1ne"
+                aria-expanded="true" aria-controls="collapse1ne">
+                <span class="lpmenu-icon lpmenu-icon-one"></span>
+                <span class="lpmenu-title">用户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-public ">公共</span>
+              </a>
             </div>
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="heading2ne">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapse2ne" aria-expanded="true" aria-controls="collapse2ne">
-                  <span class="lpmenu-icon lpmenu-icon-xinxiguanli"></span>
-                  <span class="lpmenu-title">卡bin信息管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapse2ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="heading2ne">
-                <a href="../cardBinType/list.html" th:href="@{/cardBin/list}" class="lpbox-sizing"
-                  lp-menu="CardBinQuery">卡bin信息查询
-                </a>
-              </div>
+            <div id="collapse1ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading1ne">
+              <a href="../user/edit_password.html" th:href="@{/user/editPassword}" class="lpbox-sizing"
+                lp-menu="EditPassword">修改登录密码
+              </a>
+              <a href="../user/list.html" th:href="@{/user/list}" class="lpbox-sizing" lp-menu="UserQuery">用户管理
+              </a>
+              <a href="../permission/list.html" th:href="@{/per/list}" class="lpbox-sizing"
+                lp-menu="permissionQuery">权限管理
+              </a>
+              <a href="../role/list.html" th:href="@{/role/list}" class="lpbox-sizing" lp-menu="roleQuery">角色管理
+              </a>
             </div>
-            <!--数字字典维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingFive">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                  <span class="lpmenu-icon lpmenu-icon-zidianweihu"></span>
-                  <span class="lpmenu-title">数字字典管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseFive" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFive">
-                <a href="../dict/list.html" th:href="@{/dict/list}" class="lpbox-sizing" lp-menu="DictItemQuery">数字字典查询
-                </a>
-              </div>
+          </div>
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="heading2ne">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2ne"
+                aria-expanded="true" aria-controls="collapse2ne">
+                <span class="lpmenu-icon lpmenu-icon-xinxiguanli"></span>
+                <span class="lpmenu-title">卡bin信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
             </div>
-            <!--商户信息维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingSix">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                  <span class="lpmenu-icon lpmenu-icon-xinxiweihu"></span>
-                  <span class="lpmenu-title">商户信息管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseSix" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingSix">
-                <a href="../mer/list.html" th:href="@{/mer/list}" class="lpbox-sizing" lp-menu="MerQuery">商户信息查询
-                </a>
-              </div>
+            <div id="collapse2ne" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="heading2ne">
+              <a href="../cardBinType/list.html" th:href="@{/cardBin/list}" class="lpbox-sizing"
+                lp-menu="CardBinQuery">卡bin信息查询
+              </a>
             </div>
+          </div>
+          <!--数字字典维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFive">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
+                aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-zidianweihu"></span>
+                <span class="lpmenu-title">数字字典管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <a href="../dict/list.html" th:href="@{/dict/list}" class="lpbox-sizing" lp-menu="DictItemQuery">数字字典查询
+              </a>
+            </div>
+          </div>
+          <!--商户信息维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSix">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
+                aria-expanded="true" aria-controls="collapseSix">
+                <span class="lpmenu-icon lpmenu-icon-xinxiweihu"></span>
+                <span class="lpmenu-title">商户信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat">微信</span>
+              </a>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingSix">
+              <a href="../mer/list.html" th:href="@{/mer/list}" class="lpbox-sizing" lp-menu="MerQuery">商户信息查询
+              </a>
+            </div>
+          </div>
 
-            <!--二级菜单维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingEight">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
-                  <span class="lpmenu-icon lpmenu-icon-menuMaintenance"></span>
-                  <span class="lpmenu-title">二级菜单维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseEight" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingEight">
-                <a href="../menuMaintenance/list.html" th:href="@{/menuMaintenance/list}" class="lpbox-sizing"
-                  lp-menu="MenuMaintenance">二级菜单维护
-                </a>
-              </div>
+          <!--二级菜单维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingEight">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                <span class="lpmenu-icon lpmenu-icon-menuMaintenance"></span>
+                <span class="lpmenu-title">二级菜单维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
             </div>
-            <!--菜单图片信息管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingFourteen">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseFourteen" aria-expanded="true" aria-controls="collapseFourteen">
-                  <span class="lpmenu-icon lpmenu-icon-menuPicture"></span>
-                  <span class="lpmenu-title">菜单图片信息管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseFourteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFourteen">
-                <a href="../menuPicture/list.html" th:href="@{/menuPicture/list}" class="lpbox-sizing"
-                  lp-menu="MenuPicture">菜单图片信息管理
-                </a>
-              </div>
+            <div id="collapseEight" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingEight">
+              <a href="../menuMaintenance/list.html" th:href="@{/menuMaintenance/list}" class="lpbox-sizing"
+                lp-menu="MenuMaintenance">二级菜单维护
+              </a>
             </div>
+          </div>
+          <!--菜单图片信息管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFourteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseFourteen" aria-expanded="true" aria-controls="collapseFourteen">
+                <span class="lpmenu-icon lpmenu-icon-menuPicture"></span>
+                <span class="lpmenu-title">菜单图片信息管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseFourteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFourteen">
+              <a href="../menuPicture/list.html" th:href="@{/menuPicture/list}" class="lpbox-sizing"
+                lp-menu="MenuPicture">菜单图片信息管理
+              </a>
+            </div>
+          </div>
 
-            <!--栏目管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingEleven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
-                  <span class="lpmenu-icon lpmenu-icon-column"></span>
-                  <span class="lpmenu-title">栏目管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingEleven">
-                <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
-                </a>
-              </div>
+          <!--栏目管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingEleven">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven">
+                <span class="lpmenu-icon lpmenu-icon-column"></span>
+                <span class="lpmenu-title">栏目管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
             </div>
+            <div id="collapseEleven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingEleven">
+              <a href="../column/list.html" th:href="@{/column/list}" class="lpbox-sizing" lp-menu="Column">栏目管理
+              </a>
+            </div>
+          </div>
 
-            <!--文章管理-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingThirteen">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
-                  <span class="lpmenu-icon lpmenu-icon-article"></span>
-                  <span class="lpmenu-title">文章管理</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingThirteen">
-                <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">新闻资讯管理
-                </a>
-              </div>
+          <!--文章管理-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingThirteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseThirteen" aria-expanded="true" aria-controls="collapseThirteen">
+                <span class="lpmenu-icon lpmenu-icon-article"></span>
+                <span class="lpmenu-title">文章管理</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
             </div>
+            <div id="collapseThirteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingThirteen">
+              <a href="../article/list.html" th:href="@{/article/list}" class="lpbox-sizing" lp-menu="Article">新闻资讯管理
+              </a>
+            </div>
+          </div>
 
-            <!--首页业务介绍-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingFifteen">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseFifteen" aria-expanded="true" aria-controls="collapseFifteen">
-                  <span class="lpmenu-icon lpmenu-icon-homeBusiness"></span>
-                  <span class="lpmenu-title">首页业务介绍</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseFifteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFifteen">
-                <a href="../homeBusiness/list.html" th:href="@{/homeBusiness/list}" class="lpbox-sizing"
-                  lp-menu="HomeBusiness">首页业务介绍
-                </a>
-              </div>
+          <!--首页业务介绍-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingFifteen">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseFifteen" aria-expanded="true" aria-controls="collapseFifteen">
+                <span class="lpmenu-icon lpmenu-icon-homeBusiness"></span>
+                <span class="lpmenu-title">首页业务介绍</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
             </div>
-            <!--商户链接维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingNine">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-                  <span class="lpmenu-icon lpmenu-icon-merLink"></span>
-                  <span class="lpmenu-title">商户链接维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingNine">
-                <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
-                </a>
-              </div>
+            <div id="collapseFifteen" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFifteen">
+              <a href="../homeBusiness/list.html" th:href="@{/homeBusiness/list}" class="lpbox-sizing"
+                lp-menu="HomeBusiness">首页业务介绍
+              </a>
             </div>
-            <!--静态资源维护-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingTwelve">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
-                  <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
-                  <span class="lpmenu-title">静态资源维护</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingTwelve">
-                <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
-                  lp-menu="StaticResource">底部公司相关信息维护
-                </a>
-              </div>
+          </div>
+          <!--商户链接维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingNine">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine"
+                aria-expanded="true" aria-controls="collapseNine">
+                <span class="lpmenu-icon lpmenu-icon-merLink"></span>
+                <span class="lpmenu-title">商户链接维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
             </div>
-            <!--URL生成工具-->
-            <div class="lppanel panel">
-              <div class="lppanel-heading" role="tab" id="headingSeven">
-                <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
-                  <span class="lpmenu-icon lpmenu-icon-url"></span>
-                  <span class="lpmenu-title">URL生成工具</span>
-                  <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
-                </a>
-              </div>
-              <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
-                aria-labelledby="headingFive">
-                <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
-                  lp-menu="UrlBuilder">URL生成工具
-                </a>
-              </div>
+            <div id="collapseNine" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingNine">
+              <a href="../merLink/list.html" th:href="@{/merLink/list}" class="lpbox-sizing" lp-menu="MerLink">商户链接维护
+              </a>
+            </div>
+          </div>
+          <!--静态资源维护-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingTwelve">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseTwelve" aria-expanded="true" aria-controls="collapseTwelve">
+                <span class="lpmenu-icon lpmenu-icon-staticResource"></span>
+                <span class="lpmenu-title">静态资源维护</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-website">官网</span>
+              </a>
+            </div>
+            <div id="collapseTwelve" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingTwelve">
+              <a href="../staticResource/list.html" th:href="@{/staticResource/list}" class="lpbox-sizing"
+                lp-menu="StaticResource">底部公司相关信息维护
+              </a>
+            </div>
+          </div>
+          <!--URL生成工具-->
+          <div class="lppanel panel">
+            <div class="lppanel-heading" role="tab" id="headingSeven">
+              <a class="lpbox-sizing" role="button" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseSeven" aria-expanded="true" aria-controls="collapseFive">
+                <span class="lpmenu-icon lpmenu-icon-url"></span>
+                <span class="lpmenu-title">URL生成工具</span>
+                <span class="lpmenu-ui-icon-left lpmenu-ui-icon"></span>
+                <span class="lpmenu-title-type-icon lpmenu-title-type-icon-webchat ">微信</span>
+              </a>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse lppanel-collapse" role="tabpanel"
+              aria-labelledby="headingFive">
+              <a href="../urlTool/url_tool.html" th:href="@{/urlTool/urlBuilder}" class="lpbox-sizing"
+                lp-menu="UrlBuilder">URL生成工具
+              </a>
             </div>
           </div>
         </div>
@@ -556,7 +619,6 @@
   <script src="../../static/js/sh_main.min.js" th:src="@{/js/sh_main.min.js}"></script>
   <script src="../../static/js/exportExcel.js" th:src="@{/js/exportExcel.js}"></script>
   <script src="../../static/js/staticMerchat.js"></script>
-  <script src="../../static/js/distpicker/distpicker.data.js"></script>
   <script src="../../static/js/distpicker/distpicker.js"></script>
   <script language="javascript">
     $(function () {
@@ -565,7 +627,121 @@
       createSave();
       //前端静态页面写法------end
     });
+    var startTimeBoxObj = $("#startTimeBox");
+    var endTimeBoxObj = $("#endTimeBox");
+    startTimeBoxObj.datetimepicker({
+      format: 'yyyy-mm-dd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var endval = $("#endTime").val();
+      var beginval = $("#startTime").val();
+      if (endval != "" && endval != null) {
+        startTimeBoxObj.datetimepicker('setEndDate', endval);
+      }
+    });
+    endTimeBoxObj.datetimepicker({
+      format: 'yyyy-mm-dd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var endval = $("#endTime").val();
+      var beginval = $("#startTime").val();
+      if (beginval !== "" && beginval != null) {
+        setBegin = beginval;
+        endTimeBoxObj.datetimepicker('setStartDate', beginval);
+      }
+    });
 
+
+    var trxDtTmBoxObj = $("#trxDtTmBox");
+    var tranDateTimeEndBoxObj = $("#tranDateTimeEndBox");
+    var form_datetime = $(".form_datetime");
+
+    trxDtTmBoxObj.datetimepicker({
+      format: 'yyyymmdd',
+      language: 'fr',
+      weekStart: 1,
+      clearBtn: true,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var end = $("#rroductReportDateEnd").val();
+      var begin = $("#rroductReportDateStart").val();
+      var endval = initialFun(end);
+      var beginval = initialFun(begin);
+      var setEnd = "";
+      if (end != "" && end != null) {
+        setEnd = endval;
+        trxDtTmBoxObj.datetimepicker('setEndDate', setEnd);
+        var startDate = getNewDay(setEnd, -365);
+        trxDtTmBoxObj.datetimepicker('setStartDate', startDate);
+      } else {
+        setEnd = new Date();
+        trxDtTmBoxObj.datetimepicker('setEndDate', null);
+        trxDtTmBoxObj.datetimepicker('setStartDate', null);
+      }
+      if (begin === "" || begin === null) {
+        trxDtTmBoxObj.datetimepicker('update', setEnd);
+      } else {
+        trxDtTmBoxObj.datetimepicker('setDate', beginval);
+      }
+    });
+    tranDateTimeEndBoxObj.datetimepicker({
+      format: 'yyyymmdd',
+      language: 'fr',
+      weekStart: 1,
+      autoclose: 1,
+      clearBtn: true,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      minView: 2,
+      showMeridian: 1
+    }).on("show", function () {
+      var end = $("#rroductReportDateEnd").val();
+      var begin = $("#rroductReportDateStart").val();
+      var endval = initialFun(end);
+      var beginval = initialFun(begin);
+      var setBegin = "";
+      if (begin !== "" && begin != null) {
+        setBegin = beginval;
+        var endDate = getNewDay(setBegin, 365);
+        tranDateTimeEndBoxObj.datetimepicker('setEndDate', endDate);
+        tranDateTimeEndBoxObj.datetimepicker('setStartDate', beginval);
+      } else {
+        setBegin = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 365);
+        tranDateTimeEndBoxObj.datetimepicker('setEndDate', null);
+        tranDateTimeEndBoxObj.datetimepicker('setStartDate', null);
+      }
+      if (end === "" || end === null) {
+        if (begin != "") {
+          tranDateTimeEndBoxObj.datetimepicker('update', setBegin);
+        } else {
+          tranDateTimeEndBoxObj.datetimepicker('update', new Date());
+        }
+      } else {
+        tranDateTimeEndBoxObj.datetimepicker('setDate', endval);
+      }
+    });
     function deleteConfirm(id) {
       if (id === "" || id === 'null' || id === null) {
         alert("数据异常，参数错误");
@@ -587,7 +763,7 @@
       $('#LoadingBlack').modal('show');
       $('#Loading').show();
       //前端静态页面写法------start
-      setTimeout(function(){
+      setTimeout(function () {
         $('#LoadingBlack').modal('hide');
         $('#Loading').hide();
         $("#lplist-table").slideDown();
