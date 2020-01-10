@@ -154,7 +154,7 @@ function menuFun () {
 *Created on 2017年12月12日
 *Modified date 2017年12月12日
 */
-var MenuNum = 0
+var MenuNum = 0;
 
 function menuBoxToggle () {
   if (MenuNum == 0) {
