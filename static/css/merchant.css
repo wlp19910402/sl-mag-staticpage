@@ -1294,10 +1294,6 @@ select.lpsearch-select {
     text-align: right;
     background: #f6f8fd;
 }
-
-.lpdetail-table-checkbox {
-}
-
 .lpdetail-table-checkbox-box {
     margin-right: 12px;
     float: left;
@@ -1563,7 +1559,7 @@ select.lpsearch-select {
 }
 
 .lpsearch-operate-img {
-    background-width: 100%;
+    width: 100%;
     height: 80px;
     background-size: 80px;
     margin-bottom:10px;
