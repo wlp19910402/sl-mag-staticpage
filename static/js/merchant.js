@@ -71,6 +71,25 @@ function menuFun () {
   $('.lpsearch-td-wranIcon').popover('toggle');//！！！提示信息
   $('.lpsearch-td-wranIcon').popover('hide');//！！！提示信息
 
+  $('.lpscrolly-content').on('scroll', function () {
+    var bodyScroll = $('.lpscrolly-content').scrollTop();
+    $(".popover[role='tooltip']").each(function () {
+      var popoverId = $(this).attr("id");
+      var popoverIcon = $(".lpsearch-td-wranIcon[aria-describedby='" + popoverId + "']");
+      var menuYloc = popoverIcon.offset().top;
+      var lpcontentBoxTop = $(".lpcontent-box").offset().top;
+      var offsetTop = menuYloc - bodyScroll - lpcontentBoxTop + 80 + "px";
+      $(this).css({ top: offsetTop });
+    })
+  })
+
+  // $('.lpsearch-td-wranIcon').on('click', function () {
+  //   var menuYloc = $(".popover").offset().top;
+  //   $('.lpscrolly-content').on('scroll', function () {
+  //     var offsetTop = menuYloc - $('.lpscrolly-content').scrollTop() + "px";
+  //     $(".popover").animate({ top: offsetTop }, { duration: 0, queue: false });
+  //   });
+  // });
   var menuVal = $("#pageTitle").val();
   if (menuVal != "" && menuVal != null) {
     var $currentMenu = $(".lppanel-collapse a[lp-menu='" + menuVal + "']");
@@ -83,7 +102,6 @@ function menuFun () {
     } else {
       $currentMenu.parent().parent().addClass("in");
     }
-
 
     $currentMenu.parent(".lppanel-collapse").prev(".lppanel-heading").addClass("lppanel-heading-active");
     $currentMenu.parent(".lppanel-collapse").prev(".lppanel-heading").find(".lpmenu-ui-icon").removeClass("lpmenu-ui-icon-left").addClass("lpmenu-ui-icon-down");

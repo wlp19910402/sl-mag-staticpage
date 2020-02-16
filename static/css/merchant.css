@@ -193,6 +193,7 @@ a:active {
     left: 0;
     top: 0;
     min-width: 1000px;
+    z-index: 10000;
 }
 
 .lplogo {
